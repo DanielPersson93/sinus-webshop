@@ -6,19 +6,28 @@
       <router-link to="/products">Products</router-link>
 
       <p>här är min gröna p tagg</p>
+<<<<<<< HEAD
       <button>VIEW MORE</button>
+=======
+    </div>  <router-view />
+    <Footer class="footer"/>
+>>>>>>> 7b3935d44050c136240da46a0e24e4af0ae6305c
     </div>
-    <router-view />
-  </div>
+
 </template>
 <script>
-import Navigator from "@/components/Navigator.vue";
+import Navigator from "@/components/Navigator.vue"
+import Footer from "@/components/Footer.vue"
+
 export default {
-  components: { Navigator },
+  components: { Navigator, Footer},
 };
 </script>
 
 <style lang="scss">
+.footer{
+margin-bottom: 0;
+}
 html,body{
     margin: 0;
   padding: 0;
