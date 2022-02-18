@@ -6,30 +6,31 @@
       <router-link to="/products">Products</router-link>
 
       <p>här är min gröna p tagg</p>
-<<<<<<< HEAD
-      <button>VIEW MORE</button>
-=======
-    </div>  <router-view />
-    <Footer class="footer"/>
->>>>>>> 7b3935d44050c136240da46a0e24e4af0ae6305c
-    </div>
 
+      <ProductCard />
+      <button>VIEW MORE</button>
+    </div>
+    <router-view />
+    <Footer class="footer" />
+  </div>
 </template>
 <script>
-import Navigator from "@/components/Navigator.vue"
-import Footer from "@/components/Footer.vue"
+import Navigator from "@/components/Navigator.vue";
+import Footer from "@/components/Footer.vue";
+import ProductCard from "./components/ProductCard.vue";
 
 export default {
-  components: { Navigator, Footer},
+  components: { Navigator, Footer, ProductCard },
 };
 </script>
 
 <style lang="scss">
-.footer{
-margin-bottom: 0;
+.footer {
+  margin-bottom: 0;
 }
-html,body{
-    margin: 0;
+html,
+body {
+  margin: 0;
   padding: 0;
 }
 #app {
@@ -43,8 +44,7 @@ html,body{
   }
   p,
   a,
-  button
-   {
+  button {
     font-family: "Mukta Malar", sans-serif;
   }
   button {
@@ -55,15 +55,13 @@ html,body{
     border: none;
     color: white;
   }
-  button:hover{
+  button:hover {
     box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.4);
     // box-shadow: inset 1px 1px 3px 1px #FFFFFF;
   }
-  .whiteborderbutton{
-    border: 3px solid #FFFFFF;
+  .whiteborderbutton {
+    border: 3px solid #ffffff;
     box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.4);
   }
 }
-
-
 </style>
