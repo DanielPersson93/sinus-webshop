@@ -4,6 +4,7 @@
       <Navigator />
       <router-link to="/">Home</router-link> |
       <router-link to="/products">Products</router-link>
+      
       <p>här är min gröna p tagg</p>
     </div>
     <router-view />

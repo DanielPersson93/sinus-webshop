@@ -1,9 +1,9 @@
 <template>
   <div class="nav-wrap">
     <router-link to="/home">Home</router-link>
-    <router-link to="/skates">Skates</router-link>
+    <router-link to="/products">Skates</router-link>
 
-    <router-link to="/apparel">Apparel</router-link>
+    <router-link to="/products">Apparel</router-link>
 
     <section>Bag <input type="text" placeholder="Search.." /></section>
   </div>
