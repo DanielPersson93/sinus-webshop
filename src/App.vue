@@ -6,6 +6,7 @@
       <router-link to="/products">Products</router-link>
 
       <p>här är min gröna p tagg</p>
+      <button>VIEW MORE</button>
     </div>
     <router-view />
   </div>
@@ -27,12 +28,31 @@ html,body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  // background-color: red;
   h1 {
     font-family: "Montserrat", sans-serif;
   }
   p,
-  a {
+  a,
+  button
+   {
     font-family: "Mukta Malar", sans-serif;
+  }
+  button {
+    width: 127px;
+    height: 55px;
+    background: #003827;
+    border-radius: 4px;
+    border: none;
+    color: white;
+  }
+  button:hover{
+    box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.4);
+    // box-shadow: inset 1px 1px 3px 1px #FFFFFF;
+  }
+  .whiteborderbutton{
+    border: 3px solid #FFFFFF;
+    box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.4);
   }
 }
 
