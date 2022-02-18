@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <p>här är min gröna p tagg</p>
     </div>
     <router-view/>
   </div>
