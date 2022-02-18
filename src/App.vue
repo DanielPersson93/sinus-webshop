@@ -2,8 +2,10 @@
   <div id="app">
     <div id="nav">
       <h1>Celina oki</h1>
+      <h1>Celinas h1a är inte min!!!</h1>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <p>här är min gröna p tagg</p>
     </div>
     <router-view/>
   </div>
