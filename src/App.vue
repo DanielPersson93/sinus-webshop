@@ -6,18 +6,24 @@
       <router-link to="/products">Products</router-link>
 
       <p>här är min gröna p tagg</p>
+    </div>  <router-view />
+    <Footer class="footer"/>
     </div>
-    <router-view />
-  </div>
+
 </template>
 <script>
-import Navigator from "@/components/Navigator.vue";
+import Navigator from "@/components/Navigator.vue"
+import Footer from "@/components/Footer.vue"
+
 export default {
-  components: { Navigator },
+  components: { Navigator, Footer},
 };
 </script>
 
 <style lang="scss">
+.footer{
+margin-bottom: 0;
+}
 html,body{
     margin: 0;
   padding: 0;
