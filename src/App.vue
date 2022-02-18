@@ -1,23 +1,34 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1>Celina oki</h1>
-      <h1>Celinas h1a är inte min!!!</h1>
+      <Navigator />
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/products">Products</router-link>
       <p>här är min gröna p tagg</p>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+import Navigator from "@/components/Navigator.vue";
+export default {
+  components: { Navigator },
+};
+</script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  h1 {
+    font-family: "Montserrat", sans-serif;
+  }
+  p,
+  a {
+    font-family: "Mukta Malar", sans-serif;
+  }
 }
 
 #nav {
