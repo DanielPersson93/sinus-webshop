@@ -6,14 +6,16 @@
       <router-link to="/products">Products</router-link>
 
       <p>här är min gröna p tagg</p>
+      <ProductCard/>
     </div>
     <router-view />
   </div>
 </template>
 <script>
 import Navigator from "@/components/Navigator.vue";
+import ProductCard from './components/ProductCard.vue';
 export default {
-  components: { Navigator },
+  components: { Navigator, ProductCard },
 };
 </script>
 
