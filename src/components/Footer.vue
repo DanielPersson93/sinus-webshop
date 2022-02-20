@@ -23,9 +23,9 @@
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo">
 
     <article class="media-icons">
-        <img src="@/assets/twitterlogo.svg" alt="">
-        <img src="@/assets/instagramlogo.svg" alt="">
-        <img src="@/assets/facebooklogo.svg" alt="">
+        <a href="https://twitter.com/home?lang=en"> <img src="@/assets/twitterlogo.svg" alt=""></a>
+        <a href="instagram.com"><img src="@/assets/instagramlogo.svg" alt=""></a>
+        <a href="https://www.facebook.com/"><img src="@/assets/facebooklogo.svg" alt=""></a>
 
     </article>
 </section>

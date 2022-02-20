@@ -2,26 +2,60 @@
   <div class="nav-wrap">
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo">
   <section class="links">
-    <router-link to="/">Home</router-link>
+    <!-- <router-link to="/">Home</router-link>
     <router-link to="/products">Skates</router-link>
-    <router-link to="/products">Apparel</router-link>
+    <router-link to="/products">Apparel</router-link> -->
+
+
   </section>
 
     <section class="search-field"> 
       <span class="material-icons-outlined">
       search
       </span>
-      <input type="text" placeholder="Search.." /> 
+
+      <section class="result">
+      <input type="text" placeholder="Search.."
+       @keyup="setQuery" 
+       v-model="searchInput"/> 
+       <ul>
+         <li v-for="(product, index) in $store.getters.resultsLimited" :key="index">{{product}}</li>
+       </ul>
+       </section>
+
+
       <span class="material-icons-outlined ">
       shopping_bag
       </span>
       <span class="material-icons-outlined">
       person_outline
       </span>
+      <p>{{getQuery}}</p>
   </section>
 
   </div>
 </template>
+
+
+<script>
+export default {
+  data(){return{
+    searchInput:""
+
+  }},
+  methods:{
+    setQuery(){
+      this.$store.commit('setQuery', this.searchInput)
+    }
+  },
+  computed:{
+    getQuery(){
+      return this.$store.state.query
+    },
+  },
+}
+</script>
+
 <style scoped>
 .material-icons-outlined{
   font-size: 1.8rem;
