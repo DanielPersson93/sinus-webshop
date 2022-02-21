@@ -23,9 +23,9 @@
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo">
 
     <article class="media-icons">
-        <img src="@/assets/twitterlogo.svg" alt="">
-        <img src="@/assets/instagramlogo.svg" alt="">
-        <img src="@/assets/facebooklogo.svg" alt="">
+        <a href="https://twitter.com/home?lang=en"> <img src="@/assets/twitterlogo.svg" alt=""></a>
+        <a href="instagram.com"><img src="@/assets/instagramlogo.svg" alt=""></a>
+        <a href="https://www.facebook.com/"><img src="@/assets/facebooklogo.svg" alt=""></a>
 
     </article>
 </section>
@@ -36,21 +36,21 @@
 
 <style lang="scss" scoped>
 h1{
-    margin: 0;
+    margin: 0 0 1.5rem 0;
 }
 .footer{
     height: 400px;
 
 }
 .fit{
-    padding: 0rem 5rem;
+    padding: 5rem 5rem;
     background-image: url('../assets/tom-morbey-QJz32ZuCArg-unsplash.jpg');
     background-position-y: 46%;
     background-position-x: 60%;
     display: flex;
     justify-content: space-between;
     height: 100%;
-    align-items: center;
+    // align-items: center;
 }
 .links-wrapper{
     display: flex;
