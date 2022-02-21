@@ -87,15 +87,19 @@ export default {};
     }
   }
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(6, 200px);
-  grid-template-rows: repeat(5, 150px);
+  grid-gap: 1.5rem 10rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   grid-template-areas:
     "your-products your-products card-form card-form card-form card-form "
     "your-products your-products card-form card-form card-form card-form "
     "your-products your-products card-form card-form card-form card-form "
+    "your-products your-products card-form card-form card-form card-form "
+    "your-products your-products card-form card-form card-form card-form "
     "your-products your-products card-info card-info card-info button "
-    "your-products your-products  . . . . ";
+    "your-products your-products card-info card-info card-info button "
+    "your-products your-products card-info card-info card-info button ";
+  // "your-products your-products  . . . . ";
 
   .your-products {
     grid-area: your-products;
@@ -113,9 +117,12 @@ export default {};
     border-radius: 4px;
     text-align: center;
     margin-top: 2.5rem;
+    margin-left: -180px;
   }
 
   .checkout-form {
+    width: 787px;
+    height: 410px;
     grid-area: card-form;
     border: 5px solid black;
     border-radius: 15px;
@@ -186,6 +193,9 @@ export default {};
     }
   }
   .card-info {
+    margin-top: 0;
+    width: 570px;
+    height: 164px;
     border: 5px solid black;
     border-radius: 15px;
     display: grid;
