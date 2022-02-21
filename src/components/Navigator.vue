@@ -2,9 +2,9 @@
   <div class="nav-wrap">
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo">
   <section class="links">
-    <!-- <router-link to="/">Home</router-link>
+    <router-link to="/">Home</router-link>
     <router-link to="/products">Skates</router-link>
-    <router-link to="/products">Apparel</router-link> -->
+    <router-link to="/products">Apparel</router-link>
 
 
   </section>
@@ -17,9 +17,12 @@
       <section class="result">
       <input type="text" placeholder="Search.."
        @keyup="setQuery" 
-       v-model="searchInput"/> 
-       <ul>
-         <li v-for="(product, index) in $store.getters.resultsLimited" :key="index">{{product}}</li>
+       v-model="searchInput"
+       class="search-results-parent"/> 
+       <ul class="search-results">
+         <li v-for="(product, index) in $store.getters.resultsLimited"
+        :key="index"
+        class="mar">{{product}}</li>
        </ul>
        </section>
 
@@ -30,7 +33,7 @@
       <span class="material-icons-outlined">
       person_outline
       </span>
-      <p>{{getQuery}}</p>
+      <!-- <p>{{getQuery}}</p> -->
   </section>
 
   </div>
@@ -88,4 +91,29 @@ a {
   color: inherit;
   margin-left: 5rem;
 }
+.search-results-parent{
+  position: relative;
+  z-index: 1000;
+
+  }
+  .search-results{
+    position: absolute;
+    top: 10%;
+    /* left: 79%; */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    width: 13%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .mar:hover{
+     background-color: rgba(68, 67, 67, 0.2);
+     width: 100%;
+}
+  .mar{
+    transition: 0.8s;
+    text-align: left;
+    padding-top: 0.8rem;
+  }
 </style>

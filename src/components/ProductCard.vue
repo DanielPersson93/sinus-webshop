@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang ="scss">
+<style lang ="scss" scoped>
 .product-card {
   display: flex;
   flex-direction: column;
