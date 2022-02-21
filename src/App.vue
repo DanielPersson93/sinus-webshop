@@ -2,15 +2,6 @@
   <div id="app">
     <div id="nav">
       <Navigator />
-
-    </div>  
-    <router-view />
-    <Footer class="footer"/>
-    </div>
-
-
-      <ProductCard />
-      <button>VIEW MORE</button>
     </div>
     <router-view />
     <Footer class="footer" />
@@ -19,10 +10,9 @@
 <script>
 import Navigator from "@/components/Navigator.vue";
 import Footer from "@/components/Footer.vue";
-import ProductCard from "./components/ProductCard.vue";
 
 export default {
-  components: { Navigator, Footer, ProductCard },
+  components: { Navigator, Footer },
 };
 </script>
 
