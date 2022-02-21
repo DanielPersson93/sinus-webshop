@@ -2,21 +2,19 @@
   <div id="app">
     <div id="nav">
       <Navigator />
-      <router-link to="/">Home</router-link> |
-      <router-link to="/products">Products</router-link>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/products">Products</router-link> -->
 
-      <p>här är min gröna p tagg</p>
-      <ProductCard/>
-      <button>VIEW MORE</button>
+     <!--  <p>här är min gröna p tagg</p>
+      <button>VIEW MORE</button> -->
     </div>
     <router-view />
   </div>
 </template>
 <script>
 import Navigator from "@/components/Navigator.vue";
-import ProductCard from './components/ProductCard.vue';
 export default {
-  components: { Navigator, ProductCard },
+  components: { Navigator},
 };
 </script>
 
