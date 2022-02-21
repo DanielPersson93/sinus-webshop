@@ -2,7 +2,7 @@
   <div class="card">
     <router-link :to="{ path: '/product/' + product.id }">
       <img
-        :src="require(`../../assets/${product.imgFile}`)"
+        :src="require(`../assets/${product.imgFile}`)"
         :alt="product.title"
       />
     </router-link>
@@ -12,11 +12,7 @@
     <div class="ratings__container">
       <p class="card__rating">
         {{ product.rating }}/6
-        <img
-          class="star__rating"
-          src="../../assets/star_black_24dp.svg"
-          alt=""
-        />
+        <img class="star__rating" src="../assets/star_black_24dp.svg" alt="" />
       </p>
     </div>
   </div>

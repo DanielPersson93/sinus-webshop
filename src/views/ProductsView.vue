@@ -15,8 +15,8 @@
 
 <script>
 import * as API from "@/api/mock";
-import CategoryList from "../shared/components/CategoryList";
-import Product from "../shared/components/Product";
+import CategoryList from "../components/CategoryList";
+import Product from "../components/Product";
 export default {
   components: { CategoryList, Product },
   data() {

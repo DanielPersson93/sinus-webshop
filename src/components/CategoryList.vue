@@ -4,7 +4,7 @@
 
     <ul class="heading__list">
       <li v-for="cat of categories" :key="cat.url">
-        <router-link :to="{ path: '/productview/' + cat.url }">
+        <router-link :to="{ path: '/productsview/' + cat.url }">
           <span class="cat__heading">
             {{ cat.name }}
           </span>
@@ -18,7 +18,7 @@
 
         <ul class="underCat__heading" v-if="cat.isOpen">
           <li v-for="subCategory of cat.subCategories" :key="subCategory.url">
-            <router-link :to="{ path: '/productview/' + subCategory.url }">
+            <router-link :to="{ path: '/productsview/' + subCategory.url }">
               {{ subCategory.name }}
             </router-link>
           </li>
