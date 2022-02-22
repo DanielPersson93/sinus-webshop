@@ -9,7 +9,7 @@ export async function fetchCategory(grillkorv){
     return await axios.get('/items/?category='+`${grillkorv}`)
 }
 export async function fetchApparel(){
-    return await axios.get('/items/?exclude=skateboard,wheel')
+    return await axios.get('/items/?exclude=skateboard,wheel&page=1')
 }
 
 // http://localhost:5000/api/items?exclude=wheel,skateboard&page=1
