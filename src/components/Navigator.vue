@@ -1,5 +1,9 @@
 <template>
+
+ 
   <div class="nav-wrap">
+ <div class="abso"> <Login> </Login> </div>      
+
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
       <router-link to="/">Home</router-link>
@@ -74,14 +78,21 @@
       </section>
 
       <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined"> person_outline </span>
+      <span class="material-icons-outlined"
+      @click="openLogin"
+      > person_outline </span>
       <!-- <p>{{getQuery}}</p> -->
-    </section>
+
+    </section>    
   </div>
 </template>
 
 <script>
+import Login from '@/components/Login.vue'
 export default {
+  components:{
+    Login
+  },
   data() {
     return {
       searchInput: "",
@@ -96,6 +107,9 @@ export default {
     },
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
+    },
+    openLogin(){
+console.log("HEJ")
     },
 
     search() {
@@ -130,7 +144,10 @@ export default {
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  position: relative;
+ 
 }
+
 /* .apparel-ul , .skate-ul{
   display: none;
 }
@@ -154,6 +171,7 @@ input {
   width: 23rem;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 a {
   text-decoration: none;
@@ -179,6 +197,7 @@ a {
   width: 13%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .par {
   z-index: 9000;
 }

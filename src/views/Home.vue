@@ -142,7 +142,7 @@ img {
   position: relative;
   .picture-child {
     position: absolute;
-    top: -2%;
+    top: 2%;
     left: 5%;
     color: white;
   }
