@@ -10,20 +10,23 @@ export default new Vuex.Store({
     products: ["kalle", "kalas", "karl", "3", "4", "5"],
     allProducts: [],
     user: {},
+    token: "",
   },
   mutations: {
     setQuery(state, input) {
       state.query = input;
     },
     saveProducts(state, allProducts){
-      state.allProducts.push(allProducts)
-      // console.log("testernas test")
-      // console.log(allProducts)
+      for (const products of allProducts) {
+        state.allProducts.push(products)
+      }
     },
     saveUser(state, user) {
       state.user = user;
-      console.log("hej", state.user);
     },
+    saveToken(state, token){
+      state.token = token
+    }
   },
   getters: {
     resultsLimited(state) {
@@ -36,38 +39,26 @@ export default new Vuex.Store({
   },
 
   actions: {
-    /*     async fetchAllProducts(context){
-      const response = await API.getAllProducts()
-      context.commit('saveProducts', response.data.products)
-      console.log(response.data.products)
-    }, */
-    async getProductsAction(context, payloadCategory) {
-      const response = await API.fetchCategory(payloadCategory);
+    async getProductCategory(context, category) {
+      const response = await API.getProductCategory(category);
       context.commit("saveProducts", response.data.products);
     },
     async fetchApparel(context) {
       const response = await API.fetchApparel();
       context.commit("saveProducts", response.data.products);
-      console.log(response.data.products);
     },
-    registerUser(context, user) {
-      context.commit("saveUser", user);
-      API.saveUser(user);
-      // console.log("response", response);
-
-      // const response = API.saveUser();
-      // console.log(response.data);
-    },
-    async fetchApparel(context){
-      const response = await API.fetchApparel()
-      context.commit('saveProducts', response.data.products) 
-      console.log(response.data.products)
-  },
     async fetchSkate(context){
       const response = await API.fetchSkate()
       context.commit('saveProducts', response.data.products) 
-      console.log(response.data.products)
-  }
+    },
+    async registerUser(context, user) {
+      context.commit("saveUser", user);
+      await API.registerUser(user);
+    },
+    async loginUser(context,credentials) {
+      const response = await API.loginUser(credentials.email, credentials.password)
+      context.commit("saveToken", response.data.token)
+    }
   },
   modules: {},
 });

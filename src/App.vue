@@ -3,16 +3,18 @@
     <div id="nav">
       <Navigator />
     </div>
+    <ShoppingCart />
     <router-view />
     <Footer class="footer" />
   </div>
 </template>
 <script>
+import ShoppingCart from "@/components/ShoppingCart.vue"
 import Navigator from "@/components/Navigator.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  components: { Navigator, Footer },
+  components: { Navigator, Footer, ShoppingCart },
 };
 </script>
 

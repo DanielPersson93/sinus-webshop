@@ -1,11 +1,9 @@
 import axios from "axios";
 
+
 axios.defaults.baseURL = "http://localhost:5000/api";
 
-export async function getAllProducts() {
-  return await axios.get("/items/");
-}
-export async function fetchCategory(category){
+export async function getProductCategory(category){
     return await axios.get('/items/?category='+`${category}`)
 }
 export async function fetchApparel() {
@@ -14,15 +12,11 @@ export async function fetchApparel() {
 export async function fetchSkate(){
     return await axios.get('/items/?exclude=totebag,tshirt,socks,hoodie,cap')
 }
-
-export async function saveUser(user) {
-  console.log("API", user);
-  //   return await axios.post("/register/", { user });
-  return await axios.post(
-    "/register/",
-    { body: user },
-    { headers: { "Content-Type": "application/json" } }
-  );
+export async function registerUser(user) {
+    return await axios.post("/register/", user);
+}
+export async function loginUser(email, password){
+    return await axios.post("/auth/", {email,password})
 }
 
 
