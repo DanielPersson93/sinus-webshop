@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang ="scss" scoped>
 .product-card {
   display: flex;
   flex-direction: column;
