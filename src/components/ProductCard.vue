@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <button @click="fetchMock">TRYCK</button>
+    <!-- <button @click="fetchMock">TRYCK</button> -->
     <div class="divider"></div>
     <p>test</p>
     <section>

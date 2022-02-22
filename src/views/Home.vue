@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-<button @click="fetchProducts">Tryck</button>
-<router-link to="/productview"><button @click="assignCategory('hoodie')">Hoodies</button></router-link>
-<button @click="getApparel">Apparel</button>
+<!-- <button @click="fetchProducts">Tryck</button> -->
+<!-- <router-link to="/productview"><button @click="assignCategory('hoodie')">Hoodies</button></router-link> -->
+<!-- <button @click="getApparel">Apparel</button> -->
     <article class="grid-wrap">
       <!-- <img
         :class="{

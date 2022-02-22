@@ -18,8 +18,6 @@ export default new Vuex.Store({
       for (const products of allProducts){
       state.allProducts.push(products)
       }
-      // state.allProducts.push(allProducts)
-      // console.log("testernas test")
       console.log(allProducts)
     },
   },

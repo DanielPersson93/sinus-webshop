@@ -1,13 +1,15 @@
 <template>
   <div class="card">
-    <router-link :to="{ path: '/product/' + product.id }">
+    <!-- <router-link :to="{ path: '/product/' + product.id }"> -->
+    <router-link :to="'singleproduct/' +product.id">
+    <!-- <router-link to="/singleproduct"> -->
       <!-- <img
         :src="require(`../assets/${product.imgFile}`)"
         :alt="product.title"
       /> -->
-      <img :src="product.imgFile" alt="">
+      <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title">
     </router-link>
-    <h4 class="card__title">{{ product.title }}</h4>
+    <h4 class="card__title">{{ product.title }} {{ product.category }}</h4>
     <h3>{{ product.id }}</h3>
     <p class="card__price">$ {{ product.price }}</p>
     <div class="ratings__container">

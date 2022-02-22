@@ -1,7 +1,25 @@
 <template>
   <div class="single-product">
-    <ProductCard />
+    <div class="divider"></div>
+    <div class="product-container">
+    <section class="img-wrapper">
+      <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title">
+    </section>
+    <section class="information-wrapper">
+      <h1>{{product.title}}</h1>
+      <h4>{{product.category}}</h4>
+      <p>{{product.longDesc}}</p>
+      <div class="bottom-wrapper">
+        <div class="rating-price">
+          <h5>6/6</h5>
+          <h4>${{product.price}}</h4>
+        </div>
+        <button>ADD TO CART</button>
+      </div>
+    </section>
+    </div>
   </div>
+
   <!-- <div class="card" v-if="product">
     <router-link to="/">Hem</router-link> -->
   <!-- <img :src="require(`../assets/${product.imgFile}`)" :alt="product.title" />
@@ -19,9 +37,15 @@
 </template>
 
 <script>
-import ProductCard from "@/components/ProductCard.vue";
 export default {
-  components: { ProductCard },
+  computed: {
+    products() {
+      return this.$store.state.allProducts;
+    },
+    product() {
+      return this.$store.state.allProducts.find((allProducts) => allProducts.id == this.$route.params.id);
+    }
+  }
 
   //     import * as API from "@/api/mock";
   // export default {
@@ -59,7 +83,52 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.product-container{
+  display: flex;
+  margin-bottom: 10rem;
+}
+.single-product{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divider {
+  margin-top: 5rem;
+  border-bottom: solid black 2px;
+  width: 60%;
+}
+.img-wrapper{
+  margin-top: 4rem;
+}
+.information-wrapper{
+  margin-top: 6rem;
+  margin-left: 5rem;
+    h4, h5{
+      margin: 1rem 0rem;
+    }
+    p{
+      width: 15rem;
+    }
+}
+.bottom-wrapper{
+  display: flex;
+  align-items: center;
+    h4{
+      color: #881616;
+    }
+}
+.rating-price{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+button{
+  margin-left: 3rem;
+}
+
+
 /* .card {
   display: flex;
   width: 800px;

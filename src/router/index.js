@@ -19,7 +19,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/singleproduct",
+    path: "/singleproduct/:id",
     name: "SingleProduct",
     component: SingleProduct,
   },
