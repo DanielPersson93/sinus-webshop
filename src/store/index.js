@@ -11,6 +11,7 @@ export default new Vuex.Store({
     allProducts: [],
     user: {},
     token: "",
+    order: null,
   },
   mutations: {
     setQuery(state, input) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     saveToken(state, token){
       state.token = token
+    },
+    saveOrder(state, order){
+      state.order = order
     }
   },
   actions: {
@@ -48,6 +52,17 @@ export default new Vuex.Store({
     async loginUser(context,credentials) {
       const response = await API.loginUser(credentials.email, credentials.password)
       context.commit("saveToken", response.data.token)
+      API.saveToken(response.data.token)
+    },
+    async makeOrder(context, order){
+      const response = await API.makeOrder(order)
+      context.commit("saveOrder", response.data)
+      // console.log('så jävla dryga',context, response)
+    },
+    async getOrder(context){
+      const response = await API.getOrder()
+      context.commit("saveOrder", response.data)
+      console.log(response.data);
     }
   },
   getters:{

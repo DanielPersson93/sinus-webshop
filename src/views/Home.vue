@@ -13,6 +13,8 @@
       <button @click="getProductCategory('wheel')">Wheels</button><br>
       <button @click="registerUser">Register User</button>
       <button @click="loginUser">Login</button>
+      <button @click="makeOrder">Make an Order/checkout</button>
+      <button @click="getOrder">Get Order</button>
     </div>
     <article class="grid-wrap">
       <!-- <img
@@ -87,6 +89,9 @@ export default {
       credentials: {
         email: "daniel@bananpaj.se",
         password: "bänkpress",
+      },
+      order: {
+        items: [14,23,36]
       }
     };
   },
@@ -105,6 +110,12 @@ export default {
     },
     loginUser(){
       this.$store.dispatch("loginUser", this.credentials)
+    },
+    makeOrder(){
+      this.$store.dispatch("makeOrder", this.order)
+    },
+    getOrder(){
+      this.$store.dispatch("getOrder")
     },
     navigate(query) {
       this.$router.push({
