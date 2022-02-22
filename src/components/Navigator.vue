@@ -50,7 +50,7 @@
     </section>
 
     <section class="search-field">
-      <span class="material-icons-outlined" @click="search"> search </span>
+      <span class="material-icons-outlined cursor" @click="search"> search </span>
 
       <section class="result">
         <input
@@ -66,6 +66,7 @@
             v-for="(product, index) in $store.getters.resultsLimited"
             :key="index"
             class="result-items"
+            @click="temp"
           >
             {{ product }}
           </li>
@@ -116,7 +117,11 @@ export default {
 <style scoped>
 .material-icons-outlined {
   font-size: 1.8rem;
-  color: black;
+  color: black; 
+   cursor: pointer;
+
+}
+.cursor{
 }
 .nav-wrap {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
