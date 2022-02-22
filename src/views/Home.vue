@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <article class="grid-wrap">
-      <img
+      <!-- <img
         :class="{
           'grid-span-2': index == 2 || index == 3,
           'grid-full-width': index == 0,
@@ -9,7 +9,10 @@
         v-for="(img, index) in list"
         :key="index"
         :src="require('@/assets/' + img)"
-      />
+      /> -->
+<!-- <button @click="fetchProducts">Tryck</button>
+<button @click="assignCategory('hoodie')">Hoodies</button>
+<button @click="getApparel">Apparel</button> -->
 
       <article class="grid-full-width">
         <img src="@/assets/hero.jpg" alt="" />
@@ -61,17 +64,40 @@
 
 export default {
   data() {
-    return {};
+    return {
+      list:[]
+      };
   },
+
+
   methods: {
-    navigate(query) {
+    fetchProducts(){
+      this.$store.dispatch('fetchAllProducts')
+    },
+    assignCategory(category){
+      this.$store.dispatch("getProductsAction", category)
+      console.log(category)
+    },
+    getApparel(){
+      this.$store.dispatch("fetchApparel")
+    },
+ 
+   navigate(query) {
       this.$router.push({
         name: "Products",
         query: { "": query },
       });
     },
-  },
-  mounted() {},
+ },
+
+mounted(){
+this.list = ['Hero.png', 
+'boardbox.png',
+'apparelbox.png',
+'wheelbox.png' ,
+'bagbox.png',
+]
+},
 };
 </script>
 

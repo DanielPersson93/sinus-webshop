@@ -80,7 +80,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
@@ -96,7 +95,7 @@ export default {
       this.$store.commit("setQuery", this.searchInput);
     },
     setClicked(e) {
-      this.clicked = e.target.innerText;
+      this.clicked = e.target.innerText.toLowerCase();
     },
 
     search() {
@@ -121,8 +120,8 @@ export default {
    cursor: pointer;
 
 }
-.cursor{
-}
+/* .cursor{
+} */
 .nav-wrap {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 24px;
