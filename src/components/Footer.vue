@@ -4,7 +4,7 @@
 
 <section class="links-wrapper">
           <section class="footer-links">
-              <h1>Help</h1>
+              <h5>Help</h5>
               <router-link to="">Contact Us</router-link>
               <router-link to="">Payments</router-link>
               <router-link to="">Shipping</router-link>
@@ -12,7 +12,7 @@
           </section>
 
           <section class="footer-links">
-              <h1>About</h1>
+              <h5>About</h5>
               <router-link to="">History</router-link>
               <router-link to="">Sustainability</router-link>
               <router-link to="">Careers</router-link>
@@ -35,7 +35,7 @@
 </template>
 
 <style lang="scss" scoped>
-h1{
+h5{
     margin: 0 0 1.5rem 0;
 }
 .footer{
@@ -56,6 +56,7 @@ h1{
     display: flex;
     justify-content: space-between;
     align-content:flex-start;
+    flex-wrap: wrap;
     width: 19rem;
 }
 .footer-links{
