@@ -56,6 +56,7 @@ h1{
     display: flex;
     justify-content: space-between;
     align-content:flex-start;
+    flex-wrap: wrap;
     width: 19rem;
 }
 .footer-links{
