@@ -167,6 +167,7 @@ a {
   position: absolute;
   top: 10%;
   /* left: 79%; */
+  z-index: 90000;
   list-style: none;
   margin: 0;
   padding: 0;
