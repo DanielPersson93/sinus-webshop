@@ -42,6 +42,11 @@ export default new Vuex.Store({
       const response = await API.fetchApparel()
       context.commit('saveProducts', response.data.products) 
       console.log(response.data.products)
+  },
+    async fetchSkate(context){
+      const response = await API.fetchSkate()
+      context.commit('saveProducts', response.data.products) 
+      console.log(response.data.products)
   }
   },
   modules: {

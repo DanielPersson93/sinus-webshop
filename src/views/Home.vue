@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <router-link to="/checkout">CHECK OUT DANIELS COOL CHECKOUT</router-link>
 <button @click="fetchProducts">Tryck</button>
 <button @click="assignCategory('hoodie')">Hoodies</button>
 <button @click="getApparel">Apparel</button>
