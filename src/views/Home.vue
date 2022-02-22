@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+<button @click="fetchProducts">Tryck</button>
+<button @click="assignCategory('cap')">Hoodies</button>
+<button @click="getApparel">Apparel</button>
 
 <article>
 <img  
@@ -17,7 +20,18 @@ v-for="(img,index) in list" :key="index" :src="require('@/assets/' + img)"
 // @ is an alias to /src
 
 export default {
-
+  methods: {
+    fetchProducts(){
+      this.$store.dispatch('fetchAllProducts')
+    },
+    assignCategory(category){
+      this.$store.dispatch("getProductsAction", category)
+      console.log(category)
+    },
+    getApparel(){
+      this.$store.dispatch("fetchApparel")
+    }
+  },
 
 data(){return{
 list:[]
