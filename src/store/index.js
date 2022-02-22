@@ -15,7 +15,7 @@ export default new Vuex.Store({
       state.query=input
     },
     saveProducts(state, allProducts){
-      state.allProducts = allProducts
+      state.allProducts.push(allProducts)
       // console.log("testernas test")
       // console.log(allProducts)
     },
