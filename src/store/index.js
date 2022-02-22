@@ -28,20 +28,23 @@ export default new Vuex.Store({
       // }   
       let searchLoot=[];
            if(state.query.length>0){
-
       for(const product of state.products){
-
-        let produkt=product.toUpperCase()
-        if(produkt.includes(state.query.toUpperCase())){
-          searchLoot.push(produkt)
-        }      
-
-      }}
+        let produkt=product.toLowerCase()
+        if(produkt.includes(state.query.toLowerCase())){
+          let capitalProduct="";
+          for(let i=0; i<produkt.length; i++){
+            if(i==0){
+             capitalProduct+=produkt[i].toUpperCase()
+            }
+            else capitalProduct+=produkt[i]
+          }      
+          searchLoot.push(capitalProduct)
+          // produkt[0].toUpperCase()
+          // searchLoot.push(produkt)
+        }     
+      }
+            }
             return searchLoot
-
-
-
-        
     },
   },
   actions: {
