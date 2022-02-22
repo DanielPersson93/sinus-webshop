@@ -1,19 +1,20 @@
 <template>
   <div class="card">
     <router-link :to="{ path: '/product/' + product.id }">
-      <img
+      <!-- <img
         :src="require(`../assets/${product.imgFile}`)"
         :alt="product.title"
-      />
+      /> -->
+      <img :src="product.imgFile" alt="">
     </router-link>
     <h4 class="card__title">{{ product.title }}</h4>
     <h3>{{ product.id }}</h3>
     <p class="card__price">$ {{ product.price }}</p>
     <div class="ratings__container">
-      <p class="card__rating">
+      <!-- <p class="card__rating">
         {{ product.rating }}/6
         <img class="star__rating" src="../assets/star_black_24dp.svg" alt="" />
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
@@ -21,6 +22,8 @@
 <script>
 export default {
   props: ["product"],
+
+
 };
 </script>
 

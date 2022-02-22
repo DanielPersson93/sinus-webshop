@@ -4,11 +4,12 @@
       <CategoryList />
     </div>
     <div class="productsview__card">
-      <Product
-        v-for="product of products"
+       <Product
+        v-for="product of currentProducts"
         :key="product.id"
         :product="product"
       />
+      <p>{{currentProducts}}</p>
     </div>
   </div>
 </template>
@@ -27,6 +28,11 @@ export default {
       mockData: [],
       products: [],
     };
+  },
+    computed: {
+    currentProducts(){
+      return this.$store.state.allProducts;
+    }
   },
 
   async beforeMount() {

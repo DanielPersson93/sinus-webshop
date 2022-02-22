@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 <button @click="fetchProducts">Tryck</button>
-<button @click="assignCategory('hoodie')">Hoodies</button>
+<router-link to="/productview"><button @click="assignCategory('hoodie')">Hoodies</button></router-link>
 <button @click="getApparel">Apparel</button>
 
 <article>

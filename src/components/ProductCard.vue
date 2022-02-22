@@ -2,6 +2,7 @@
   <div class="product-card">
     <button @click="fetchMock">TRYCK</button>
     <div class="divider"></div>
+    <p>test</p>
     <section>
       <article class="product-image">
         <img
@@ -46,6 +47,7 @@ export default {
       this.bild = true;
     },
   },
+  
 };
 </script>
 
