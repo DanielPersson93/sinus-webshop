@@ -15,10 +15,15 @@ export default new Vuex.Store({
       state.query=input
     },
     saveProducts(state, allProducts){
-      state.allProducts.push(allProducts)
-      // console.log("testernas test")
-      // console.log(allProducts)
+        for (const products of allProducts){
+        state.allProducts.push(products)
+       }
+      //  state.allProducts = allProducts
+      console.log(allProducts)
     },
+
+
+
   },
   getters:{
     resultsLimited(state, ){
@@ -67,7 +72,8 @@ export default new Vuex.Store({
     }, */
     async getProductsAction(context, payloadCategory){
         const response = await API.fetchCategory(payloadCategory)
-        context.commit('saveProducts', response.data.products) 
+        context.commit('saveProducts', response.data)  
+        console.log(response.data)
     },
     async fetchApparel(context){
       const response = await API.fetchApparel()
