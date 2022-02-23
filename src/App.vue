@@ -12,7 +12,7 @@ import Navigator from "@/components/Navigator.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  components: { Navigator, Footer, },
+  components: { Navigator, Footer },
 };
 </script>
 

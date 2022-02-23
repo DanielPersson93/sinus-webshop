@@ -1,5 +1,6 @@
 <template>
-  <div class="nav-wrap">
+  <div class="nav-wrap"> 
+    <div class="abso"> <Login> </Login> </div>   
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
       <router-link to="/">Home</router-link>
@@ -9,14 +10,14 @@
         @mouseover="hoverSkate = true"
         @mouseleave="hoverSkate = false"
       >
-        <router-link to="/products" class="par"> Skates</router-link>
+        <router-link to="/productview" class="par"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
-          <router-link to="/products">
-            <li class="listI">Boards</li>
+          <router-link to="/productview">
+            <li class="listI" @click="assignCategory('skateboard')">Boards</li>
           </router-link>
-          <router-link to="/products">
-            <li class="listI">Wheels</li>
+          <router-link to="/productview">
+            <li class="listI" @click="assignCategory('wheel')">Wheels</li>
           </router-link>
         </ul>
       </div>
@@ -26,23 +27,23 @@
         @mouseover="hoverApparel = true"
         @mouseleave="hoverApparel = false"
       >
-        <router-link to="/products" class="par"> Apparel</router-link>
+        <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">Hoodies</li>
           </router-link>
 
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">T-shirts</li>
           </router-link>
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">Socks</li>
           </router-link>
-          <router-link to="/products">
+          <router-link to="/productview">
             <li class="listI">Bags</li>
           </router-link>
-          <router-link to="/products">
+          <router-link to="/productview">
             <li class="listI">Headwear</li>
           </router-link>
         </ul>
@@ -74,14 +75,19 @@
       </section>
 
       <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined"> person_outline </span>
+      <span class="material-icons-outlined" @click="openLogin"> person_outline </span>
       <!-- <p>{{getQuery}}</p> -->
     </section>
   </div>
 </template>
 
 <script>
+import Login from '@/components/Login.vue'
+
 export default {
+    components:{
+    Login
+  },
   data() {
     return {
       searchInput: "",
@@ -97,12 +103,19 @@ export default {
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
     },
+        openLogin(){
+console.log("HEJ")
+    },
 
     search() {
       this.$router.push({
         name: "Products",
         query: { "": this.searchInput },
       });
+    },
+    assignCategory(category){
+      this.$store.dispatch("getProductsAction", category)
+      console.log(category)
     },
   },
   computed: {
@@ -130,6 +143,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+    position: relative;
 }
 /* .apparel-ul , .skate-ul{
   display: none;
@@ -154,6 +168,7 @@ input {
   width: 23rem;
   display: flex;
   justify-content: space-between;
+    position: relative;
 }
 a {
   text-decoration: none;
