@@ -5,10 +5,11 @@
     </div>
     <div class="productsview__card">
       <Product
-        v-for="product of products"
+        v-for="product of currentProducts"
         :key="product.id"
         :product="product"
       />
+      <!-- <p>{{currentProducts}}</p> -->
     </div>
   </div>
 </template>
@@ -27,6 +28,11 @@ export default {
       mockData: [],
       products: [],
     };
+  },
+    computed: {
+    currentProducts(){
+      return this.$store.state.allProducts;
+    }
   },
 
   async beforeMount() {
@@ -95,13 +101,15 @@ export default {
   display: flex;
   justify-content: space-around;
 
-  .sidebar {
+  .productsview__sidebar {
     width: 213px;
+    margin-top: 5rem;
   }
   .productsview__card {
     display: grid;
     gap: 56px 192px;
     grid-template-columns: repeat(2, 1fr);
+    margin-top: 5rem;
   }
 }
 </style>

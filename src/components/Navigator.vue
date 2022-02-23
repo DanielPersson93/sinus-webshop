@@ -9,14 +9,14 @@
         @mouseover="hoverSkate = true"
         @mouseleave="hoverSkate = false"
       >
-        <router-link to="/products" class="par"> Skates</router-link>
+        <router-link to="/productview" class="par"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
-          <router-link to="/products">
-            <li class="listI">Boards</li>
+          <router-link to="/productview">
+            <li class="listI" @click="assignCategory('skateboard')">Boards</li>
           </router-link>
-          <router-link to="/products">
-            <li class="listI">Wheels</li>
+          <router-link to="/productview">
+            <li class="listI" @click="assignCategory('wheel')">Wheels</li>
           </router-link>
         </ul>
       </div>
@@ -26,23 +26,23 @@
         @mouseover="hoverApparel = true"
         @mouseleave="hoverApparel = false"
       >
-        <router-link to="/products" class="par"> Apparel</router-link>
+        <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">Hoodies</li>
           </router-link>
 
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">T-shirts</li>
           </router-link>
-          <router-link :to="{ name: 'Products', query: { category: clicked } }">
+          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
             <li class="listI" @click="setClicked">Socks</li>
           </router-link>
-          <router-link to="/products">
+          <router-link to="/productview">
             <li class="listI">Bags</li>
           </router-link>
-          <router-link to="/products">
+          <router-link to="/productview">
             <li class="listI">Headwear</li>
           </router-link>
         </ul>
@@ -103,6 +103,10 @@ export default {
         name: "Products",
         query: { "": this.searchInput },
       });
+    },
+    assignCategory(category){
+      this.$store.dispatch("getProductsAction", category)
+      console.log(category)
     },
   },
   computed: {

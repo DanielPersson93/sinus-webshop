@@ -13,13 +13,13 @@ const routes = [
     component: Home,
   },
   {
-    path: "/productview/:url",
+    path: "/productview",
     name: "ProductView",
     component: ProductsView,
     props: true,
   },
   {
-    path: "/singleproduct",
+    path: "/singleproduct/:id",
     name: "SingleProduct",
     component: SingleProduct,
   },
