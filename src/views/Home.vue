@@ -177,4 +177,7 @@ img {
     left: 50%;
   }
 }
+button{
+  margin-top: 1rem;
+}
 </style>
