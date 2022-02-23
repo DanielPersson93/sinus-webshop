@@ -45,6 +45,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import ProductsView from "../views/ProductsView.vue";
 import SingleProduct from "../views/SingleProduct.vue";
+import Checkout from "../views/Checkout.vue"
 
 Vue.use(VueRouter);
 
@@ -64,6 +65,11 @@ const routes = [
     path: "/singleproduct/:id",
     name: "SingleProduct",
     component: SingleProduct,
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: Checkout,
   },
   // {
   //   path: "/product/:id",
