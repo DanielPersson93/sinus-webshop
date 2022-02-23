@@ -35,7 +35,7 @@ export default new Vuex.Store({
   actions: {
     async getProductCategory(context, category) {
       const response = await API.getProductCategory(category);
-      context.commit("saveProducts", response.data.products);
+      context.commit("saveProducts", response.data);
     },
     async fetchApparel(context) {
       const response = await API.fetchApparel();
