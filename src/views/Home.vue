@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import Actions from '@/store/actions.js'
+// import Actions from '@/store/action.types.js'
 export default {
   data() {
     return {
@@ -115,7 +115,7 @@ export default {
       this.$store.dispatch("loginUser", this.credentials)
     },
     placeOrder(){
-      this.$store.dispatch(Actions.PLACE_ORDER)
+      this.$store.dispatch("placeOrder")
     },
     getOrder(){
       this.$store.dispatch("getOrder")

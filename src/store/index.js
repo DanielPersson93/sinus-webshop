@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+// import Actions from './action.types'
+// import Mutations from './mutation.types'
+// import OrderModule from './order.modules'
 import * as API from "@/api";
 
 Vue.use(Vuex);
@@ -32,12 +35,12 @@ export default new Vuex.Store({
     saveToken(state, token){
       state.token = token
     },
-    // saveOrder(state, order){
-    //   state.order = order
-    // },
-    // saveInCart(state, product){
-    //   state.cart.items.push(product)
-    // }
+    saveOrder(state, order){
+      state.order = order
+    },
+    saveInCart(state, product){
+      state.cart.items.push(product)
+    }
   },
   actions: {
     async getProductCategory(context, category) {
@@ -61,18 +64,18 @@ export default new Vuex.Store({
       context.commit("saveToken", response.data.token)
       API.saveToken(response.data.token)
     },
-    // async placeOrder(context,){
-    //   const response = await API.placeOrder(this.state.cart)
-    //   context.commit("saveOrder", response.data)
-    // },
+    async placeOrder(context,){
+      const response = await API.placeOrder(this.state.cart)
+      context.commit("saveOrder", response.data)
+    },
     async getOrder(context){
       const response = await API.getOrder()
       context.commit("saveOrder", response.data)
       console.log(response.data);
     },
-    // addItemToCart(context, product){
-    //   context.commit("saveInCart", product)
-    // }
+    addItemToCart(context, product){
+      context.commit("saveInCart", product)
+    }
   },
   getters:{
     resultsLimited(state, ){
@@ -113,5 +116,7 @@ export default new Vuex.Store({
   //   }
   // },
 },
-  modules: {},
+  modules: {
+    // orderModule: OrderModule
+  },
 });
