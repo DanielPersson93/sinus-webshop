@@ -1,8 +1,21 @@
 <template>
   <div class="home">
-<!-- <button @click="fetchProducts">Tryck</button> -->
-<!-- <router-link to="/productview"><button @click="assignCategory('hoodie')">Hoodies</button></router-link> -->
-<!-- <button @click="getApparel">Apparel</button> -->
+    <div class="linksandshit">
+      <router-link to="/checkout">CHECK OUT DANIELS COOL CHECKOUT</router-link><br>
+      <button @click="getSkate">Skate</button>
+      <button @click="getApparel">Apparel</button><br>
+      <button @click="getProductCategory('cap')">Caps</button>
+      <button @click="getProductCategory('hoodie')">Hoodies</button>
+      <button @click="getProductCategory('tshirt')">T-shirts</button>
+      <button @click="getProductCategory('socks')">Socks</button>
+      <button @click="getProductCategory('totebag')">Bags</button>
+      <button @click="getProductCategory('skateboard')">Skateboards</button>
+      <button @click="getProductCategory('wheel')">Wheels</button><br>
+      <button @click="registerUser">Register User</button>
+      <button @click="loginUser">Login</button>
+      <button @click="makeOrder">Make an Order/checkout</button>
+      <button @click="getOrder">Get Order</button>
+    </div>
     <article class="grid-wrap">
       <!-- <img
         :class="{
@@ -60,48 +73,76 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   data() {
     return {
-      list:[]
-      };
+      list: [],
+      user: {
+        email: "daniel@bananpaj.se",
+        name: "Janne",
+        password: "bänkpress",
+        address: 
+          { street: "Greve by", 
+          zip: "42352", 
+          city: "Dervik" },
+      },
+      credentials: {
+        email: "daniel@bananpaj.se",
+        password: "bänkpress",
+      },
+      order: {
+        items: [14,23,36]
+      }
+    };
   },
-
-
   methods: {
-    fetchProducts(){
-      this.$store.dispatch('fetchAllProducts')
+    getSkate() {
+      this.$store.dispatch("fetchSkate");
     },
-    assignCategory(category){
-      this.$store.dispatch("getProductsAction", category)
-      console.log(category)
+    getApparel() {
+      this.$store.dispatch("fetchApparel");
     },
-    getApparel(){
-      this.$store.dispatch("fetchApparel")
+    getProductCategory(category) {
+      this.$store.dispatch("getProductCategory", category);
     },
- 
-   navigate(query) {
+    registerUser() {
+      this.$store.dispatch("registerUser", this.user);
+    },
+    loginUser(){
+      this.$store.dispatch("loginUser", this.credentials)
+    },
+    makeOrder(){
+      this.$store.dispatch("makeOrder", this.order)
+    },
+    getOrder(){
+      this.$store.dispatch("getOrder")
+    },
+    navigate(query) {
       this.$router.push({
         name: "Products",
         query: { "": query },
       });
     },
- },
-
-mounted(){
-this.list = ['Hero.png', 
-'boardbox.png',
-'apparelbox.png',
-'wheelbox.png' ,
-'bagbox.png',
-]
-},
+  },
+  mounted() {
+    this.list = [
+      "Hero.png",
+      "boardbox.png",
+      "apparelbox.png",
+      "wheelbox.png",
+      "bagbox.png",
+    ];
+  },
 };
 </script>
 
+
+
 <style lang="scss" scoped>
+.linksandshit {
+  text-align: center;
+}
+
 .home {
   padding: 0 5rem;
 }
