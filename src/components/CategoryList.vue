@@ -38,7 +38,7 @@ export default {
     };
   },
   watch: {
-    categoryUrl(url) {
+    "$route.params.url"(url) {
       this.categoryUrl = url;
       this.openSelectedCategory();
       console.log(url);

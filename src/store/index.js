@@ -22,8 +22,12 @@ export default new Vuex.Store({
         state.allProducts.push(products)
       }
     },
+    
     saveUser(state, user) {
       state.user = user;
+      // reaktiv för att rendera
+      // Vue.set(state.posts, blogPost.id, blogPost)
+      // state.posts[blogPost.id] = blogPost
     },
     saveToken(state, token){
       state.token = token
@@ -54,8 +58,8 @@ export default new Vuex.Store({
       context.commit("saveToken", response.data.token)
       API.saveToken(response.data.token)
     },
-    async makeOrder(context, order){
-      const response = await API.makeOrder(order)
+    async placeOrder(context, order){
+      const response = await API.placeOrder(order)
       context.commit("saveOrder", response.data)
       // console.log('så jävla dryga',context, response)
     },
