@@ -18,15 +18,21 @@
         <img class="star__rating" src="../assets/star_black_24dp.svg" alt="" />
       </p> -->
     </div>
+    <button @click="addItemToCart">Add to Cart</button>
   </div>
 </template>
 
 <script>
+import Actions from '@/store/action.types'
 export default {
   props: ["product"],
-
-
+  methods: {
+    addItemToCart(){
+      this.$store.dispatch(Actions.ADD_TO_CART, this.product.id)
+    }
+  }
 };
+
 </script>
 
 <style lang="scss">

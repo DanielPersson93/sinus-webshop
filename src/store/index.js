@@ -12,6 +12,7 @@ export default new Vuex.Store({
     user: {},
     token: "",
     order: null,
+    cart: {items:[]},
   },
   mutations: {
     setQuery(state, input) {
@@ -22,7 +23,6 @@ export default new Vuex.Store({
         state.allProducts.push(products)
       }
     },
-    
     saveUser(state, user) {
       state.user = user;
       // reaktiv för att rendera
@@ -32,9 +32,12 @@ export default new Vuex.Store({
     saveToken(state, token){
       state.token = token
     },
-    saveOrder(state, order){
-      state.order = order
-    }
+    // saveOrder(state, order){
+    //   state.order = order
+    // },
+    // saveInCart(state, product){
+    //   state.cart.items.push(product)
+    // }
   },
   actions: {
     async getProductCategory(context, category) {
@@ -58,16 +61,18 @@ export default new Vuex.Store({
       context.commit("saveToken", response.data.token)
       API.saveToken(response.data.token)
     },
-    async placeOrder(context, order){
-      const response = await API.placeOrder(order)
-      context.commit("saveOrder", response.data)
-      // console.log('så jävla dryga',context, response)
-    },
+    // async placeOrder(context,){
+    //   const response = await API.placeOrder(this.state.cart)
+    //   context.commit("saveOrder", response.data)
+    // },
     async getOrder(context){
       const response = await API.getOrder()
       context.commit("saveOrder", response.data)
       console.log(response.data);
-    }
+    },
+    // addItemToCart(context, product){
+    //   context.commit("saveInCart", product)
+    // }
   },
   getters:{
     resultsLimited(state, ){

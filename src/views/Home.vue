@@ -13,7 +13,7 @@
       <button @click="getProductCategory('wheel')">Wheels</button><br>
       <button @click="registerUser">Register User</button>
       <button @click="loginUser">Login</button>
-      <button @click="makeOrder">Make an Order/checkout</button>
+      <button @click="placeOrder">Make an Order/checkout</button>
       <button @click="getOrder">Get Order</button>
     </div>
     <article class="grid-wrap">
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import Actions from '@/store/actions.js'
 export default {
   data() {
     return {
@@ -114,7 +115,7 @@ export default {
       this.$store.dispatch("loginUser", this.credentials)
     },
     placeOrder(){
-      this.$store.dispatch("placeOrder", this.order)
+      this.$store.dispatch(Actions.PLACE_ORDER)
     },
     getOrder(){
       this.$store.dispatch("getOrder")
