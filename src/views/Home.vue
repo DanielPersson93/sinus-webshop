@@ -2,6 +2,7 @@
   <div class="home">
     <div class="linksandshit">
       <router-link to="/checkout">CHECK OUT DANIELS COOL CHECKOUT</router-link><br>
+      <router-link to="/shoppingcart">CHECK OUT PETERS BAD SHOPPINGCART</router-link><br>
       <button @click="getSkate">Skate</button>
       <button @click="getApparel">Apparel</button><br>
       <button @click="getProductCategory('cap')">Caps</button>
@@ -80,15 +81,6 @@
 export default {
   computed: {
     productsInCart(){
-      //       return state.cart.items.map (cartItemID => ({
-      //   ...state.allProducts.find(product => cartItemID == product.id)
-      // }))
-      // for (const product of this.$store.getters.shoppingCart) {
-      //   if (product.id 
-      // }
-      // const inCart = this.$store.getters.shoppingCart.find
-      // (cartItem => cartItem.id ==)
-      // if(this.this.$store.getters.shoppingCart.find())
       return this.$store.getters.shoppingCart
     }
   },
@@ -236,8 +228,5 @@ img {
     position: absolute;
     left: 50%;
   }
-}
-button{
-  margin-top: 1rem;
 }
 </style>

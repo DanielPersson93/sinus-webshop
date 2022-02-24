@@ -1,6 +1,8 @@
 <template>
   <div class="nav-wrap"> 
-    <div class="abso"> <Login v-if="loginField" @closed="loginField=false" > </Login> </div>   
+    <div class="abso"> 
+      <Login v-if="loginField" @closed="loginField=false" > </Login>
+    </div>   
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
     <router-link to="/">Home</router-link>
@@ -85,9 +87,9 @@ export default {
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
     },
-        openLogin(){
-          this.loginField=true
-console.log("HEJ")
+    openLogin(){
+      this.loginField=true
+      console.log("HEJ")
     },
     search() {
       this.$router.push({

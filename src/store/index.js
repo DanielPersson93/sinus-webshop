@@ -85,10 +85,8 @@ export default new Vuex.Store({
         order.items.push(cartItem.id)
       }
       const response = await API.placeOrder(order)
-      // const response = await API.placeOrder(this.state.cart)
       context.commit("saveOrder", response.data)
     },
-        // const value = cartItem.amount * cartItem
     async getOrder(context){
       const response = await API.getOrder()
       context.commit("saveOrder", response.data)
@@ -99,11 +97,6 @@ export default new Vuex.Store({
     }
   },
   getters:{
-    // shoppingCart(state){
-    //   return state.cart.items.map (cartItemId => ({
-    //     ...state.allProducts.find(product => cartItemId == product.id)
-    //   }))
-    // },
     shoppingCart(state){
       return state.cart.map( cartItem => ({
         ...state.productList[cartItem.id],
@@ -111,17 +104,6 @@ export default new Vuex.Store({
       }))
     },
     resultsLimited(state, ){
-      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-
-      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
-      // return state.products.filter(product => product[0] == state.query[0]) FEL
-
-      // for(const product of state.products){kanske funkar nån gång
-      //   for(let i=0; i<product.length; i++){
-      //     if(product[i].toUpperCase() == state.query.toUpperCase())
-      //     return product
-      //   }
-      // }   
       let searchLoot=[];
       if(state.query.length>0){
       for(const product of state.products){
@@ -135,19 +117,30 @@ export default new Vuex.Store({
             else capitalProduct+=produkt[i]
             }      
             searchLoot.push(capitalProduct)
-          // produkt[0].toUpperCase()
-          // searchLoot.push(produkt)
-        }     
-      }
-      }
+          }     
+        }
+        }
       return searchLoot
     },
+  },
+      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
+
+      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
+      // return state.products.filter(product => product[0] == state.query[0]) FEL
+
+      // for(const product of state.products){kanske funkar nån gång
+      //   for(let i=0; i<product.length; i++){
+      //     if(product[i].toUpperCase() == state.query.toUpperCase())
+      //     return product
+      //   }
+      // }   
+          // produkt[0].toUpperCase()
+          // searchLoot.push(produkt)
       // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
       // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
       // return state.products.filter(product => product[0] == state.query[0])  
   //   }
   // },
-},
   modules: {
     // orderModule: OrderModule
   },
