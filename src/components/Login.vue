@@ -1,17 +1,17 @@
 <template>
     <div class="login-wrap flex-col">
-        <h1>Account</h1>
+    <h1>Account</h1>
         <section class="sign-up flex-col">
             <p>Don't have an account yet? Sign up here!</p>
             <button>SIGN UP</button>
         </section>
-<section class="inputs flex-col">
-    <p>Email:</p>
-    <input type="text">
-        <p>Password:</p>
-    <input type="text">
-    <button>LOGIN</button>
-</section>
+        <section class="inputs flex-col">
+            <p>Email:</p>
+            <input type="text">
+            <p>Password:</p>
+            <input type="text">
+            <button>LOGIN</button>
+        </section>
     </div>
 </template>
 
@@ -29,7 +29,6 @@ export default {
   align-items: center;
   flex-direction: column;
   padding-top: 4rem;
-
 }
 .login-wrap{
     display: none;
@@ -44,7 +43,6 @@ export default {
   .sign-up{
    padding: 0rem 5rem;
    justify-content: space-between;
-
   }
   h1{
       font-size:52px;

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <!-- <router-link :to="{ path: '/product/' + product.id }"> -->
-      <img src="@/assets/shoppingcart.png" class="shopping-cart-icon" alt="shopping-cart-icon">
+      <img src="@/assets/shoppingcart.png" class="shopping-cart-icon" alt="shopping-cart-icon" @click="addItemToCart">
     <router-link :to="'singleproduct/' + product.id">
       <!-- <router-link to="/singleproduct"> -->
       <!-- <img
@@ -22,16 +22,21 @@
         <img class="star__rating" src="../assets/star_black_24dp.svg" alt="" />
       </p> -->
     </div>
+    <!-- <button @click="addItemToCart">Add to Cart</button> -->
   </div>
 </template>
 
 <script>
+import Actions from '@/store/action.types'
 export default {
   props: ["product"],
-  computed: {
-
+  methods: {
+    addItemToCart(){
+      this.$store.dispatch(Actions.ADD_TO_CART, this.product.id)
+    }
   }
 };
+
 </script>
 
 <style lang="scss">

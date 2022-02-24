@@ -1,15 +1,13 @@
 <template>
-  <div class="nav-wrap">
-    <div class="abso"><Login> </Login></div>
+  <div class="nav-wrap"> 
+    <div class="abso"> 
+      <Login> </Login> 
+    </div>   
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
-      <router-link to="/">Home</router-link>
+    <router-link to="/">Home</router-link>
 
-      <div
-        class="category"
-        @mouseover="hoverSkate = true"
-        @mouseleave="hoverSkate = false"
-      >
+      <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
         <router-link to="/productview" class="par"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
@@ -22,11 +20,7 @@
         </ul>
       </div>
 
-      <div
-        class="category"
-        @mouseover="hoverApparel = true"
-        @mouseleave="hoverApparel = false"
-      >
+      <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
         <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
@@ -62,21 +56,12 @@
       </span>
 
       <section class="result">
-        <input
-          type="text"
-          placeholder="Search.."
-          @keyup="setQuery"
-          @keyup.enter="search"
-          v-model="searchInput"
-          class="search-results-parent"
-        />
+        <input type="text" placeholder="Search.." @keyup="setQuery" @keyup.enter="search" v-model="searchInput" class="search-results-parent"/>
         <ul class="search-results">
-          <li
-            v-for="(product, index) in $store.getters.resultsLimited"
+          <li v-for="(product, index) in $store.getters.resultsLimited"
             :key="index"
             class="result-items"
-            @click="temp"
-          >
+            @click="temp">
             {{ product }}
           </li>
         </ul>
@@ -113,10 +98,9 @@ export default {
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
     },
-    openLogin() {
-      console.log("HEJ");
+    openLogin(){
+      console.log("HEJ")
     },
-
     search() {
       this.$router.push({
         name: "Products",

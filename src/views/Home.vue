@@ -13,7 +13,7 @@
       <button @click="getProductCategory('wheel')">Wheels</button><br>
       <button @click="registerUser">Register User</button>
       <button @click="loginUser">Login</button>
-      <button @click="makeOrder">Make an Order/checkout</button>
+      <button @click="placeOrder">Make an Order/checkout</button>
       <button @click="getOrder">Get Order</button>
     </div>
     <article class="grid-wrap">
@@ -33,7 +33,9 @@
           <h1>Plastic 1</h1>
           <h2>now in plastic</h2>
         </section>
-        <section class="hero-right"><h2>SHOP NOW</h2></section>
+        <section class="hero-right">
+          <h2>SHOP NOW</h2>
+        </section>
       </article>
 
       <article class="picture-parent">
@@ -73,6 +75,7 @@
 </template>
 
 <script>
+// import Actions from '@/store/action.types.js'
 export default {
   data() {
     return {
@@ -91,7 +94,7 @@ export default {
         password: "bänkpress",
       },
       order: {
-        items: [14,23,36]
+        items: [45,57,66]
       }
     };
   },
@@ -111,8 +114,8 @@ export default {
     loginUser(){
       this.$store.dispatch("loginUser", this.credentials)
     },
-    makeOrder(){
-      this.$store.dispatch("makeOrder", this.order)
+    placeOrder(){
+      this.$store.dispatch("placeOrder")
     },
     getOrder(){
       this.$store.dispatch("getOrder")
