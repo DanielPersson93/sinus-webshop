@@ -1,7 +1,13 @@
 <template>
 	<div class="nav-wrap">
 		<div class="abso">
-			<Login v-if="loginField" @closed="loginField = false"> </Login>
+			<Login
+				v-if="loginField"
+				@closed="loginField = false"
+				@openForm="openForm"
+			>
+			</Login>
+			<SignUp v-if="openSignUpForm" @closeSignUpForm="toggleOpenCloseForm" />
 		</div>
 		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
 		<section class="links">
@@ -84,22 +90,18 @@
 				</ul>
 			</section>
 
-			<span class="material-icons-outlined" @click="toggleLoginModal">
-				shopping_bag
-			</span>
+			<span class="material-icons-outlined"> shopping_bag </span>
 			<span class="material-icons-outlined" @click="openLogin">
 				person_outline
 			</span>
 			<!-- <p>{{getQuery}}</p> -->
 		</section>
-		<SignUp v-if="isLoginModalOpen" />
 	</div>
 </template>
 
 <script>
-	import SignUp from "./SignUp.vue";
 	import Login from "@/components/Login.vue";
-
+	import SignUp from "@/components/SignUp.vue";
 	export default {
 		components: { Login, SignUp },
 		data() {
@@ -108,13 +110,17 @@
 				hoverApparel: false,
 				hoverSkate: false,
 				clicked: "",
-				isLoginModalOpen: false,
+				openSignUpForm: false,
 				loginField: false,
 			};
 		},
 		methods: {
-			toggleLoginModal() {
-				this.isLoginModalOpen = !this.isLoginModalOpen;
+			toggleOpenCloseForm() {
+				this.openSignUpForm = !this.openSignUpForm;
+			},
+			openForm() {
+				this.openSignUpForm = !this.openSignUpForm;
+				this.loginField = !this.loginField;
 			},
 			setQuery() {
 				this.$store.commit("setQuery", this.searchInput);
@@ -152,7 +158,7 @@
 		cursor: pointer;
 	}
 	/* .cursor{
-											} */
+																									} */
 	.nav-wrap {
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		font-size: 24px;
@@ -191,14 +197,14 @@
 	.search-results-parent,
 	.category {
 		position: relative;
-		z-index: 1000;
+		z-index: 10;
 	}
 
 	.search-results {
 		position: absolute;
 		top: 10%;
 		/* left: 79%; */
-		z-index: 90000;
+		z-index: 10;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -207,7 +213,7 @@
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
 	.par {
-		z-index: 9000;
+		z-index: 10;
 	}
 
 	.theUl {

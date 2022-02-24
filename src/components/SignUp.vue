@@ -1,16 +1,19 @@
 <template>
 	<section id="login-form">
+		<span class="material-icons-outlined" @click="closeSignUpForm">
+			close
+		</span>
 		<h3>Register form</h3>
 
-		<form action="#">
+		<form>
 			<div class="d-flex">
 				<div class="section-2">
 					<div class="form-control">
-						<label for="name">Name</label>
+						<label for="name">Name:</label>
 						<input type="text" id="name" v-model="registerFormData.name" />
 					</div>
 					<div class="form-control">
-						<label for="street">Street</label>
+						<label for="street">Street:</label>
 						<input
 							type="text"
 							id="street"
@@ -19,15 +22,7 @@
 					</div>
 					<div class="zipCity">
 						<div class="form-control">
-							<label for="city">City</label>
-							<input
-								type="text"
-								id="city"
-								v-model="registerFormData.address.city"
-							/>
-						</div>
-						<div class="form-control">
-							<label for="zipcode">Zip Code</label>
+							<label for="zipcode">Zip Code:</label>
 							<input
 								minlength="5"
 								maxlength="5"
@@ -36,16 +31,24 @@
 								v-model="registerFormData.address.zip"
 							/>
 						</div>
+						<div class="form-control">
+							<label for="city">City:</label>
+							<input
+								type="text"
+								id="city"
+								v-model="registerFormData.address.city"
+							/>
+						</div>
 					</div>
 				</div>
 
 				<div class="section-2">
 					<div class="form-control">
-						<label for="email">Email</label>
+						<label for="email">Email:</label>
 						<input type="email" id="email" v-model="registerFormData.email" />
 					</div>
 					<div class="form-control">
-						<label for="password">Password</label>
+						<label for="password">Password:</label>
 						<input
 							minlength="6"
 							type="password"
@@ -54,7 +57,7 @@
 						/>
 					</div>
 					<div class="form-control">
-						<label for="repeat-password">Repeat password</label>
+						<label for="repeat-password">Repeat password:</label>
 						<input
 							minlength="6"
 							type="password"
@@ -64,8 +67,8 @@
 					</div>
 				</div>
 			</div>
-			<button @click="signUp()">Sign up</button>
 		</form>
+		<button @click="signUp">Sign up</button>
 	</section>
 </template>
 
@@ -74,6 +77,7 @@
 	export default {
 		data() {
 			return {
+				isSignUpModalOpen: true,
 				repeatedPassword: "",
 				/** Form that backend excepts */
 				registerFormData: {
@@ -88,16 +92,20 @@
 				},
 			};
 		},
+
 		methods: {
+			closeSignUpForm() {
+				this.isSignUpModalOpen = !this.isSignUpModalOpen;
+				this.$emit("closeSignUpForm");
+			},
 			signUp() {
 				// Error handeling needed
 				if (this.repeatedPassword !== this.registerFormData.password) {
 					// Show an error here?
 					return alert("Passwords does not match");
 				}
-
-				/** Check if we are missing data */
 				if (
+					/** Check if we are missing data */
 					!this.registerFormData.email ||
 					!this.registerFormData.password ||
 					!this.registerFormData.name ||
@@ -135,38 +143,65 @@
 	#login-form {
 		width: 794px;
 		height: 611px;
-		z-index: 30;
-		padding: 40px;
+		z-index: 100;
 		background: white;
-		border: 4px;
-		right: 10px;
+		border: 2px solid black;
+		right: 0;
 		position: absolute;
-		top: 80px;
+		top: 0;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14);
-		border-radius: 4px;
+		border-radius: 7px;
 		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		padding: 0 0 40px 0;
+
+		h3 {
+			margin: 0 0 0 50px;
+		}
+
+		.material-icons-outlined {
+			margin: 40px 40px 0 0;
+			align-self: flex-end;
+			font-size: 40px;
+			cursor: pointer;
+		}
+		button {
+			align-self: center;
+		}
 
 		.d-flex {
+			.zipcode,
+			.section-2 {
+				width: 350px;
+			}
+			margin: 0 0 40px 0;
 			display: flex;
-			justify-content: space-between;
+			justify-content: space-evenly;
 			label {
-				font-family: Mukta Malar;
-				font-style: normal;
 				font-weight: normal;
 				font-size: 16px;
 				line-height: 27px;
 				letter-spacing: -0.02em;
 				margin-top: 40px;
+				padding: 0;
+				margin-bottom: 0;
+			}
+			input {
+				font-weight: normal;
+				font-size: 16px;
+				line-height: 27px;
+				letter-spacing: -0.02em;
 			}
 			.zipCity {
 				display: flex;
 				justify-content: space-between;
 
 				div:nth-of-type(1) {
-					width: 25%;
+					width: 30%;
 				}
 				div:nth-of-type(2) {
-					width: 70%;
+					width: 65%;
 				}
 			}
 			.section-2 {
@@ -175,8 +210,6 @@
 		}
 
 		.form-control {
-			margin-bottom: 14px;
-
 			input,
 			label {
 				display: block;

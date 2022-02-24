@@ -5,7 +5,7 @@
 		<section class="sign-up flex-col">
 			<p>Don't have an account yet?</p>
 			<p>Sign up here!</p>
-			<button>SIGN UP</button>
+			<button @click="$emit('openForm')">SIGN UP</button>
 		</section>
 		<section class="inputs flex-col">
 			<p>Email:</p>
@@ -20,7 +20,9 @@
 <script>
 	export default {
 		data() {
-			return {};
+			return {
+				closeLogin: true,
+			};
 		},
 		methods: {
 			closeSidebar() {
