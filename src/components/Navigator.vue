@@ -11,58 +11,57 @@
 		</div>
 		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
 		<section class="links">
-			<router-link to="/">Home</router-link>
+    <router-link to="/">Home</router-link>
 
-			<div
-				class="category"
-				@mouseover="hoverSkate = true"
-				@mouseleave="hoverSkate = false"
-			>
-				<router-link to="/productview" class="par"> Skates</router-link>
+    <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
+      <router-link :to="{ name: 'ProductView', query: { category: 'skate' } }">
+        <h5 class="par" @click="getSkate">Skate</h5>
+        </router-link>
+        <ul class="theUl" v-if="hoverSkate">
+          <router-link :to="{ name: 'ProductView', query: { category: 'skateboard' } }">
+          <li class="listI" @click="assignCategory('skateboard')">Boards</li>
+          </router-link>
+          <router-link :to="{ name: 'ProductView', query: { category: 'wheel' } }">
+          <li class="listI" @click="assignCategory('wheel')">Wheels</li>
+          </router-link>
+        </ul>
+      </div>
 
-				<ul class="theUl" v-if="hoverSkate">
-					<router-link to="/productview">
-						<li class="listI" @click="assignCategory('skateboard')">Boards</li>
-					</router-link>
-					<router-link to="/productview">
-						<li class="listI" @click="assignCategory('wheel')">Wheels</li>
-					</router-link>
-				</ul>
-			</div>
+      <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
+        <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
+        <h5 class="par" @click="getApparel">Apparel</h5>
+        </router-link>
 
-			<div
-				class="category"
-				@mouseover="hoverApparel = true"
-				@mouseleave="hoverApparel = false"
-			>
-				<router-link to="/productview" class="par"> Apparel</router-link>
+        <ul class="theUl" v-if="hoverApparel">
+          <router-link :to="{ name: 'ProductView', query: { category: 'hoodie' } }">
+          <li class="listI" @click="assignCategory('hoodie')">Hoodies</li>
+          </router-link>
 
-				<ul class="theUl" v-if="hoverApparel">
-					<router-link
-						:to="{ name: 'ProductView', query: { category: clicked } }"
-					>
-						<li class="listI" @click="setClicked">Hoodies</li>
-					</router-link>
+          <router-link :to="{ name: 'ProductView', query: { category: 'tshirt' } }">
+          <li class="listI" @click="assignCategory('tshirt')">T-shirts</li>
+          </router-link>
 
-					<router-link
-						:to="{ name: 'ProductView', query: { category: clicked } }"
-					>
-						<li class="listI" @click="setClicked">T-shirts</li>
-					</router-link>
-					<router-link
-						:to="{ name: 'ProductView', query: { category: clicked } }"
-					>
-						<li class="listI" @click="setClicked">Socks</li>
-					</router-link>
-					<router-link to="/productview">
-						<li class="listI">Bags</li>
-					</router-link>
-					<router-link to="/productview">
-						<li class="listI">Headwear</li>
-					</router-link>
-				</ul>
-			</div>
-		</section>
+          <router-link :to="{ name: 'ProductView', query: { category: 'socks' } }">
+          <li class="listI" @click="assignCategory('socks')">Socks</li>
+          </router-link>
+
+          <router-link :to="{ name: 'ProductView', query: { category: 'totebag' } }">
+          <li class="listI" @click="assignCategory('totebag')">Bags</li>
+          </router-link>
+
+          <router-link :to="{ name: 'ProductView', query: { category: 'cap' } }">
+          <li class="listI" @click="assignCategory('cap')">Headwear</li>
+          </router-link>
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+		
+
+			
+
 
 		<section class="search-field">
 			<span class="material-icons-outlined cursor" @click="search">
@@ -152,12 +151,20 @@
 				this.$store.dispatch("getProductCategory", category);
 				console.log(category);
 			},
-		},
+          getSkate(){
+      this.$store.dispatch("fetchSkate")
+      this.$router.push("productview")
+    },
+    getApparel(){
+      this.$store.dispatch("fetchApparel")
+      this.$router.push("productview")
+    },
+	},
 		computed: {
 			getQuery() {
 				return this.$store.state.query;
 			},
-		},
+      },
 	};
 </script>
 

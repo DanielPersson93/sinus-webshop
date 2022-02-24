@@ -58,11 +58,11 @@ export default new Vuex.Store({
 		},
 		async fetchApparel(context) {
 			const response = await API.fetchApparel();
-			context.commit("saveProducts", response.data.products);
+			context.commit("saveProducts", response.data);
 		},
 		async fetchSkate(context) {
 			const response = await API.fetchSkate();
-			context.commit("saveProducts", response.data.products);
+			context.commit("saveProducts", response.data);
 		},
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
@@ -101,69 +101,55 @@ export default new Vuex.Store({
 		},
 	},
 
-	getters: {
-		// shoppingCart(state){
-		//   return state.cart.items.map (cartItemId => ({
-		//     ...state.allProducts.find(product => cartItemId == product.id)
-		//   }))
-		// },
-		shoppingCart(state) {
-			return state.cart.map((cartItem) => ({
-				...state.productList[cartItem.id],
-				amount: cartItem.amount,
-			}));
-		},
-		resultsLimited(state) {
-			let loot = [];
-			for (let product of state.products) {
-				if (product.toLowerCase().includes(state.query.toLowerCase())) {
-					console.log(product);
-					product = product.charAt(0).toUpperCase() + product.slice(1);
-					// string.charAt(0).toUpperCase() + string.slice(1);
-					loot.push(product);
-				}
-			}
-			console.log(state.products);
-			return loot;
-		},
-		// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
 
-		// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
-		// return state.products.filter(product => product[0] == state.query[0]) FEL
-
-		// for(const product of state.products){kanske funkar nån gång
-		//   for(let i=0; i<product.length; i++){
-		//     if(product[i].toUpperCase() == state.query.toUpperCase())
-		//     return product
-		//   }
-		// }
-		/*
-      let searchLoot = [];
-      if (state.query.length > 0) {
-        for (const product of state.products) {
-          let produkt = product.toLowerCase()
-          if (produkt.includes(state.query.toLowerCase())) {
-            let capitalProduct = "";
-            for (let i = 0; i < produkt.length; i++) {
-              if (i == 0) {
-                capitalProduct += produkt[0].toUpperCase()
-              }
-              else capitalProduct += produkt[i]
+  getters:{
+    shoppingCart(state){
+      return state.cart.map( cartItem => ({
+        ...state.productList[cartItem.id],
+        amount: cartItem.amount
+      }))
+    },
+    getSelectedCategory: state => category => state.allProducts.filter(product => product.category == category),
+    resultsLimited(state, ){
+      let searchLoot=[];
+      if(state.query.length>0){
+      for(const product of state.products){
+        let produkt=product.toLowerCase()
+        if(produkt.includes(state.query.toLowerCase())){
+          let capitalProduct="";
+          for(let i=0; i<produkt.length; i++){
+            if(i==0){
+              capitalProduct+=produkt[i].toUpperCase()
             }
+            else capitalProduct+=produkt[i]
+            }      
             searchLoot.push(capitalProduct)
-            // produkt[0].toUpperCase()
-            // searchLoot.push(produkt)
-          }
+          }     
         }
-      }
-      return searchLoot
-      */
+        }
+        return searchLoot
+      },
+  },
+      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
 
-		// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-		// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-		// return state.products.filter(product => product[0] == state.query[0])
-		//   }
-		// },
-	},
-	modules: {},
-});
+      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
+      // return state.products.filter(product => product[0] == state.query[0]) FEL
+
+      // for(const product of state.products){kanske funkar nån gång
+      //   for(let i=0; i<product.length; i++){
+      //     if(product[i].toUpperCase() == state.query.toUpperCase())
+      //     return product
+      //   }
+      // }   
+          // produkt[0].toUpperCase()
+          // searchLoot.push(produkt)
+      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
+      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
+      // return state.products.filter(product => product[0] == state.query[0])  
+  //   }
+  // }, 
+  modules: {
+    // orderModule: OrderModule
+  },
+})
+	
