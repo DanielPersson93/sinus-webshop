@@ -179,6 +179,7 @@ input {
   padding: 0.4rem 1rem;
   border-radius: 10px;
   border: solid black 2.5px;
+  z-index: 30;
 }
 
 .search-field {
@@ -194,6 +195,7 @@ a {
 }
 
 .search-results-parent,
+.result ,
 .category {
   position: relative;
   z-index: 1000;
@@ -203,12 +205,12 @@ a {
   position: absolute;
   top: 90%;
   /* left: 79%; */
-  /* z-index: 90000; */
+z-index: 0;
   list-style: none;
   margin: 0;
   padding: 0.3rem 0rem 0rem 0rem;
   background-color: rgb(255, 255, 255);
-  width: 49%;
+  width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .par {
@@ -229,6 +231,7 @@ a {
 }
 .result-items:hover,
 .listI:hover {
+  z-index: 0;
   background-color: rgba(68, 67, 67, 0.2);
   width: 100%;
 }
