@@ -3,42 +3,47 @@
     <div class="shoppingcart">
       <div>
         <h3>Your Cart</h3>
-        <img src="@/assets/cross-icon.png" alt="">
+        <img src="@/assets/cross-icon.png" alt="" @click="$emit('closeCart')">
       </div>
-      <!-- hämta data från store cart.items det id getter som får ut product  -->
-      <div class="product">
+      <div class="product" 
+      v-for="product in products" :key="product.id">
           <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
-          <p>{{products.title}} <br>
-          {{products.amount}} x {{products.amount*products.price}}</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
+          <p>{{product.title}} <br>
+          {{product.amount}} x {{product.price}}</p>
+        <img src="@/assets/cross-icon.png" alt="" width="25" height="25"
+        >
+        <!-- @click="removeItemfromCart" -->
       </div>
       <div>
-        <h5>Checkout Total: ${{(products.amount*products.price)*products}} </h5>
+        <h5>Checkout Total: ${{totalprice}} </h5>
         <button>Ride to checkout
-          <!-- <img src="@/assets/twitterlogo.svg" alt=""> -->
         </button>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["product"],
-  //  IN NAVIGATOR
-        // in template 
-        // <ShoppingCart v-for="product of productsInCart"
-        // :key="product.id"
-        // :product="product" />
-  // in script
-  //  import Login from '@/components/Login.vue'
-  // components:{Login, SignUp, ShoppingCart },
-  //   computed: {
-  //   productsInCart(){
-  //     return this.$store.getters.shoppingCart
-  //   }
-  // },
+  props: ["products"],
+  data() {
+    return {
+      total: null,
+    };
+  },
+  computed: {
+  totalprice(){
+    let total = 0
+    for (const product of this.products) {
+      total += product.amount*product.price
+    } return total
+    }
+  },
+  methods: {
+    // removeItemfromCart(){
+    //   this.$store.dispatch("removeFromCart", this.products)
+    // }
+  }
 }
 </script>
 
@@ -87,6 +92,7 @@ export default {
     width: 253px
   }
   img:first-of-type {
+    object-fit:contain;
     margin-left: 40px;
     margin-right: 20px;
   }

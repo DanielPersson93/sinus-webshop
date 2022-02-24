@@ -1,6 +1,10 @@
 <template>
 	<div class="nav-wrap">
 		<div class="abso">
+        <ShoppingCart
+        v-if="showCart"
+        @closeCart="toggleCart"
+        :products="productsInCart" />
 			<Login
 				v-if="loginField"
 				@closed="loginField = false"
@@ -26,7 +30,6 @@
           </router-link>
         </ul>
       </div>
-
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
         <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
         <h5 class="par" @click="getApparel">Apparel</h5>
@@ -55,19 +58,10 @@
         </ul>
       </div>
     </section>
-    
-    
-    
-		
-
-			
-
-
 		<section class="search-field">
 			<span class="material-icons-outlined cursor" @click="search">
 				search
 			</span>
-
 			<section class="result">
 				<input
 					type="text"
@@ -88,8 +82,7 @@
 					</li>
 				</ul>
 			</section>
-
-			<span class="material-icons-outlined"> shopping_bag </span>
+			<span class="material-icons-outlined" @click="toggleCart"> shopping_bag </span>
 			<span class="material-icons-outlined" @click="openLogin">
 				person_outline
 			</span>
@@ -101,12 +94,13 @@
 <script>
 	import Login from "@/components/Login.vue";
 	import SignUp from "@/components/SignUp.vue";
+  import ShoppingCart from "@/components/ShoppingCart.vue"
 	export default {
 		components: {
 			Login,
 			SignUp,
+      ShoppingCart,
 		},
-
 		data() {
 			return {
 				searchInput: "",
@@ -115,9 +109,13 @@
 				clicked: "",
 				openSignUpForm: false,
 				loginField: false,
+        showCart: false,
 			};
 		},
 		methods: {
+      toggleCart(){
+        this.showCart = !this.showCart;
+      },
 			toggleOpenCloseForm() {
 				this.openSignUpForm = !this.openSignUpForm;
 			},
@@ -161,6 +159,9 @@
     },
 	},
 		computed: {
+     productsInCart(){
+       return this.$store.getters.shoppingCart
+     },
 			getQuery() {
 				return this.$store.state.query;
 			},
