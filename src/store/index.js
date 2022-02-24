@@ -25,6 +25,7 @@ export default new Vuex.Store({
     setQuery(state, input) {
       state.query = input;
     },
+
     saveProducts(state, allProducts){
       for (let product of allProducts) {
         state.allProducts.push(product)
@@ -37,10 +38,10 @@ export default new Vuex.Store({
       // Vue.set(state.posts, blogPost.id, blogPost)
       // state.posts[blogPost.id] = blogPost
     },
-    saveToken(state, token){
+    saveToken(state, token) {
       state.token = token
     },
-    saveOrder(state, order){
+    saveOrder(state, order) {
       state.order = order
     },
     saveInCart(state, product){
@@ -61,19 +62,20 @@ export default new Vuex.Store({
       const response = await API.fetchApparel();
       context.commit("saveProducts", response.data.products);
     },
-    async fetchSkate(context){
+    async fetchSkate(context) {
       const response = await API.fetchSkate()
-      context.commit('saveProducts', response.data.products) 
+      context.commit('saveProducts', response.data.products)
     },
     async registerUser(context, user) {
       context.commit("saveUser", user);
       await API.registerUser(user);
     },
-    async loginUser(context,credentials) {
+    async loginUser(context, credentials) {
       const response = await API.loginUser(credentials.email, credentials.password)
       context.commit("saveToken", response.data.token)
       API.saveToken(response.data.token)
     },
+
     async placeOrder(context,){
       let order = {items:[]}
       for (const cartItem of this.state.cart) {
@@ -88,7 +90,7 @@ export default new Vuex.Store({
       // const response = await API.placeOrder(this.state.cart)
       context.commit("saveOrder", response.data)
     },
-        // const value = cartItem.amount * cartItem
+
     async getOrder(context){
       const response = await API.getOrder()
       context.commit("saveOrder", response.data)
@@ -98,6 +100,7 @@ export default new Vuex.Store({
       context.commit("saveInCart", product)
     }
   },
+
   getters:{
     // shoppingCart(state){
     //   return state.cart.items.map (cartItemId => ({
@@ -122,33 +125,46 @@ export default new Vuex.Store({
       //     return product
       //   }
       // }   
-      let searchLoot=[];
-      if(state.query.length>0){
-      for(const product of state.products){
-        let produkt=product.toLowerCase()
-        if(produkt.includes(state.query.toLowerCase())){
-          let capitalProduct="";
-          for(let i=0; i<produkt.length; i++){
-            if(i==0){
-              capitalProduct+=produkt[i].toUpperCase()
+      /*
+      let searchLoot = [];
+      if (state.query.length > 0) {
+        for (const product of state.products) {
+          let produkt = product.toLowerCase()
+          if (produkt.includes(state.query.toLowerCase())) {
+            let capitalProduct = "";
+            for (let i = 0; i < produkt.length; i++) {
+              if (i == 0) {
+                capitalProduct += produkt[0].toUpperCase()
+              }
+              else capitalProduct += produkt[i]
             }
-            else capitalProduct+=produkt[i]
-            }      
             searchLoot.push(capitalProduct)
-          // produkt[0].toUpperCase()
-          // searchLoot.push(produkt)
-        }     
-      }
+            // produkt[0].toUpperCase()
+            // searchLoot.push(produkt)
+          }
+        }
       }
       return searchLoot
+      */
+
+     let loot = []
+      for (let product of state.products){
+        if(product.toLowerCase().includes(state.query.toLowerCase())){
+          console.log(product)
+          product= product.charAt(0).toUpperCase()+product.slice(1)
+          // string.charAt(0).toUpperCase() + string.slice(1);
+          loot.push(product)
+        }
+      }
+      console.log( state.products)
+      return loot
     },
-      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-      // return state.products.filter(product => product[0] == state.query[0])  
-  //   }
-  // },
-},
-  modules: {
-    // orderModule: OrderModule
+    // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
+    // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
+    // return state.products.filter(product => product[0] == state.query[0])  
+    //   }
+    // },
   },
+  modules: {},
+
 });

@@ -1,6 +1,8 @@
 <template>
-  <div class="nav-wrap"> 
-    <div class="abso"> <Login v-if="loginField" @closed="loginField=false" > </Login> </div>   
+  <div class="nav-wrap">
+    <div class="abso">
+      <Login v-if="loginField" @closed="loginField = false"> </Login>
+    </div>
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
     <router-link to="/">Home</router-link>
@@ -22,14 +24,20 @@
         <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
+          <router-link
+            :to="{ name: 'ProductView', query: { category: clicked } }"
+          >
             <li class="listI" @click="setClicked">Hoodies</li>
           </router-link>
 
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
+          <router-link
+            :to="{ name: 'ProductView', query: { category: clicked } }"
+          >
             <li class="listI" @click="setClicked">T-shirts</li>
           </router-link>
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
+          <router-link
+            :to="{ name: 'ProductView', query: { category: clicked } }"
+          >
             <li class="listI" @click="setClicked">Socks</li>
           </router-link>
           <router-link to="/productview">
@@ -43,12 +51,24 @@
     </section>
 
     <section class="search-field">
-      <span class="material-icons-outlined cursor" @click="search"> search </span>
+      <span class="material-icons-outlined cursor" @click="search">
+        search
+      </span>
 
       <section class="result">
-        <input type="text" placeholder="Search.." @keyup="setQuery" @keyup.enter="search" v-model="searchInput" class="search-results-parent"/>
-        <ul class="search-results">
-          <li v-for="(product, index) in $store.getters.resultsLimited"
+
+        <input
+          type="text"
+          placeholder="Search.."
+          @keyup="setQuery"
+          @keyup.enter="search"
+          v-model="searchInput"
+          class="search-results-parent"
+        />
+        <ul class="search-results" v-if="searchInput.length > 0">
+          <li
+            v-for="(product, index) in $store.getters.resultsLimited"
+
             :key="index"
             class="result-items"
             @click="temp">
@@ -58,24 +78,29 @@
       </section>
 
       <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined" @click="openLogin"> person_outline </span>
+      <span class="material-icons-outlined" @click="openLogin">
+        person_outline
+      </span>
       <!-- <p>{{getQuery}}</p> -->
     </section>
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
+import Login from "@/components/Login.vue";
 
 export default {
-  components:{Login },
+  components: {
+    Login,
+  },
+
   data() {
     return {
       searchInput: "",
       hoverApparel: false,
       hoverSkate: false,
       clicked: "",
-      loginField:false
+      loginField: false,
     };
   },
   methods: {
@@ -85,9 +110,15 @@ export default {
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
     },
-        openLogin(){
-          this.loginField=true
-console.log("HEJ")
+    openLogin() {
+      if(this.$store.state.token){
+        this.$router.push({name: 'ProductView'})
+      }
+     else this.loginField = true;
+      console.log("HEJ");
+    },
+    temp() {
+      console.log("hej");
     },
     search() {
       this.$router.push({
@@ -95,6 +126,7 @@ console.log("HEJ")
         query: { "": this.searchInput },
       });
     },
+
     assignCategory(category){
       this.$store.dispatch("getProductCategory", category)
       console.log(category)
@@ -111,9 +143,8 @@ console.log("HEJ")
 <style scoped>
 .material-icons-outlined {
   font-size: 1.8rem;
-  color: black; 
-   cursor: pointer;
-
+  color: black;
+  cursor: pointer;
 }
 /* .cursor{
 } */
@@ -125,7 +156,7 @@ console.log("HEJ")
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-    position: relative;
+  position: relative;
 }
 /* .apparel-ul , .skate-ul{
   display: none;
@@ -150,13 +181,12 @@ input {
   width: 23rem;
   display: flex;
   justify-content: space-between;
-    position: relative;
+  position: relative;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
-
 
 .search-results-parent,
 .category {
@@ -166,14 +196,14 @@ a {
 
 .search-results {
   position: absolute;
-  top: 10%;
+  top: 90%;
   /* left: 79%; */
-  z-index: 90000;
+  /* z-index: 90000; */
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.3rem 0rem 0rem 0rem;
   background-color: rgb(255, 255, 255);
-  width: 13%;
+  width: 49%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .par {
@@ -184,12 +214,12 @@ a {
   position: absolute;
   padding-top: 5rem;
   top: 80%;
-  left: 0%;
+  left: -15%;
   list-style: none;
   margin: 0;
   padding: 0;
   background-color: rgb(255, 255, 255);
-  width: 100%;
+  width: 7rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .result-items:hover,
@@ -201,7 +231,7 @@ a {
 .listI {
   transition: 0.8s;
   text-align: left;
-  padding-top: 0.8rem;
+  padding-top: 0.9rem;
   width: inherit;
 }
 </style>
