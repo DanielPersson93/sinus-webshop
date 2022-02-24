@@ -7,41 +7,38 @@
       </div>
       <!-- hämta data från store cart.items det id getter som får ut product  -->
       <div class="product">
-          <img src="@/assets/facebooklogo.svg" alt="" width="65" height="72">
-          <p>Sunus Hoodfe ASH grey <br>
-          1 x 233</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
-      </div>
-      <div class="product">
-        <img src="@/assets/twitterlogo.svg" alt="" width="65" height="72">
-        <p>Sunus Hoodfe ASH grey <br>
-        1 x 233</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
-      </div>
-      <div class="product">
-        <img src="@/assets/instagramlogo.svg" alt="" width="65" height="72">
-        <p>Sunus Hoodfe ASH grey <br>
-        1 x 233</p>
+          <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
+          <p>{{products.title}} <br>
+          {{products.amount}} x {{products.amount*products.price}}</p>
         <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
       </div>
       <div>
-        <h5>Checkout Total: $743 </h5>
+        <h5>Checkout Total: ${{(products.amount*products.price)*products}} </h5>
         <button>Ride to checkout
           <!-- <img src="@/assets/twitterlogo.svg" alt=""> -->
         </button>
-        <p>{{productsInCart}}</p>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    computed: {
-    productsInCart(){
-      return this.$store.getters.shoppingCart
-    }
-  },
+  props: ["product"],
+  //  IN NAVIGATOR
+        // in template 
+        // <ShoppingCart v-for="product of productsInCart"
+        // :key="product.id"
+        // :product="product" />
+  // in script
+  //  import Login from '@/components/Login.vue'
+  // components:{Login, SignUp, ShoppingCart },
+  //   computed: {
+  //   productsInCart(){
+  //     return this.$store.getters.shoppingCart
+  //   }
+  // },
 }
 </script>
 

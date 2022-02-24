@@ -101,7 +101,6 @@ export default new Vuex.Store({
 		},
 	},
 
-
   getters:{
     shoppingCart(state){
       return state.cart.map( cartItem => ({
@@ -152,4 +151,3 @@ export default new Vuex.Store({
     // orderModule: OrderModule
   },
 })
-	
