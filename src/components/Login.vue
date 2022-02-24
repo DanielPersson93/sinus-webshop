@@ -32,6 +32,7 @@ export default {
 
 }
 .login-wrap{
+    display: none;
   border: 2px solid black;
   position: fixed;
   top: 0;

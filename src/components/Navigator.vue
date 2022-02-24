@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-wrap"> 
-    <div class="abso"> <Login> </Login> </div>   
+  <div class="nav-wrap">
+    <div class="abso"><Login> </Login></div>
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
       <router-link to="/">Home</router-link>
@@ -13,12 +13,12 @@
         <router-link to="/productview" class="par"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
-          <router-link to="/productview">
-            <li class="listI" @click="assignCategory('skateboard')">Boards</li>
-          </router-link>
-          <router-link to="/productview">
-            <li class="listI" @click="assignCategory('wheel')">Wheels</li>
-          </router-link>
+          <!-- <router-link to="/productview"> -->
+          <li class="listI" @click="assignCategory('skateboard')">Boards</li>
+          <!-- </router-link> -->
+          <!-- <router-link to="/productview"> -->
+          <li class="listI" @click="assignCategory('wheel')">Wheels</li>
+          <!-- </router-link> -->
         </ul>
       </div>
 
@@ -30,28 +30,36 @@
         <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">Hoodies</li>
-          </router-link>
+          <!-- <router-link -->
+            <!-- :to="{ name: 'ProductView', query: { category: clicked } }" -->
+          <!-- > -->
+          <li class="listI" @click="assignCategory('hoodie')">Hoodies</li>
+          <!-- </router-link> -->
 
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">T-shirts</li>
-          </router-link>
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">Socks</li>
-          </router-link>
-          <router-link to="/productview">
-            <li class="listI">Bags</li>
-          </router-link>
-          <router-link to="/productview">
-            <li class="listI">Headwear</li>
-          </router-link>
+          <!-- <router-link -->
+            <!-- :to="{ name: 'ProductView', query: { category: clicked } }" -->
+          <!-- > -->
+          <li class="listI" @click="assignCategory('tshirt')">T-shirts</li>
+          <!-- </router-link> -->
+          <!-- <router-link -->
+            <!-- :to="{ name: 'ProductView', query: { category: clicked } }" -->
+          <!-- > -->
+          <li class="listI" @click="assignCategory('socks')">Socks</li>
+          <!-- </router-link> -->
+          <!-- <router-link to="/productview"> -->
+          <li class="listI" @click="assignCategory('totebag')">Bags</li>
+          <!-- </router-link> -->
+          <!-- <router-link to="/productview"> -->
+          <li class="listI" @click="assignCategory('cap')">Headwear</li>
+          <!-- </router-link> -->
         </ul>
       </div>
     </section>
 
     <section class="search-field">
-      <span class="material-icons-outlined cursor" @click="search"> search </span>
+      <span class="material-icons-outlined cursor" @click="search">
+        search
+      </span>
 
       <section class="result">
         <input
@@ -75,18 +83,20 @@
       </section>
 
       <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined" @click="openLogin"> person_outline </span>
+      <span class="material-icons-outlined" @click="openLogin">
+        person_outline
+      </span>
       <!-- <p>{{getQuery}}</p> -->
     </section>
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
+import Login from "@/components/Login.vue";
 
 export default {
-    components:{
-    Login
+  components: {
+    Login,
   },
   data() {
     return {
@@ -103,8 +113,8 @@ export default {
     setClicked(e) {
       this.clicked = e.target.innerText.toLowerCase();
     },
-        openLogin(){
-console.log("HEJ")
+    openLogin() {
+      console.log("HEJ");
     },
 
     search() {
@@ -113,9 +123,10 @@ console.log("HEJ")
         query: { "": this.searchInput },
       });
     },
-    assignCategory(category){
-      this.$store.dispatch("getProductsAction", category)
-      console.log(category)
+    assignCategory(category) {
+      this.$store.dispatch("getProductCategory", category);
+      this.$router.push("productview");
+      console.log(category);
     },
   },
   computed: {
@@ -129,9 +140,8 @@ console.log("HEJ")
 <style scoped>
 .material-icons-outlined {
   font-size: 1.8rem;
-  color: black; 
-   cursor: pointer;
-
+  color: black;
+  cursor: pointer;
 }
 /* .cursor{
 } */
@@ -143,7 +153,7 @@ console.log("HEJ")
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-    position: relative;
+  position: relative;
 }
 /* .apparel-ul , .skate-ul{
   display: none;
@@ -168,13 +178,12 @@ input {
   width: 23rem;
   display: flex;
   justify-content: space-between;
-    position: relative;
+  position: relative;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
-
 
 .search-results-parent,
 .category {
