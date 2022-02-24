@@ -12,9 +12,11 @@ close
         </section>
 <section class="inputs flex-col">
     <p>Email:</p>
-    <input type="text">
+    <input type="text"
+    v-model="email">
         <p>Password:</p>
-    <input type="password">
+    <input type="password"
+    v-model="password">
     <button>LOGIN</button>
 </section>
     </div>
@@ -37,7 +39,6 @@ closeSidebar(){
   display: flex;
 //   justify-content: center;
   flex-direction: column;
-  padding-top: 4rem;
     
 }
 
@@ -52,6 +53,8 @@ closeSidebar(){
   z-index: 9999;
   background-color: white;
   height: 100vh;
+    padding-top: 1rem;
+
   .material-icons-outlined{
       align-self: flex-end;
       padding: 0rem 2rem 2rem 0rem;
@@ -66,6 +69,7 @@ closeSidebar(){
    margin-top: 3rem;
    margin-bottom: 2rem;
    text-align: center;
+   
 
   }
   button{
