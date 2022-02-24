@@ -55,12 +55,18 @@
         <input type="number" id="CVC" name="CVC" />
       </div>
     </form>
-    <button>Place Order</button>
+    <button @click="placeOrder">Place Order</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    placeOrder(){
+        this.$store.dispatch("placeOrder")
+      },
+  } 
+};
 </script>
 
 <style lang="scss" scoped>

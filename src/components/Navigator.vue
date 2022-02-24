@@ -5,13 +5,9 @@
     </div>
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
-      <router-link to="/">Home</router-link>
+    <router-link to="/">Home</router-link>
 
-      <div
-        class="category"
-        @mouseover="hoverSkate = true"
-        @mouseleave="hoverSkate = false"
-      >
+      <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
         <router-link to="/productview" class="par"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
@@ -24,11 +20,7 @@
         </ul>
       </div>
 
-      <div
-        class="category"
-        @mouseover="hoverApparel = true"
-        @mouseleave="hoverApparel = false"
-      >
+      <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
         <router-link to="/productview" class="par"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
@@ -64,6 +56,7 @@
       </span>
 
       <section class="result">
+
         <input
           type="text"
           placeholder="Search.."
@@ -75,10 +68,10 @@
         <ul class="search-results" v-if="searchInput.length > 0">
           <li
             v-for="(product, index) in $store.getters.resultsLimited"
+
             :key="index"
             class="result-items"
-            @click="temp"
-          >
+            @click="temp">
             {{ product }}
           </li>
         </ul>
@@ -100,6 +93,7 @@ export default {
   components: {
     Login,
   },
+
   data() {
     return {
       searchInput: "",
@@ -132,9 +126,10 @@ export default {
         query: { "": this.searchInput },
       });
     },
-    assignCategory(category) {
-      this.$store.dispatch("getProductsAction", category);
-      console.log(category);
+
+    assignCategory(category){
+      this.$store.dispatch("getProductCategory", category)
+      console.log(category)
     },
   },
   computed: {
