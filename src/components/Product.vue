@@ -23,12 +23,13 @@
 </template>
 
 <script>
-import Actions from '@/store/action.types'
+// import Actions from '@/store/action.types'
 export default {
   props: ["product"],
   methods: {
     addItemToCart(){
-      this.$store.dispatch(Actions.ADD_TO_CART, this.product.id)
+      // this.$store.dispatch("addItemToCart", this.product.id)
+      this.$store.dispatch("addItemToCart", this.product)
     }
   }
 };

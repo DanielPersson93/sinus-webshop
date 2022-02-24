@@ -14,7 +14,8 @@
       <button @click="registerUser">Register User</button>
       <button @click="loginUser">Login</button>
       <button @click="placeOrder">Make an Order/checkout</button>
-      <button @click="getOrder">Get Order</button>
+      <button @click="getOrder">Get Order</button><br>
+      <p>{{productsInCart}}</p>
     </div>
     <article class="grid-wrap">
       <!-- <img
@@ -77,8 +78,23 @@
 <script>
 // import Actions from '@/store/action.types.js'
 export default {
+  computed: {
+    productsInCart(){
+      //       return state.cart.items.map (cartItemID => ({
+      //   ...state.allProducts.find(product => cartItemID == product.id)
+      // }))
+      // for (const product of this.$store.getters.shoppingCart) {
+      //   if (product.id 
+      // }
+      // const inCart = this.$store.getters.shoppingCart.find
+      // (cartItem => cartItem.id ==)
+      // if(this.this.$store.getters.shoppingCart.find())
+      return this.$store.getters.shoppingCart
+    }
+  },
   data() {
     return {
+      cart: [],
       list: [],
       user: {
         email: "daniel@bananpaj.se",
