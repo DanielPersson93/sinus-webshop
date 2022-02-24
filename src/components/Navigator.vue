@@ -1,10 +1,16 @@
 <template>
-  <div class="nav-wrap"> 
-    <div class="abso"> 
-      <Login v-if="loginField" @closed="loginField=false" > </Login>
-    </div>   
-    <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
-    <section class="links">
+	<div class="nav-wrap">
+		<div class="abso">
+			<Login
+				v-if="loginField"
+				@closed="loginField = false"
+				@openForm="openForm"
+			>
+			</Login>
+			<SignUp v-if="openSignUpForm" @closeSignUpForm="toggleOpenCloseForm" />
+		</div>
+		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
+		<section class="links">
     <router-link to="/">Home</router-link>
 
     <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
@@ -49,179 +55,206 @@
         </ul>
       </div>
     </section>
+    
+    
+    
+		
 
-    <section class="search-field">
-      <span class="material-icons-outlined cursor" @click="search">
-        search
-      </span>
+			
 
-      <section class="result">
-        <input type="text" placeholder="Search.." @keyup="setQuery" @keyup.enter="search" v-model="searchInput" class="search-results-parent"/>
-        <ul class="search-results">
-          <li v-for="(product, index) in $store.getters.resultsLimited"
-            :key="index"
-            class="result-items"
-            @click="temp">
-            {{ product }}
-          </li>
-        </ul>
-      </section>
 
-      <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined" @click="openLogin">
-        person_outline
-      </span>
-      <!-- <p>{{getQuery}}</p> -->
-    </section>
-  </div>
+		<section class="search-field">
+			<span class="material-icons-outlined cursor" @click="search">
+				search
+			</span>
+
+			<section class="result">
+				<input
+					type="text"
+					placeholder="Search.."
+					@keyup="setQuery"
+					@keyup.enter="search"
+					v-model="searchInput"
+					class="search-results-parent"
+				/>
+				<ul class="search-results" v-if="searchInput.length > 0">
+					<li
+						v-for="(product, index) in $store.getters.resultsLimited"
+						:key="index"
+						class="result-items"
+						@click="temp"
+					>
+						{{ product }}
+					</li>
+				</ul>
+			</section>
+
+			<span class="material-icons-outlined"> shopping_bag </span>
+			<span class="material-icons-outlined" @click="openLogin">
+				person_outline
+			</span>
+			<!-- <p>{{getQuery}}</p> -->
+		</section>
+	</div>
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
+	import Login from "@/components/Login.vue";
+	import SignUp from "@/components/SignUp.vue";
+	export default {
+		components: {
+			Login,
+			SignUp,
+		},
 
-export default {
-  components: {
-    Login,
-  },
-  data() {
-    return {
-      searchInput: "",
-      hoverApparel: false,
-      hoverSkate: false,
-      clicked: "",
-      loginField:false
-    };
-  },
-  methods: {
-    setQuery() {
-      this.$store.commit("setQuery", this.searchInput);
-    },
-    setClicked(e) {
-      this.clicked = e.target.innerText.toLowerCase();
-    },
-    openLogin(){
-      this.loginField=true
-      console.log("HEJ")
-    },
-    search() {
-      this.$router.push({
-        name: "Products",
-        query: { "": this.searchInput },
-      });
-    },
-    assignCategory(category) {
-      this.$store.dispatch("getProductCategory", category);
-      console.log(category);
-    },
-    getSkate(){
+		data() {
+			return {
+				searchInput: "",
+				hoverApparel: false,
+				hoverSkate: false,
+				clicked: "",
+				openSignUpForm: false,
+				loginField: false,
+			};
+		},
+		methods: {
+			toggleOpenCloseForm() {
+				this.openSignUpForm = !this.openSignUpForm;
+			},
+			openForm() {
+				this.openSignUpForm = !this.openSignUpForm;
+				this.loginField = !this.loginField;
+			},
+			setQuery() {
+				this.$store.commit("setQuery", this.searchInput);
+			},
+			setClicked(e) {
+				this.clicked = e.target.innerText.toLowerCase();
+			},
+			openLogin() {
+				if (this.$store.state.token) {
+					this.$router.push({ name: "ProductView" });
+				} else this.loginField = true;
+				console.log("HEJ");
+			},
+			temp() {
+				console.log("hej");
+			},
+			search() {
+				this.$router.push({
+					name: "Products",
+					query: { "": this.searchInput },
+				});
+			},
+
+			assignCategory(category) {
+				this.$store.dispatch("getProductCategory", category);
+				console.log(category);
+			},
+          getSkate(){
       this.$store.dispatch("fetchSkate")
       this.$router.push("productview")
     },
     getApparel(){
       this.$store.dispatch("fetchApparel")
       this.$router.push("productview")
-    }
-  },
-  computed: {
-    getQuery() {
-      return this.$store.state.query;
     },
-  },
-};
+	},
+		computed: {
+			getQuery() {
+				return this.$store.state.query;
+			},
+      },
+	};
 </script>
 
 <style scoped>
-.material-icons-outlined {
-  font-size: 1.8rem;
-  color: black;
-  cursor: pointer;
-}
-/* .cursor{
-} */
-.nav-wrap {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 24px;
-  display: flex;
-  padding: 1rem 2.5rem;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  position: relative;
-}
-/* .apparel-ul , .skate-ul{
-  display: none;
-}
-.apparel-link:hover{
-  display:contents;
-} */
-.links {
-  display: flex;
-  justify-content: space-between;
-  gap: 7rem;
-}
+	.material-icons-outlined {
+		font-size: 1.8rem;
+		color: black;
+		cursor: pointer;
+	}
+	/* .cursor{
+		} */
+	.nav-wrap {
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		font-size: 24px;
+		display: flex;
+		padding: 1rem 2.5rem;
+		align-items: center;
+		justify-content: space-between;
+		font-weight: 600;
+		position: relative;
+	}
 
-input {
-  padding: 0.4rem 1rem;
-  border-radius: 10px;
-  border: solid black 2.5px;
-}
+	.links {
+		display: flex;
+		justify-content: space-between;
+		gap: 7rem;
+	}
 
-.search-field {
-  margin-left: 20rem;
-  width: 23rem;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
+	input {
+		padding: 0.4rem 1rem;
+		border-radius: 10px;
+		border: solid black 2.5px;
+	}
 
-.search-results-parent,
-.category {
-  position: relative;
-  z-index: 1000;
-}
+	.search-field {
+		margin-left: 20rem;
+		width: 23rem;
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
 
-.search-results {
-  position: absolute;
-  top: 10%;
-  /* left: 79%; */
-  z-index: 90000;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(255, 255, 255);
-  width: 13%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.par {
-  z-index: 9000;
-}
+	.search-results-parent,
+	.category {
+		position: relative;
+		z-index: 10;
+	}
 
-.theUl {
-  position: absolute;
-  padding-top: 5rem;
-  top: 80%;
-  left: 0%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.result-items:hover,
-.listI:hover {
-  background-color: rgba(68, 67, 67, 0.2);
-  width: 100%;
-}
-.result-items,
-.listI {
-  transition: 0.8s;
-  text-align: left;
-  padding-top: 0.8rem;
-  width: inherit;
-}
+	.search-results {
+		position: absolute;
+		top: 90%;
+		/* left: 79%; */
+		/* z-index: 90000; */
+		list-style: none;
+		margin: 0;
+		padding: 0.3rem 0rem 0rem 0rem;
+		background-color: rgb(255, 255, 255);
+		width: 49%;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
+	.par {
+		z-index: 9000;
+	}
+
+	.theUl {
+		position: absolute;
+		padding-top: 5rem;
+		top: 80%;
+		left: -15%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		background-color: rgb(255, 255, 255);
+		width: 7rem;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
+	.result-items:hover,
+	.listI:hover {
+		background-color: rgba(68, 67, 67, 0.2);
+		width: 100%;
+	}
+	.result-items,
+	.listI {
+		transition: 0.8s;
+		text-align: left;
+		padding-top: 0.9rem;
+		width: inherit;
+	}
 </style>
