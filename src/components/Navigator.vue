@@ -1,7 +1,7 @@
 <template>
 	<div class="nav-wrap">
 		<div class="abso">
-			<Login> </Login>
+			<Login v-if="loginField" @closed="loginField = false"> </Login>
 		</div>
 		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
 		<section class="links">
@@ -109,6 +109,7 @@
 				hoverSkate: false,
 				clicked: "",
 				isLoginModalOpen: false,
+				loginField: false,
 			};
 		},
 		methods: {
@@ -122,6 +123,7 @@
 				this.clicked = e.target.innerText.toLowerCase();
 			},
 			openLogin() {
+				this.loginField = true;
 				console.log("HEJ");
 			},
 			search() {
@@ -150,7 +152,7 @@
 		cursor: pointer;
 	}
 	/* .cursor{
-									} */
+											} */
 	.nav-wrap {
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		font-size: 24px;
