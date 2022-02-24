@@ -59,11 +59,11 @@ export default new Vuex.Store({
     },
     async fetchApparel(context) {
       const response = await API.fetchApparel();
-      context.commit("saveProducts", response.data.products);
+      context.commit("saveProducts", response.data);
     },
     async fetchSkate(context){
       const response = await API.fetchSkate()
-      context.commit('saveProducts', response.data.products) 
+      context.commit('saveProducts', response.data) 
     },
     async registerUser(context, user) {
       context.commit("saveUser", user);
@@ -103,6 +103,7 @@ export default new Vuex.Store({
         amount: cartItem.amount
       }))
     },
+    getSelectedCategory: state => category => state.allProducts.filter(product => product.category == category),
     resultsLimited(state, ){
       let searchLoot=[];
       if(state.query.length>0){
@@ -120,8 +121,8 @@ export default new Vuex.Store({
           }     
         }
         }
-      return searchLoot
-    },
+        return searchLoot
+      },
   },
       // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
 
@@ -140,8 +141,9 @@ export default new Vuex.Store({
       // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
       // return state.products.filter(product => product[0] == state.query[0])  
   //   }
-  // },
+  // }, 
   modules: {
     // orderModule: OrderModule
   },
-});
+})
+

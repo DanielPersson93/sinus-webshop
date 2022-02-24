@@ -7,45 +7,53 @@
     <section class="links">
     <router-link to="/">Home</router-link>
 
-      <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
-        <router-link to="/productview" class="par"> Skates</router-link>
-
+    <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
+      <router-link :to="{ name: 'ProductView', query: { category: 'skate' } }">
+        <h5 class="par" @click="getSkate">Skate</h5>
+        </router-link>
         <ul class="theUl" v-if="hoverSkate">
-          <router-link to="/productview">
-            <li class="listI" @click="assignCategory('skateboard')">Boards</li>
+          <router-link :to="{ name: 'ProductView', query: { category: 'skateboard' } }">
+          <li class="listI" @click="assignCategory('skateboard')">Boards</li>
           </router-link>
-          <router-link to="/productview">
-            <li class="listI" @click="assignCategory('wheel')">Wheels</li>
+          <router-link :to="{ name: 'ProductView', query: { category: 'wheel' } }">
+          <li class="listI" @click="assignCategory('wheel')">Wheels</li>
           </router-link>
         </ul>
       </div>
 
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
-        <router-link to="/productview" class="par"> Apparel</router-link>
+        <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
+        <h5 class="par" @click="getApparel">Apparel</h5>
+        </router-link>
 
         <ul class="theUl" v-if="hoverApparel">
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">Hoodies</li>
+          <router-link :to="{ name: 'ProductView', query: { category: 'hoodie' } }">
+          <li class="listI" @click="assignCategory('hoodie')">Hoodies</li>
           </router-link>
 
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">T-shirts</li>
+          <router-link :to="{ name: 'ProductView', query: { category: 'tshirt' } }">
+          <li class="listI" @click="assignCategory('tshirt')">T-shirts</li>
           </router-link>
-          <router-link :to="{ name: 'ProductView', query: { category: clicked } }">
-            <li class="listI" @click="setClicked">Socks</li>
+
+          <router-link :to="{ name: 'ProductView', query: { category: 'socks' } }">
+          <li class="listI" @click="assignCategory('socks')">Socks</li>
           </router-link>
-          <router-link to="/productview">
-            <li class="listI">Bags</li>
+
+          <router-link :to="{ name: 'ProductView', query: { category: 'totebag' } }">
+          <li class="listI" @click="assignCategory('totebag')">Bags</li>
           </router-link>
-          <router-link to="/productview">
-            <li class="listI">Headwear</li>
+
+          <router-link :to="{ name: 'ProductView', query: { category: 'cap' } }">
+          <li class="listI" @click="assignCategory('cap')">Headwear</li>
           </router-link>
         </ul>
       </div>
     </section>
 
     <section class="search-field">
-      <span class="material-icons-outlined cursor" @click="search"> search </span>
+      <span class="material-icons-outlined cursor" @click="search">
+        search
+      </span>
 
       <section class="result">
         <input type="text" placeholder="Search.." @keyup="setQuery" @keyup.enter="search" v-model="searchInput" class="search-results-parent"/>
@@ -60,17 +68,21 @@
       </section>
 
       <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined" @click="openLogin"> person_outline </span>
+      <span class="material-icons-outlined" @click="openLogin">
+        person_outline
+      </span>
       <!-- <p>{{getQuery}}</p> -->
     </section>
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
+import Login from "@/components/Login.vue";
 
 export default {
-  components:{Login },
+  components: {
+    Login,
+  },
   data() {
     return {
       searchInput: "",
@@ -97,10 +109,18 @@ export default {
         query: { "": this.searchInput },
       });
     },
-    assignCategory(category){
-      this.$store.dispatch("getProductCategory", category)
-      console.log(category)
+    assignCategory(category) {
+      this.$store.dispatch("getProductCategory", category);
+      console.log(category);
     },
+    getSkate(){
+      this.$store.dispatch("fetchSkate")
+      this.$router.push("productview")
+    },
+    getApparel(){
+      this.$store.dispatch("fetchApparel")
+      this.$router.push("productview")
+    }
   },
   computed: {
     getQuery() {
@@ -113,9 +133,8 @@ export default {
 <style scoped>
 .material-icons-outlined {
   font-size: 1.8rem;
-  color: black; 
-   cursor: pointer;
-
+  color: black;
+  cursor: pointer;
 }
 /* .cursor{
 } */
@@ -127,7 +146,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-    position: relative;
+  position: relative;
 }
 /* .apparel-ul , .skate-ul{
   display: none;
@@ -152,13 +171,12 @@ input {
   width: 23rem;
   display: flex;
   justify-content: space-between;
-    position: relative;
+  position: relative;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
-
 
 .search-results-parent,
 .category {

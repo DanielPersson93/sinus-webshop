@@ -1,16 +1,25 @@
 <template>
   <div class="productsview">
-    <div class="productsview__sidebar">
-      <CategoryList />
-    </div>
-    <div class="productsview__card">
-      <Product
-        v-for="product of currentProducts"
-        :key="product.id"
-        :product="product"
-      />
-      <!-- <p>{{currentProducts}}</p> -->
-    </div>
+      <section class="productsview__sidebar">
+        <CategoryList />
+      </section>
+      <section class="productsview__card">
+        <div class="productview-top">
+        <p>Home / Apparel / Hoodie</p>
+        <div class="filter">
+          <img src="@/assets/filter icon.png" alt="filter-icon">
+          <p>Filters</p>
+        </div>
+        </div>
+        <div class="divider"></div>
+        <div class="product-grid">
+        <Product
+          v-for="product of currentProducts"
+          :key="product.id"
+          :product="product"
+        />
+        </div>
+    </section>
   </div>
 </template>
 
@@ -29,13 +38,15 @@ export default {
       products: [],
     };
   },
-    computed: {
-    currentProducts(){
-      return this.$store.state.allProducts;
-    }
+  computed: {
+    currentProducts() {
+      // return this.$store.state.allProducts;
+      return this.$store.getters.getSelectedCategory(this.$route.query.category)
+    },
   },
 
   async beforeMount() {
+    console.log(this.$route)
     /** Fetch categories from mock file*/
     this.categories = API.CATEGORIES;
 
@@ -96,20 +107,39 @@ export default {
 </script>
 <style lang="scss" scoped>
 .productsview {
-  max-width: 1440px;
-  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  max-width: 1444px;
 
   .productsview__sidebar {
-    width: 213px;
-    margin-top: 5rem;
-  }
-  .productsview__card {
+     width: 213px;
+    //  margin-left: 5rem;
+   }
+  .product-grid {
     display: grid;
     gap: 56px 192px;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 5rem;
+    margin: 1rem 3rem 1rem 3rem;
   }
 }
+section{
+  margin-top: 4rem;
+}
+.divider {
+  border-bottom: solid black 2px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+.productview-top{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0rem 1rem 0rem;
+}
+.filter{
+  display: flex;
+  img{
+    padding-right: 1rem;
+  }
+}
+
 </style>
