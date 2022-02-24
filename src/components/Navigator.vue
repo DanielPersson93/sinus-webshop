@@ -1,6 +1,6 @@
 <template>
   <div class="nav-wrap"> 
-    <div class="abso"> <Login> </Login> </div>   
+    <div class="abso"> <Login v-if="loginField" @closed="loginField=false" > </Login> </div>   
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
       <router-link to="/">Home</router-link>
@@ -94,6 +94,7 @@ export default {
       hoverApparel: false,
       hoverSkate: false,
       clicked: "",
+      loginField:false
     };
   },
   methods: {
@@ -104,6 +105,7 @@ export default {
       this.clicked = e.target.innerText.toLowerCase();
     },
         openLogin(){
+          this.loginField=true
 console.log("HEJ")
     },
 
