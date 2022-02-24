@@ -5,7 +5,7 @@
         <h3>Your Cart</h3>
         <img src="@/assets/cross-icon.png" alt="">
       </div>
-      <!-- hämta data från mock api -->
+      <!-- hämta data från store cart.items det id getter som får ut product  -->
       <div class="product">
           <img src="@/assets/facebooklogo.svg" alt="" width="65" height="72">
           <p>Sunus Hoodfe ASH grey <br>
@@ -29,6 +29,7 @@
         <button>Ride to checkout
           <!-- <img src="@/assets/twitterlogo.svg" alt=""> -->
         </button>
+        <p>{{productsInCart}}</p>
       </div>
     </div>
   </div>
@@ -36,7 +37,11 @@
 
 <script>
 export default {
-
+    computed: {
+    productsInCart(){
+      return this.$store.getters.shoppingCart
+    }
+  },
 }
 </script>
 

@@ -78,7 +78,7 @@
 					v-model="searchInput"
 					class="search-results-parent"
 				/>
-				<ul class="search-results">
+				<ul class="search-results" v-if="searchInput.length > 0">
 					<li
 						v-for="(product, index) in $store.getters.resultsLimited"
 						:key="index"
@@ -103,7 +103,11 @@
 	import Login from "@/components/Login.vue";
 	import SignUp from "@/components/SignUp.vue";
 	export default {
-		components: { Login, SignUp },
+		components: {
+			Login,
+			SignUp,
+		},
+
 		data() {
 			return {
 				searchInput: "",
@@ -129,8 +133,13 @@
 				this.clicked = e.target.innerText.toLowerCase();
 			},
 			openLogin() {
-				this.loginField = true;
+				if (this.$store.state.token) {
+					this.$router.push({ name: "ProductView" });
+				} else this.loginField = true;
 				console.log("HEJ");
+			},
+			temp() {
+				console.log("hej");
 			},
 			search() {
 				this.$router.push({
@@ -138,6 +147,7 @@
 					query: { "": this.searchInput },
 				});
 			},
+
 			assignCategory(category) {
 				this.$store.dispatch("getProductCategory", category);
 				console.log(category);
@@ -158,7 +168,7 @@
 		cursor: pointer;
 	}
 	/* .cursor{
-																									} */
+		} */
 	.nav-wrap {
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		font-size: 24px;
@@ -202,30 +212,30 @@
 
 	.search-results {
 		position: absolute;
-		top: 10%;
+		top: 90%;
 		/* left: 79%; */
-		z-index: 10;
+		/* z-index: 90000; */
 		list-style: none;
 		margin: 0;
-		padding: 0;
+		padding: 0.3rem 0rem 0rem 0rem;
 		background-color: rgb(255, 255, 255);
-		width: 13%;
+		width: 49%;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
 	.par {
-		z-index: 10;
+		z-index: 9000;
 	}
 
 	.theUl {
 		position: absolute;
 		padding-top: 5rem;
 		top: 80%;
-		left: 0%;
+		left: -15%;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		background-color: rgb(255, 255, 255);
-		width: 100%;
+		width: 7rem;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
 	.result-items:hover,
@@ -237,7 +247,7 @@
 	.listI {
 		transition: 0.8s;
 		text-align: left;
-		padding-top: 0.8rem;
+		padding-top: 0.9rem;
 		width: inherit;
 	}
 </style>
