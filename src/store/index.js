@@ -49,11 +49,11 @@ export default new Vuex.Store({
     },
     async fetchApparel(context) {
       const response = await API.fetchApparel();
-      context.commit("saveProducts", response.data.products);
+      context.commit("saveProducts", response.data);
     },
     async fetchSkate(context){
       const response = await API.fetchSkate()
-      context.commit('saveProducts', response.data.products) 
+      context.commit('saveProducts', response.data) 
     },
     async registerUser(context, user) {
       context.commit("saveUser", user);
@@ -114,7 +114,8 @@ export default new Vuex.Store({
       // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
       // return state.products.filter(product => product[0] == state.query[0])  
   //   }
-  // },
+  // }, 
+  getSelectedCategory: state => category => state.allProducts.filter(product => product.category == category)
 },
   modules: {
     // orderModule: OrderModule

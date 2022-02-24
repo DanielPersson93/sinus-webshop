@@ -40,11 +40,13 @@ export default {
   },
   computed: {
     currentProducts() {
-      return this.$store.state.allProducts;
+      // return this.$store.state.allProducts;
+      return this.$store.getters.getSelectedCategory(this.$route.query.category)
     },
   },
 
   async beforeMount() {
+    console.log(this.$route)
     /** Fetch categories from mock file*/
     this.categories = API.CATEGORIES;
 
