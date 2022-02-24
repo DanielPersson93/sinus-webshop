@@ -166,6 +166,7 @@ img {
 .grid-full-width {
   grid-column: span 3;
   color: white;
+  position: relative;
   h2 {
     font-family: "Montserrat", sans-serif;
     // font-size: 64px;
