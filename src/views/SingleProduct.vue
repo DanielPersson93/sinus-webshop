@@ -16,6 +16,8 @@
           <img
             :src="'http://localhost:5000/images/' + product.imgFile"
             :alt="product.title"
+            height="500"
+            width="385"
           />
         </section>
         <section class="information-wrapper">
@@ -27,7 +29,7 @@
             <!-- <h5>6/6</h5> -->
             <h4>${{ product.price }}</h4>
             <!-- </div> -->
-            <button>ADD TO CART</button>
+            <button @click="addItemToCart">ADD TO CART</button>
           </div>
         </section>
       </div>
@@ -54,6 +56,11 @@
 import CategoryList from "@/components/CategoryList.vue";
 export default {
   components: { CategoryList },
+  methods: {
+      addItemToCart(){
+      this.$store.dispatch("addItemToCart", this.product)
+    }
+  },
   computed: {
     products() {
       return this.$store.state.allProducts;
@@ -115,7 +122,6 @@ export default {
 .single-product {
   display: flex;
   justify-content: space-evenly;
-  max-width: 1444px;
 }
 .divider {
   border-bottom: solid black 2px;
@@ -123,6 +129,9 @@ export default {
 }
 .img-wrapper {
   margin-top: 4rem;
+  img {
+    object-fit: contain;
+  }
 }
 .information-wrapper {
   margin-top: 6rem;
