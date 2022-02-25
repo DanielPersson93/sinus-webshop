@@ -96,7 +96,9 @@
 			}
 		}
 		input {
-			padding: 0.8rem 5rem;
+			width: 317px;
+			height: 58px;
+			padding-left: 0.5rem;
 			border-radius: 2.5px;
 			border: 0.3px solid black;
 		}

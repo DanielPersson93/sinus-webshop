@@ -108,8 +108,7 @@ export default {
 <style lang="scss" scoped>
 .productsview {
   display: flex;
-  justify-content: space-evenly;
-  max-width: 1444px;
+  justify-content: center;
 
   .productsview__sidebar {
      width: 213px;

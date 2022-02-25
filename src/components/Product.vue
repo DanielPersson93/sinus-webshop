@@ -6,9 +6,9 @@
       @click="addItemToCart">
     <router-link :to="'singleproduct/' + product.id">
       <img
+        class="imageFit"
         :src="'http://localhost:5000/images/' + product.imgFile"
         :alt="product.title"
-        class="imageFit"
       />
     </router-link>
     <p>{{ product.title }} {{ product.category }}</p>
@@ -32,8 +32,8 @@ export default {
 
 <style lang="scss">
 .imageFit{
-  height: 100%;
-  width: 100%;
+  width: 269px;
+  height: 292px;
   object-fit: contain;
 }
 .card {
@@ -48,17 +48,11 @@ export default {
     width: 36px;
     height: 37px;
   }
-
-  img {
-     width: 269px;
-     height: 292px;
-  }
   p{
     font-size: 16px;
   }
   .price{
     color: #881616;
-
   }
 }
 </style>

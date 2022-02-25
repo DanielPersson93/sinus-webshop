@@ -3,35 +3,14 @@
 	margin: 0;
 	padding: 0;
 }
-h1,
-h2,
-h3,
-h4,
-h5 {
-	font-family: "Montserrat", sans-serif;
-}
-h1 {
-	font-size: 96px;
-}
-h2 {
-	font-size: 64px;
-}
-h3 {
-	font-size: 48px;
-}
-h4 {
-	font-size: 32px;
-}
-h5 {
-	font-size: 24px;
-}
-p,
-button,
-a,
-input,
-label {
-	font-family: "Mukta Malar", sans-serif;
-}
+.view {padding: 80px 0px 160px 0;}
+h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif;}
+h1 {font-size: 96px;}
+h2 {font-size: 64px;}
+h3 {font-size: 48px;}
+h4 {font-size: 32px;}
+h5 {font-size: 24px;}
+p,button,a,input,label {font-family: "Mukta Malar", sans-serif;}
 button {
 	font-weight: bold;
 	width: 137px;
@@ -41,12 +20,6 @@ button {
 	border: none;
 	border-radius: 4px;
 }
-button:hover {
-	box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.4);
-}
-button:active {
-	box-shadow: inset -1px 3px 6px rgba(0, 0, 0, 0.4);
-}
-.whiteborderbutton:hover {
-	border: 2px solid #ffffff;
-}
+button:hover {box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.4);}
+button:active {box-shadow: inset -1px 3px 6px rgba(0, 0, 0, 0.4);}
+.whiteborderbutton:hover {border: 2px solid #ffffff;}
