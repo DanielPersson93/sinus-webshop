@@ -254,6 +254,4 @@
 		padding-top: 0.9rem;
 		width: inherit;
 	}
-	.ShoppingCart {}
-
 </style>
