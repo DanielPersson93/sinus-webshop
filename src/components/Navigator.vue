@@ -191,15 +191,17 @@
   display: flex;
   padding: 1rem 2.5rem;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   font-weight: 600;
-  position: relative;
+  // position: relative;
 }
+
 
 .links {
   display: flex;
   justify-content: space-between;
   gap: 7rem;
+  margin-left: 12%;
   align-items: center;
 }
 
@@ -207,11 +209,11 @@ input {
   padding: 0.4rem 1rem;
   border-radius: 10px;
   border: solid black 2.5px;
-  z-index: 30;
+  // z-index: 30;
 }
 
 	.search-field {
-		margin-left: 20rem;
+		margin-left: 30%;
 		width: 23rem;
 		display: flex;
 		justify-content: space-between;
@@ -230,7 +232,6 @@ input {
 }
 .category{
 position: relative;
-display: inline-block;
 }
 
 .search-results {
