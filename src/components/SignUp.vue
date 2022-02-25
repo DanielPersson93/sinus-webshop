@@ -166,6 +166,9 @@
 			font-size: 40px;
 			cursor: pointer;
 		}
+		.material-icons-outlined:hover {
+			transform: scale(1.2);
+		}
 		button {
 			align-self: center;
 		}
