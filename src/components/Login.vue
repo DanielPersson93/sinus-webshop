@@ -74,7 +74,11 @@ export default {
     padding: 0rem 2rem 2rem 0rem;
     font-size: 40px;
     cursor: pointer;
+  &:hover{
+    transform: scale(1.2);
   }
+  }
+
 
   .sign-up {
     padding: 0rem 5rem;

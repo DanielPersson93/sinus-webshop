@@ -5,10 +5,10 @@
     </div>
     <img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
     <section class="links">
-    <router-link to="/">Home</router-link>
+    <router-link to="/" class="underlined">Home</router-link>
 
       <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
-        <router-link to="/productview" class="par"> Skates</router-link>
+        <router-link to="/productview" class="par underlined"> Skates</router-link>
 
         <ul class="theUl" v-if="hoverSkate">
           <router-link to="/productview">
@@ -21,7 +21,7 @@
       </div>
 
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
-        <router-link to="/productview" class="par"> Apparel</router-link>
+        <router-link to="/productview" class="par underlined"> Apparel</router-link>
 
         <ul class="theUl" v-if="hoverApparel">
           <router-link
@@ -51,7 +51,7 @@
     </section>
 
     <section class="search-field">
-      <span class="material-icons-outlined cursor" @click="search">
+      <span class="material-icons-outlined expand" @click="search">
         search
       </span>
 
@@ -77,8 +77,8 @@
         </ul>
       </section>
 
-      <span class="material-icons-outlined"> shopping_bag </span>
-      <span class="material-icons-outlined" @click="openLogin">
+      <span class="material-icons-outlined expand"> shopping_bag </span>
+      <span class="material-icons-outlined expand" @click="openLogin">
         person_outline
       </span>
       <!-- <p>{{getQuery}}</p> -->
@@ -140,14 +140,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .material-icons-outlined {
   font-size: 1.8rem;
   color: black;
   cursor: pointer;
 }
-/* .cursor{
-} */
+
 .nav-wrap {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 24px;
@@ -236,5 +235,16 @@ z-index: 0;
   text-align: left;
   padding-top: 0.9rem;
   width: inherit;
+}
+ .underlined{
+ text-decoration: underline;
+ text-decoration-color: transparent;
+ transition: 0.6s;
+}
+.underlined:hover{
+  text-decoration-color:black ;
+}
+.expand:active{
+  transform: scale(1.2);
 }
 </style>

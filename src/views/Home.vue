@@ -230,9 +230,7 @@ img {
   grid-column: span 2;
 }
 .picture-in-picture {
-  .mom {
-    position: relative;
-  }
+
   .imgbag {
     position: absolute;
     left: 50%;
