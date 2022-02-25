@@ -2,7 +2,6 @@
   <div class="home">
     <div class="linksandshit">
       <router-link to="/checkout">CHECK OUT DANIELS COOL CHECKOUT</router-link><br>
-      <router-link to="/shoppingcart">CHECK OUT PETERS BAD SHOPPINGCART</router-link><br>
       <button @click="getSkate">Skate</button>
       <button @click="getApparel">Apparel</button><br>
       <button @click="getProductCategory('cap')">Caps</button>
@@ -16,18 +15,8 @@
       <button @click="loginUser">Login</button>
       <button @click="placeOrder">Make an Order/checkout</button>
       <button @click="getOrder">Get Order</button><br>
-      <p>{{productsInCart}}</p>
     </div>
     <article class="grid-wrap">
-      <!-- <img
-        :class="{
-          'grid-span-2': index == 2 || index == 3,
-          'grid-full-width': index == 0,
-        }"
-        v-for="(img, index) in list"
-        :key="index"
-        :src="require('@/assets/' + img)"
-      /> -->
 
       <article class="grid-full-width">
         <img src="@/assets/hero.jpg" alt="" />
@@ -79,11 +68,6 @@
 <script>
 // import Actions from '@/store/action.types.js'
 export default {
-  computed: {
-    productsInCart(){
-      return this.$store.getters.shoppingCart
-    }
-  },
   data() {
     return {
       cart: [],
@@ -134,15 +118,6 @@ export default {
         query: { "": query },
       });
     },
-  },
-  mounted() {
-    this.list = [
-      "Hero.png",
-      "boardbox.png",
-      "apparelbox.png",
-      "wheelbox.png",
-      "bagbox.png",
-    ];
   },
 };
 </script>

@@ -24,7 +24,6 @@ export default new Vuex.Store({
 		setQuery(state, input) {
 			state.query = input;
 		},
-
 		saveProducts(state, allProducts) {
 			for (let product of allProducts) {
 				state.allProducts.push(product);
@@ -44,12 +43,17 @@ export default new Vuex.Store({
 			state.order = order;
 		},
 		saveInCart(state, product) {
-			// state.cart.items.push(product)
 			const inCart = state.cart.find((cartItem) => cartItem.id == product.id);
 			if (inCart) {
 				inCart.amount++;
 			} else state.cart.push({ id: product.id, amount: 1 });
 		},
+    // removeFromCart(state, product) {
+    //   const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
+    //   if (inCart){
+    //     state.cart.splice(state.cart.indexOf(inCart), 1)
+    //   }
+    // },
 	},
 	actions: {
 		async getProductCategory(context, category) {
@@ -76,7 +80,6 @@ export default new Vuex.Store({
 			context.commit("saveToken", response.data.token);
 			API.saveToken(response.data.token);
 		},
-
 		async placeOrder(context) {
 			let order = { items: [] };
 			for (const cartItem of this.state.cart) {
@@ -90,7 +93,6 @@ export default new Vuex.Store({
 			// const response = await API.placeOrder(this.state.cart)
 			context.commit("saveOrder", response.data);
 		},
-
 		async getOrder(context) {
 			const response = await API.getOrder();
 			context.commit("saveOrder", response.data);
@@ -99,7 +101,11 @@ export default new Vuex.Store({
 		addItemToCart(context, product) {
 			context.commit("saveInCart", product);
 		},
-	},
+    // removeFromCart(context, product){
+    //   context.commit("removeFromCart", product);
+    //   // this.cardlistdata.splice(this.cardlistdata.indexOf(card), 1)
+    // }
+  },
 
   getters:{
     shoppingCart(state){
@@ -129,25 +135,23 @@ export default new Vuex.Store({
         return searchLoot
       },
   },
-      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
+  })
 
-      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
-      // return state.products.filter(product => product[0] == state.query[0]) FEL
+// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
 
-      // for(const product of state.products){kanske funkar nån gång
-      //   for(let i=0; i<product.length; i++){
-      //     if(product[i].toUpperCase() == state.query.toUpperCase())
-      //     return product
-      //   }
-      // }   
-          // produkt[0].toUpperCase()
-          // searchLoot.push(produkt)
-      // return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-      // arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-      // return state.products.filter(product => product[0] == state.query[0])  
-  //   }
-  // }, 
-  modules: {
-    // orderModule: OrderModule
-  },
-})
+// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
+// return state.products.filter(product => product[0] == state.query[0]) FEL
+
+// for(const product of state.products){kanske funkar nån gång
+//   for(let i=0; i<product.length; i++){
+//     if(product[i].toUpperCase() == state.query.toUpperCase())
+//     return product
+//   }
+// }   
+    // produkt[0].toUpperCase()
+    // searchLoot.push(produkt)
+// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
+// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
+// return state.products.filter(product => product[0] == state.query[0])  
+//   }
+// }, 
