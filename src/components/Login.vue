@@ -40,6 +40,17 @@
 		padding-top: 4rem;
 	}
 
+
+  .material-icons-outlined {
+    align-self: flex-end;
+    padding: 0rem 2rem 2rem 0rem;
+    font-size: 40px;
+    cursor: pointer;
+  &:hover{
+    transform: scale(1.2);
+  }
+  }
+
 	.login-wrap {
 		align-items: center;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -57,6 +68,7 @@
 			font-size: 40px;
 			cursor: pointer;
 		}
+
 
 		.sign-up {
 			padding: 0rem 5rem;

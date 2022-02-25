@@ -155,3 +155,4 @@ export default new Vuex.Store({
 // return state.products.filter(product => product[0] == state.query[0])  
 //   }
 // }, 
+

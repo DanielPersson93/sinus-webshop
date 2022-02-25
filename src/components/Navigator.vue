@@ -1,4 +1,5 @@
 <template>
+
 	<div class="nav-wrap">
 		<div class="abso">
         <ShoppingCart
@@ -21,6 +22,7 @@
       <router-link :to="{ name: 'ProductView', query: { category: 'skate' } }">
         <h5 class="par" @click="getSkate">Skate</h5>
         </router-link>
+
         <ul class="theUl" v-if="hoverSkate">
           <router-link :to="{ name: 'ProductView', query: { category: 'skateboard' } }">
           <li class="listI" @click="assignCategory('skateboard')">Boards</li>
@@ -31,6 +33,7 @@
         </ul>
       </div>
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
+
         <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
         <h5 class="par" @click="getApparel">Apparel</h5>
         </router-link>
@@ -58,37 +61,43 @@
         </ul>
       </div>
     </section>
-		<section class="search-field">
-			<span class="material-icons-outlined cursor" @click="search">
-				search
-			</span>
-			<section class="result">
-				<input
-					type="text"
-					placeholder="Search.."
-					@keyup="setQuery"
-					@keyup.enter="search"
-					v-model="searchInput"
-					class="search-results-parent"
-				/>
-				<ul class="search-results" v-if="searchInput.length > 0">
-					<li
-						v-for="(product, index) in $store.getters.resultsLimited"
-						:key="index"
-						class="result-items"
-						@click="temp"
-					>
-						{{ product }}
-					</li>
-				</ul>
-			</section>
-			<span class="material-icons-outlined" @click="toggleCart"> shopping_bag </span>
-			<span class="material-icons-outlined" @click="openLogin">
-				person_outline
-			</span>
-			<!-- <p>{{getQuery}}</p> -->
-		</section>
-	</div>
+
+
+    <section class="search-field">
+      <span class="material-icons-outlined expand" @click="search">
+        search
+      </span>
+
+      <section class="result">
+
+        <input
+          type="text"
+          placeholder="Search.."
+          @keyup="setQuery"
+          @keyup.enter="search"
+          v-model="searchInput"
+          class="search-results-parent"
+        />
+        <ul class="search-results" v-if="searchInput.length > 0">
+          <li
+            v-for="(product, index) in $store.getters.resultsLimited"
+
+            :key="index"
+            class="result-items"
+            @click="temp">
+            {{ product }}
+          </li>
+        </ul>
+      </section>
+
+      <span class="material-icons-outlined expand"> shopping_bag </span>
+      <span class="material-icons-outlined expand" @click="openLogin">
+        person_outline
+      </span>
+      <!-- <p>{{getQuery}}</p> -->
+    </section>
+  </div>
+
 </template>
 
 <script>
@@ -169,36 +178,36 @@
 	};
 </script>
 
-<style scoped>
-	.material-icons-outlined {
-		font-size: 1.8rem;
-		color: black;
-		cursor: pointer;
-	}
-	/* .cursor{
-		} */
-	.nav-wrap {
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		font-size: 24px;
-		display: flex;
-		padding: 1rem 2.5rem;
-		align-items: center;
-		justify-content: space-between;
-		font-weight: 600;
-		position: relative;
-	}
+<style lang="scss" scoped>
+.material-icons-outlined {
+  font-size: 1.8rem;
+  color: black;
+  cursor: pointer;
+}
 
-	.links {
-		display: flex;
-		justify-content: space-between;
-		gap: 7rem;
-	}
+.nav-wrap {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 24px;
+  display: flex;
+  padding: 1rem 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  position: relative;
+}
 
-	input {
-		padding: 0.4rem 1rem;
-		border-radius: 10px;
-		border: solid black 2.5px;
-	}
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 7rem;
+}
+
+input {
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  border: solid black 2.5px;
+  z-index: 30;
+}
 
 	.search-field {
 		margin-left: 20rem;
@@ -212,50 +221,62 @@
 		color: inherit;
 	}
 
-	.search-results-parent,
-	.category {
-		position: relative;
-		z-index: 10;
-	}
+.search-results-parent,
+.result ,
+.category {
+  position: relative;
+  z-index: 1000;
+}
 
-	.search-results {
-		position: absolute;
-		top: 90%;
-		/* left: 79%; */
-		/* z-index: 90000; */
-		list-style: none;
-		margin: 0;
-		padding: 0.3rem 0rem 0rem 0rem;
-		background-color: rgb(255, 255, 255);
-		width: 49%;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	}
-	.par {
-		z-index: 9000;
-	}
-
-	.theUl {
-		position: absolute;
-		padding-top: 5rem;
-		top: 80%;
-		left: -15%;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		background-color: rgb(255, 255, 255);
-		width: 7rem;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	}
-	.result-items:hover,
-	.listI:hover {
-		background-color: rgba(68, 67, 67, 0.2);
-		width: 100%;
-	}
-	.result-items,
-	.listI {
-		transition: 0.8s;
-		text-align: left;
-		padding-top: 0.9rem;
-		width: inherit;
-	}
+.search-results {
+  position: absolute;
+  top: 90%;
+  /* left: 79%; */
+z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0.3rem 0rem 0rem 0rem;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.par {
+  z-index: 9000;
+}
+.theUl {
+  position: absolute;
+  padding-top: 5rem;
+  top: 80%;
+  left: -15%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+  width: 7rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.result-items:hover,
+.listI:hover {
+  z-index: 0;
+  background-color: rgba(68, 67, 67, 0.2);
+  width: 100%;
+}
+.result-items,
+.listI {
+  transition: 0.8s;
+  text-align: left;
+  padding-top: 0.9rem;
+  width: inherit;
+}
+ .underlined{
+ text-decoration: underline;
+ text-decoration-color: transparent;
+ transition: 0.6s;
+}
+.underlined:hover{
+  text-decoration-color:black ;
+}
+.expand:active{
+  transform: scale(1.2);
+}
 </style>
