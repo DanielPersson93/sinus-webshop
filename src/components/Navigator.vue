@@ -16,11 +16,11 @@
 		</div>
 		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
 		<section class="links">
-    <router-link to="/">Home</router-link>
+    <router-link to="/" class="underlined">Home</router-link>
 
     <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
       <router-link :to="{ name: 'ProductView', query: { category: 'skate' } }">
-        <h5 class="par" @click="getSkate">Skate</h5>
+        <h5 class="par underlined" @click="getSkate">Skate</h5>
         </router-link>
 
         <ul class="theUl" v-if="hoverSkate">
@@ -35,7 +35,7 @@
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
 
         <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
-        <h5 class="par" @click="getApparel">Apparel</h5>
+        <h5 class="par underlined" @click="getApparel">Apparel</h5>
         </router-link>
 
         <ul class="theUl" v-if="hoverApparel">
@@ -200,6 +200,7 @@
   display: flex;
   justify-content: space-between;
   gap: 7rem;
+  align-items: center;
 }
 
 input {
@@ -215,6 +216,7 @@ input {
 		display: flex;
 		justify-content: space-between;
 		position: relative;
+    align-items: center;
 	}
 	a {
 		text-decoration: none;
@@ -222,10 +224,13 @@ input {
 	}
 
 .search-results-parent,
-.result ,
-.category {
+.result  {
   position: relative;
-  z-index: 1000;
+  z-index: 10;
+}
+.category{
+position: relative;
+display: inline-block;
 }
 
 .search-results {
@@ -241,12 +246,15 @@ z-index: 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .par {
-  z-index: 9000;
+  z-index: 10 !important;
+  // position: absolute;
+  // top: 50%;
 }
 .theUl {
   position: absolute;
   padding-top: 5rem;
-  top: 80%;
+  z-index: 1;
+  top: 100%;
   left: -15%;
   list-style: none;
   margin: 0;
