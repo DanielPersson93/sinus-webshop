@@ -3,33 +3,21 @@
     <div class="shoppingcart">
       <div>
         <h3>Your Cart</h3>
-        <img src="@/assets/cross-icon.png" alt="">
+        <img src="@/assets/cross-icon.png" alt="" @click="$emit('closeCart')">
       </div>
-      <!-- hämta data från store cart.items det id getter som får ut product  -->
-      <div class="product">
-          <img src="@/assets/facebooklogo.svg" alt="" width="65" height="72">
-          <p>Sunus Hoodfe ASH grey <br>
-          1 x 233</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
-      </div>
-      <div class="product">
-        <img src="@/assets/twitterlogo.svg" alt="" width="65" height="72">
-        <p>Sunus Hoodfe ASH grey <br>
-        1 x 233</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
-      </div>
-      <div class="product">
-        <img src="@/assets/instagramlogo.svg" alt="" width="65" height="72">
-        <p>Sunus Hoodfe ASH grey <br>
-        1 x 233</p>
-        <img src="@/assets/cross-icon.png" alt="" width="25" height="25">
+      <div class="product" 
+      v-for="product in products" :key="product.id">
+          <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
+          <p>{{product.title}} <br>
+          {{product.amount}} x {{product.price}}</p>
+        <img src="@/assets/cross-icon.png" alt="" width="25" height="25"
+        >
+        <!-- @click="removeItemfromCart" -->
       </div>
       <div>
-        <h5>Checkout Total: $743 </h5>
+        <h5>Checkout Total: ${{totalprice}} </h5>
         <button>Ride to checkout
-          <!-- <img src="@/assets/twitterlogo.svg" alt=""> -->
         </button>
-        <p>{{productsInCart}}</p>
       </div>
     </div>
   </div>
@@ -37,11 +25,25 @@
 
 <script>
 export default {
-    computed: {
-    productsInCart(){
-      return this.$store.getters.shoppingCart
+  props: ["products"],
+  data() {
+    return {
+      total: null,
+    };
+  },
+  computed: {
+  totalprice(){
+    let total = 0
+    for (const product of this.products) {
+      total += product.amount*product.price
+    } return total
     }
   },
+  methods: {
+    // removeItemfromCart(){
+    //   this.$store.dispatch("removeFromCart", this.products)
+    // }
+  }
 }
 </script>
 
@@ -90,6 +92,7 @@ export default {
     width: 253px
   }
   img:first-of-type {
+    object-fit:contain;
     margin-left: 40px;
     margin-right: 20px;
   }
