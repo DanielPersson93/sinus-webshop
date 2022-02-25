@@ -88,9 +88,12 @@
 		</section>
 
 		<section class="search-field">
-			<span class="material-icons-outlined expand" @click="search">
-				search
-			</span>
+			<img
+				class="icon expand"
+				src="@/assets/search-icon.svg"
+				alt=""
+				@click="search"
+			/>
 
 			<section class="result">
 				<input
@@ -112,11 +115,19 @@
 					</li>
 				</ul>
 			</section>
+			<img
+				class="icon expand"
+				src="@/assets/bag.svg"
+				@click="toggleCart"
+				alt=""
+			/>
+			<img
+				class="icon expand"
+				src="@/assets/profile.svg"
+				alt=""
+				@click="openLogin"
+			/>
 
-			<span class="material-icons-outlined expand"> shopping_bag </span>
-			<span class="material-icons-outlined expand" @click="openLogin">
-				person_outline
-			</span>
 			<!-- <p>{{getQuery}}</p> -->
 		</section>
 	</div>
@@ -201,7 +212,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.material-icons-outlined {
+	.icon {
 		font-size: 1.8rem;
 		color: black;
 		cursor: pointer;
@@ -262,7 +273,7 @@
 		z-index: 0;
 		list-style: none;
 		margin: 0;
-		padding: 0.3rem 0rem 0rem 0rem;
+		// padding: 0.3rem 0rem 0rem 0rem;
 		background-color: rgb(255, 255, 255);
 		width: 100%;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -289,14 +300,15 @@
 	.listI:hover {
 		z-index: 0;
 		background-color: rgba(68, 67, 67, 0.2);
-		width: 100%;
+		width: calc(100% - 1rem);
 	}
 	.result-items,
 	.listI {
 		transition: 0.8s;
 		text-align: left;
-		padding-top: 0.9rem;
-		width: inherit;
+		padding: 0.9rem 0.5rem;
+
+		width: calc(100% - 1rem);
 	}
 	.underlined {
 		text-decoration: underline;
@@ -306,7 +318,7 @@
 	.underlined:hover {
 		text-decoration-color: black;
 	}
-	.expand:active {
+	.expand:hover {
 		transform: scale(1.2);
 	}
 </style>
