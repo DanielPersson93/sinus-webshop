@@ -94,22 +94,18 @@
 <script>
 	import Login from "@/components/Login.vue";
 	import SignUp from "@/components/SignUp.vue";
-  import ShoppingCart from "@/components/ShoppingCart.vue"
+	import ShoppingCart from "@/components/ShoppingCart.vue"
 	export default {
-		components: {
-			Login,
-			SignUp,
-      ShoppingCart,
-		},
+		components: {Login,SignUp,ShoppingCart,},
 		data() {
 			return {
-				searchInput: "",
-				hoverApparel: false,
-				hoverSkate: false,
-				clicked: "",
-				openSignUpForm: false,
-				loginField: false,
-        showCart: false,
+			searchInput: "",
+			hoverApparel: false,
+			hoverSkate: false,
+			clicked: "",
+			openSignUpForm: false,
+			loginField: false,
+			showCart: false,
 			};
 		},
 		methods: {
@@ -231,7 +227,7 @@
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
 	.par {
-		z-index: 9000;
+		z-index: 10;
 	}
 
 	.theUl {
@@ -258,4 +254,6 @@
 		padding-top: 0.9rem;
 		width: inherit;
 	}
+	.ShoppingCart {}
+
 </style>

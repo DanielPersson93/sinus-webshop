@@ -1,202 +1,173 @@
 <template>
 	<div class="checkout">
-		<ul class="your-products">
-			<h1>YOUR PRODUCTS</h1>
-			<!-- for each product in cart -->
-			<li>Board</li>
-			<h5>Total price:</h5>
-		</ul>
-
-		<form class="checkout-form">
-			<div>
-				<label for="contry">Country</label>
-				<input type="text" id="country" name="contry" />
+		<div class="your-products">
+			<h4>YOUR PRODUCTS</h4>
+			<div class="product" 
+			v-for="product in products" :key="product.id">
+				<img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
+				<p>{{product.title}} <br>
+				{{product.amount}} x {{product.price}}</p>
 			</div>
-			<div>
-				<label for="email">E-mail</label>
-				<input type="mail" id="email" name="email" />
+			<h5>Total price: ${{totalprice}}</h5>
+		</div>
+		<div class="form">
+			<form class="checkout-form">
+				<div>
+					<label for="contry">Country</label>
+					<input type="text" id="country" name="contry" />
+				</div>
+				<div>
+					<label for="email">E-mail</label>
+					<input type="mail" id="email" name="email" />
+				</div>
+				<div>
+					<label for="fname">First Name</label>
+					<input type="text" id="fname" name="fname" />
+				</div>
+				<div>
+					<label for="lname">Last Name</label>
+					<input type="text" id="lname" name="lname" />
+				</div>
+				<div>
+					<label for="adress">Adress</label>
+					<input type="text" id="adress" name="adress" />
+				</div>
+				<div>
+					<label for="mobile">Mobile no.</label>
+					<input type="number" id="mobile" name="mobile" />
+				</div>
+				<div>
+					<label for="city">City</label>
+					<input type="text" id="city" name="city" />
+				</div>
+				<div>
+					<label for="zipcode">Zip Code</label>
+					<input type="text" id="zipcode" name="zipcode" />
+				</div>
+			</form>
+			<div class="cardandbutton">
+				<form class="card-info">
+					<div>
+						<label for="cardnumber">Card Number</label>
+						<input type="number" id="cardnumber" name="card number" />
+					</div>
+					<div>
+						<label for="MM/YY">MM/YY</label>
+						<input type="text" id="MM/YY" name="Month and year" />
+					</div>
+					<div>
+						<label for="CVC"> CVC</label>
+						<input type="number" id="CVC" name="CVC" />
+					</div>
+				</form>
+				<button @click="placeOrder">PLACE ORDER</button>
 			</div>
-			<div>
-				<label for="fname">First Name</label>
-				<input type="text" id="fname" name="fname" />
-			</div>
-			<div>
-				<label for="lname">Last Name</label>
-				<input type="text" id="lname" name="lname" />
-			</div>
-			<div>
-				<label for="adress">Adress</label>
-				<input type="text" id="adress" name="adress" />
-			</div>
-			<div>
-				<label for="mobile">Mobile no.</label>
-				<input type="number" id="mobile" name="mobile" />
-			</div>
-			<div>
-				<label for="city">City</label>
-				<input type="text" id="city" name="city" />
-			</div>
-			<div>
-				<label for="zipcode">Zip Code</label>
-				<input type="text" id="zipcode" name="zipcode" />
-			</div>
-		</form>
-		<form class="card-info">
-			<div>
-				<label for="cardnumber">Card Number</label>
-				<input type="number" id="cardnumber" name="card number" />
-			</div>
-			<div>
-				<label for="MM/YY">MM/YY</label>
-				<input type="text" id="MM/YY" name="Month and year" />
-			</div>
-			<div>
-				<label for="CVC"> CVC</label>
-				<input type="number" id="CVC" name="CVC" />
-			</div>
-		</form>
-		<button @click="placeOrder">Place Order</button>
+		</div>
 	</div>
 </template>
 
 <script>
-	export default {
-		methods: {
-			placeOrder() {
-				this.$store.dispatch("placeOrder");
-			},
+export default {
+	methods: {
+		placeOrder() {
+			this.$store.dispatch("placeOrder");
 		},
-	};
+	},
+	props: ['products'],
+	computed: {
+		totalprice(){
+			let total = 0
+			for (const product of this.products) {
+			total += product.amount*product.price
+			} return total
+		}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
-	.checkout {
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			h1 {
-				text-align: center;
-				font-family: Montserrat;
-				font-style: normal;
-				font-weight: 600;
-				font-size: 32px;
-				line-height: 39px;
-			}
-			h5 {
-				text-align: center;
-				font-family: "Montserrat", sans-serif;
-				font-style: normal;
-				font-weight: 600;
-				font-size: 24px;
-				line-height: 29px;
-			}
-		}
-		margin: 60px 0 0 0;
-		justify-content: center;
+.product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  p {
+    width: 253px
+  }
+  img:first-of-type {
+    object-fit:contain;
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+  img:last-of-type {
+    margin-right: 80px;
+  }
+}
+.cardandbutton {
+	display: flex;
+	margin-top: 40px;
+	button {
+		width: 172px;
+		height: 71px;
+		margin-left: 40px;
+		align-self: center;
+	}
+}
+label {
+	height: 30%;
+	font-size: 16px;
+	line-height: 27px;
+	letter-spacing: -0.02em;
+}
+input {
+	text-transform: capitalize;
+	width: calc(100% - 2.5rem);
+	height: 70%;
+	margin-top: -20px;
+	border: none;
+	padding-left: 1rem;
+	font-size: 16px;
+	line-height: 27px;
+	letter-spacing: -0.02em;
+}
+input:focus {
+	outline-color: transparent;
+	outline-style: none;
+}
+.checkout {
+	display: flex;
+	justify-content: space-evenly;
+	.checkout-form {
+		width: 787px;
+		height: 410px;
+		grid-area: card-form;
+		border: 5px solid black;
+		border-radius: 15px;
 		display: grid;
-		grid-gap: 1.5rem 1rem;
-		grid-template-columns: repeat(16, 70px);
-		grid-template-rows: repeat(8, 70px);
+		grid-template-columns: repeat(2, 1fr);
 		grid-template-areas:
-			"your-products your-products your-products your-products . . . card-form card-form card-form card-form card-form card-form card-form card-form card-form"
-			"your-products your-products your-products your-products . . . card-form card-form card-form card-form card-form card-form card-form card-form card-form"
-			"your-products your-products your-products your-products . . . card-form card-form card-form card-form card-form card-form card-form card-form card-form"
-			"your-products your-products your-products your-products . . . card-form card-form card-form card-form card-form card-form card-form card-form card-form"
-			"your-products your-products your-products your-products . . . card-form card-form card-form card-form card-form card-form card-form card-form card-form"
-			"your-products your-products your-products your-products . . . card-info card-info card-info card-info card-info card-info card-info button button "
-			"your-products your-products your-products your-products . . . card-info card-info card-info card-info card-info card-info card-info button button"
-			"your-products your-products your-products your-products . . . card-info card-info card-info card-info card-info card-info card-info button button ";
-		// "your-products your-products  . . . . ";
+			"country country"
+			"email email"
+			"firstname lastname"
+			"adress mobile"
+			"city zipcode";
+		div {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			border: 1px solid black;
 
-		.your-products {
-			grid-area: your-products;
+			//   border: 1px solid black;
+			padding: 0.1rem 0 0 0.2rem;
+			margin: 0;
 		}
-		.card-info {
-			grid-area: card-info;
-		}
-		button {
-			margin: 3.7rem 15px;
-			grid-area: button;
-			font-family: "Mukta Malar", sans-serif;
-			font-style: normal;
-			font-weight: bold;
-			font-size: 14px;
-			line-height: 23px;
-			letter-spacing: 0.05em;
-		}
-
-		.checkout-form {
-			// width: 787px;
-			// height: 410px;
-			grid-area: card-form;
-			border: 5px solid black;
-			border-radius: 15px;
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas:
-				"country country"
-				"email email"
-				"firstname lastname"
-				"adress mobile"
-				"city zipcode";
-
-			p {
-				font-family: "Mukta Malar", sans-serif;
-				font-style: normal;
-				font-weight: normal;
-				font-size: 16px;
-				line-height: 27px;
-				letter-spacing: -0.02em;
-			}
-			div {
-				display: flex;
-				justify-content: space-between;
-				flex-direction: column;
-				border: 1px solid black;
-				label {
-					height: 30%;
-				}
-				input {
-					text-transform: capitalize;
-					width: calc(100% - 2.5rem);
-					height: 70%;
-					margin-top: -20px;
-					border: none;
-					padding-left: 1rem;
-				}
-				input:focus {
-					outline-color: transparent;
-					outline-style: none;
-				}
-				//   border: 1px solid black;
-				padding: 0.1rem 0 0 0.2rem;
-				margin: 0;
-			}
-			div:nth-of-type(1) {
-				grid-area: country;
-			}
-			div:nth-of-type(2) {
-				grid-area: email;
-			}
-			div:nth-of-type(3) {
-				grid-area: firstname;
-			}
-			div:nth-of-type(4) {
-				grid-area: lastname;
-			}
-			div:nth-of-type(5) {
-				grid-area: adress;
-			}
-			div:nth-of-type(6) {
-				grid-area: mobile;
-			}
-			div:nth-of-type(7) {
-				grid-area: city;
-			}
-			div:nth-of-type(8) {
-				grid-area: zipcode;
-			}
+		div:nth-of-type(1) {grid-area: country;}
+		div:nth-of-type(2) {grid-area: email;}
+		div:nth-of-type(3) {grid-area: firstname;}
+		div:nth-of-type(4) {grid-area: lastname;}
+		div:nth-of-type(5) {grid-area: adress;}
+		div:nth-of-type(6) {grid-area: mobile;}
+		div:nth-of-type(7) {grid-area: city;}
+		div:nth-of-type(8) {grid-area: zipcode;}
 		}
 		.card-info {
 			margin-top: 0;
@@ -210,37 +181,16 @@
 			grid-template-areas:
 				"cardnumber cardnumber"
 				"mmyy cvc ";
-		}
-		div:nth-of-type(1) {
-			grid-area: cardnumber;
-		}
-		div:nth-of-type(2) {
-			grid-area: mmyy;
-		}
-		div:nth-of-type(3) {
-			grid-area: cvc;
-		}
-		div {
-			padding: 0.1rem 0 0 0.2rem;
-			display: flex;
-			justify-content: space-between;
-			flex-direction: column;
-			border: 1px solid black;
-			label {
-				height: 30%;
-			}
-			input {
-				text-transform: capitalize;
-				width: calc(100% - 2.5rem);
-				height: 70%;
-				margin-top: -20px;
-				border: none;
-				padding-left: 1rem;
-			}
-			input:focus {
-				outline-color: transparent;
-				outline-style: none;
+			div {
+				padding: 0.1rem 0 0 0.2rem;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+				border: 1px solid black;
 			}
 		}
-	}
+		div:nth-of-type(1) {grid-area: cardnumber;}
+		div:nth-of-type(2) {grid-area: mmyy;}
+		div:nth-of-type(3) {grid-area: cvc;}
+}
 </style>
