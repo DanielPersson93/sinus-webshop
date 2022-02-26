@@ -20,7 +20,7 @@
 
     <div class="category" @mouseover="hoverSkate = true" @mouseleave="hoverSkate = false">
       <router-link :to="{ name: 'ProductView', query: { category: 'skate' } }">
-        <h5 class="par underlined" @click="getSkate">Skate</h5>
+        <h5 class="par underlined" @click="getSkate">SKATE</h5>
         </router-link>
 
         <ul class="theUl" v-if="hoverSkate">
@@ -35,7 +35,7 @@
       <div class="category" @mouseover="hoverApparel = true" @mouseleave="hoverApparel = false">
 
         <router-link :to="{ name: 'ProductView', query: { category: 'apparel' } }">
-        <h5 class="par underlined" @click="getApparel">Apparel</h5>
+        <h5 class="par underlined" @click="getApparel">APPAREL</h5>
         </router-link>
 
         <ul class="theUl" v-if="hoverApparel">
@@ -90,7 +90,7 @@
         </ul>
       </section>
 
-      <span class="material-icons-outlined expand"> shopping_bag </span>
+      <span class="material-icons-outlined expand" @click="toggleCart"> shopping_bag </span>
       <span class="material-icons-outlined expand" @click="openLogin">
         person_outline
       </span>

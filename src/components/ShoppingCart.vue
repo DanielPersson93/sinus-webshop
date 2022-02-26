@@ -26,11 +26,6 @@
 <script>
 export default {
   props: ["products"],
-  data() {
-    return {
-      total: null,
-    };
-  },
   computed: {
   totalprice(){
     let total = 0

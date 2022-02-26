@@ -48,12 +48,12 @@ export default new Vuex.Store({
 				inCart.amount++;
 			} else state.cart.push({ id: product.id, amount: 1 });
 		},
-    removeFromCart(state, product) {
-      const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
-      if (inCart){
-        state.cart.splice(state.cart.indexOf(inCart), 1)
-      }
-    },
+		removeFromCart(state, product) {
+		const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
+		if (inCart){
+			state.cart.splice(state.cart.indexOf(inCart), 1)
+		}
+		},
 	},
 	actions: {
 		async getProductCategory(context, category) {
