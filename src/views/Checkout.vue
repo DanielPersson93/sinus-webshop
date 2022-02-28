@@ -3,7 +3,7 @@
 		<div class="your-products">
 			<h4>YOUR PRODUCTS</h4>
 			<div class="product" 
-			v-for="product in products" :key="product.id">
+			v-for="product in productsInCart" :key="product.id">
 				<img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
 				<p>{{product.title}} <br>
 				{{product.amount}} x {{product.price}}</p>
@@ -75,9 +75,12 @@ export default {
 	},
 	props: ['products'],
 	computed: {
+		productsInCart(){
+			return this.$store.getters.shoppingCart
+		},
 		totalprice(){
 			let total = 0
-			for (const product of this.products) {
+			for (const product of this.productsInCart) {
 			total += product.amount*product.price
 			} return total
 		}
