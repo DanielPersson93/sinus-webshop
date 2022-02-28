@@ -11,13 +11,13 @@
           <p>{{product.title}} <br>
           {{product.amount}} x {{product.price}}</p>
         <img src="@/assets/cross-icon.png" alt="" width="25" height="25"
-        >
-        <!-- @click="removeItemfromCart" -->
+        @click="removeItemfromCart(product)">
       </div>
       <div>
         <h5>Checkout Total: ${{totalprice}} </h5>
-        <button>Ride to checkout
-        </button>
+        <router-link :to="{name: 'Checkout' , params: {products:products}} ">
+          <button>RIDE TO CHECKOUT</button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -26,11 +26,6 @@
 <script>
 export default {
   props: ["products"],
-  data() {
-    return {
-      total: null,
-    };
-  },
   computed: {
   totalprice(){
     let total = 0
@@ -40,18 +35,22 @@ export default {
     }
   },
   methods: {
-    // removeItemfromCart(){
-    //   this.$store.dispatch("removeFromCart", this.products)
-    // }
+    removeItemfromCart(product){
+      this.$store.dispatch("removeFromCart", product)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
-    display: flex;
-    justify-content: center;
-    // align-items: center;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index:11;
+  background-color: white;
+  // display: flex;
+  // justify-content: flex-end;
 }
 .shoppingcart {
     text-align: start;

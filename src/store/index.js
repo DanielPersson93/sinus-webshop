@@ -48,25 +48,42 @@ export default new Vuex.Store({
 				inCart.amount++;
 			} else state.cart.push({ id: product.id, amount: 1 });
 		},
-    // removeFromCart(state, product) {
-    //   const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
-    //   if (inCart){
-    //     state.cart.splice(state.cart.indexOf(inCart), 1)
-    //   }
-    // },
+		removeFromCart(state, product) {
+		const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
+		if (inCart){
+			state.cart.splice(state.cart.indexOf(inCart), 1)
+		}
+		},
 	},
 	actions: {
 		async getProductCategory(context, category) {
-			const response = await API.getProductCategory(category);
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == category)){
+				const response = await API.getProductCategory(category);
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
 		},
 		async fetchApparel(context) {
-			const response = await API.fetchApparel();
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == 'cap')){
+				const response = await API.fetchApparel();
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
 		},
 		async fetchSkate(context) {
-			const response = await API.fetchSkate();
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == 'skateboard')){
+				const response = await API.fetchSkate();
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
+			// const response = await API.fetchSkate();
+			// console.log(response)
+			// console.log(response.data)
+			// context.commit("saveProducts", response.map((response) => response.data));
+
 		},
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
@@ -101,10 +118,10 @@ export default new Vuex.Store({
 		addItemToCart(context, product) {
 			context.commit("saveInCart", product);
 		},
-    // removeFromCart(context, product){
-    //   context.commit("removeFromCart", product);
-    //   // this.cardlistdata.splice(this.cardlistdata.indexOf(card), 1)
-    // }
+    removeFromCart(context, product){
+      context.commit("removeFromCart", product);
+      // this.cardlistdata.splice(this.cardlistdata.indexOf(card), 1)
+    }
   },
 
   getters:{
@@ -155,4 +172,3 @@ export default new Vuex.Store({
 // return state.products.filter(product => product[0] == state.query[0])  
 //   }
 // }, 
-
