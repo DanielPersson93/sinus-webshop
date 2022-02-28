@@ -57,16 +57,33 @@ export default new Vuex.Store({
 	},
 	actions: {
 		async getProductCategory(context, category) {
-			const response = await API.getProductCategory(category);
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == category)){
+				const response = await API.getProductCategory(category);
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
 		},
 		async fetchApparel(context) {
-			const response = await API.fetchApparel();
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == 'cap')){
+				const response = await API.fetchApparel();
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
 		},
 		async fetchSkate(context) {
-			const response = await API.fetchSkate();
-			context.commit("saveProducts", response.data);
+			if (!context.state.allProducts.find((product) => product.category == 'skateboard')){
+				const response = await API.fetchSkate();
+				context.commit("saveProducts", response.data);
+			} else {
+				return
+			}
+			// const response = await API.fetchSkate();
+			// console.log(response)
+			// console.log(response.data)
+			// context.commit("saveProducts", response.map((response) => response.data));
+
 		},
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
