@@ -213,7 +213,7 @@ input {
 }
 
 	.search-field {
-		margin-left: 30%;
+		margin-left: 20%;
 		width: 23rem;
 		display: flex;
 		justify-content: space-between;

@@ -9,10 +9,10 @@
 		</section>
 		<section class="inputs flex-col">
 			<p>Email:</p>
-			<input type="text" />
+			<input type="text" v-model="credentials.email" />
 			<p>Password:</p>
-			<input type="password" />
-			<button>LOGIN</button>
+			<input type="password" v-model="credentials.password" />
+			<button @click="loginUser">LOGIN</button>
 		</section>
 	</div>
 </template>
@@ -22,14 +22,20 @@
 		data() {
 			return {
 				closeLogin: true,
-			};
+      credentials: {
+        email: '',
+        password: '',
+      },			};
 		},
-		methods: {
-			closeSidebar() {
-				this.$emit("closed");
-			},
+methods: {
+	closeSidebar() {
+      this.$emit("closed");
+	},
+	loginUser(){
+      this.$store.dispatch("loginUser", this.credentials)
+    },
 		},
-	};
+};
 </script>
 
 <style lang="scss" scoped>
