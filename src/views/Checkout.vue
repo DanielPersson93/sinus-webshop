@@ -2,6 +2,7 @@
 	<div class="checkout">
 		<div class="your-products">
 			<h4>YOUR PRODUCTS</h4>
+<<<<<<< HEAD
 			<div class="product" v-for="product in products" :key="product.id">
 				<img
 					:src="'http://localhost:5000/images/' + product.imgFile"
@@ -13,6 +14,13 @@
 					{{ product.title }} <br />
 					{{ product.amount }} x {{ product.price }}
 				</p>
+=======
+			<div class="product" 
+			v-for="product in productsInCart" :key="product.id">
+				<img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.title" width="65" height="72">
+				<p>{{product.title}} <br>
+				{{product.amount}} x {{product.price}}</p>
+>>>>>>> dc5cb541d766574f0bc79e2ace53a5118f9fa9e9
 			</div>
 			<h5>Total price: ${{ totalprice }}</h5>
 		</div>
@@ -107,6 +115,7 @@
 				inLogged: false,
 			};
 		},
+<<<<<<< HEAD
 		async beforeMount() {
 			this.userData = await currentUser().then((res) => res.data);
 			this.inLogged = true;
@@ -127,6 +136,22 @@
 			},
 		},
 	};
+=======
+	},
+	props: ['products'],
+	computed: {
+		productsInCart(){
+			return this.$store.getters.shoppingCart
+		},
+		totalprice(){
+			let total = 0
+			for (const product of this.productsInCart) {
+			total += product.amount*product.price
+			} return total
+		}
+	},
+};
+>>>>>>> dc5cb541d766574f0bc79e2ace53a5118f9fa9e9
 </script>
 
 <style lang="scss" scoped>
