@@ -24,6 +24,7 @@ export async function currentUser() {
 export async function getOrders() {
 	return await axios.get("/orders", { headers: getAuthHeader() });
 }
+
 export function getAuthHeader() {
 	const token = localStorage.getItem("authToken");
 	console.log(token);
@@ -37,7 +38,7 @@ export async function loginUser(email, password) {
 	return await axios.post("/auth/", { email, password });
 }
 export async function placeOrder(order) {
-	return await axios.post("/orders", order);
+	return await axios.post("/orders", order, { headers: getAuthHeader() });
 }
 export async function getOrder() {
 	return await axios.get("/orders");

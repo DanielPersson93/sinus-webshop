@@ -15,10 +15,8 @@
 			</div>
 			<div class="order-history">
 				<h3>ORDER HISTORY</h3>
-				<li>
-					<h5 v-for="order in orderHistory" :key="order.UserId">
-						{{ order }}
-					</h5>
+				<li v-for="order in orderHistory" :key="order.UserId">
+					<p>{{ order.id }} - {{ order.status }}</p>
 				</li>
 			</div>
 		</section>
@@ -45,7 +43,6 @@
 		},
 		async beforeMount() {
 			this.userData = await currentUser().then((res) => res.data);
-			console.log(this.userData);
 
 			this.orderHistory = await getOrders().then((res) => res.data);
 		},
@@ -53,6 +50,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.active {
+		display: none;
+	}
 	.profile-wrapper {
 		text-transform: uppercase;
 		h1 {
