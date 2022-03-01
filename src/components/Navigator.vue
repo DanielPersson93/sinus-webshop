@@ -173,7 +173,7 @@
 			},
 			openLogin() {
 				if (this.$store.state.token) {
-					this.$router.push({ name: "ProductView" });
+					this.$router.push({ name: "Profile" });
 				} else this.loginField = true;
 				console.log("HEJ");
 			},
@@ -244,7 +244,7 @@
 	}
 
 	.search-field {
-		margin-left: 20rem;
+		margin-left: 20%;
 		width: 23rem;
 		display: flex;
 		justify-content: space-between;
