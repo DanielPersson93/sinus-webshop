@@ -29,7 +29,6 @@ const routes = [
 		path: "/checkout",
 		name: "Checkout",
 		component: Checkout,
-		props: true,
 	},
 	{
 		path: "/shoppingcart",
@@ -40,14 +39,7 @@ const routes = [
 		path: "/profile",
 		name: "Profile",
 		component: Profile,
-		// props: true,
 	},
-	// {
-	//   path: "/product/:id",
-	//   name: "SingleProduct",
-	//   component: SingleProduct,
-	//   props: true,
-	// },
 ];
 
 const router = new VueRouter({

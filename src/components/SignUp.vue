@@ -3,72 +3,69 @@
 		<span class="material-icons-outlined" @click="closeSignUpForm">
 			close
 		</span>
-		<h3>Register form</h3>
-
-		<form>
-			<div class="d-flex">
-				<div class="section-2">
-					<div class="form-control">
-						<label for="name">Name:</label>
-						<input type="text" id="name" v-model="registerFormData.name" />
+		<h2>Register form</h2>
+		<form class="form-wrapper">
+			<div class="left-side__section">
+				<div class="form-article">
+					<label for="name">Name:</label>
+					<input type="text" id="name" v-model="registerFormData.name" />
+				</div>
+				<div class="form-article">
+					<label for="street">Street:</label>
+					<input
+						type="text"
+						id="street"
+						v-model="registerFormData.address.street"
+					/>
+				</div>
+				<div class="zipCity">
+					<div class="form-article">
+						<label for="zipcode">Zip Code:</label>
+						<input
+							minlength="5"
+							maxlength="5"
+							type="text"
+							id="zipcode"
+							v-model="registerFormData.address.zip"
+						/>
 					</div>
-					<div class="form-control">
-						<label for="street">Street:</label>
+					<div class="form-article">
+						<label for="city">City:</label>
 						<input
 							type="text"
-							id="street"
-							v-model="registerFormData.address.street"
-						/>
-					</div>
-					<div class="zipCity">
-						<div class="form-control">
-							<label for="zipcode">Zip Code:</label>
-							<input
-								minlength="5"
-								maxlength="5"
-								type="text"
-								id="zipcode"
-								v-model="registerFormData.address.zip"
-							/>
-						</div>
-						<div class="form-control">
-							<label for="city">City:</label>
-							<input
-								type="text"
-								id="city"
-								v-model="registerFormData.address.city"
-							/>
-						</div>
-					</div>
-				</div>
-
-				<div class="section-2">
-					<div class="form-control">
-						<label for="email">Email:</label>
-						<input type="email" id="email" v-model="registerFormData.email" />
-					</div>
-					<div class="form-control">
-						<label for="password">Password:</label>
-						<input
-							minlength="6"
-							type="password"
-							id="password"
-							v-model="registerFormData.password"
-						/>
-					</div>
-					<div class="form-control">
-						<label for="repeat-password">Repeat password:</label>
-						<input
-							minlength="6"
-							type="password"
-							id="repeat-password"
-							v-model="repeatedPassword"
+							id="city"
+							v-model="registerFormData.address.city"
 						/>
 					</div>
 				</div>
 			</div>
+
+			<div class="right-side__section">
+				<div class="form-article">
+					<label for="email">Email:</label>
+					<input type="email" id="email" v-model="registerFormData.email" />
+				</div>
+				<div class="form-article">
+					<label for="password">Password:</label>
+					<input
+						minlength="6"
+						type="password"
+						id="password"
+						v-model="registerFormData.password"
+					/>
+				</div>
+				<div class="form-article">
+					<label for="repeat-password">Repeat password:</label>
+					<input
+						minlength="6"
+						type="password"
+						id="repeat-password"
+						v-model="repeatedPassword"
+					/>
+				</div>
+			</div>
 		</form>
-		<button @click="signUp">Sign up</button>
+		<button @click="signUp">SIGN UP</button>
 	</section>
 </template>
 
@@ -126,10 +123,6 @@
 						// Store user details in local storage (?)
 						const createdUser = registerRes.data.user;
 						localStorage.setItem("user", JSON.stringify(createdUser));
-
-						// skicka till profil sidan när du är klar
-						//
-						// this.$route.go('/profile');
 					})
 					.catch((err) => {
 						console.log(err);
@@ -156,8 +149,8 @@
 		flex-direction: column;
 		padding: 0 0 40px 0;
 
-		h3 {
-			margin: 0 0 0 50px;
+		h2 {
+			margin: 0 0 0 40px;
 		}
 
 		.material-icons-outlined {
@@ -165,37 +158,25 @@
 			align-self: flex-end;
 			font-size: 40px;
 			cursor: pointer;
-		}
-		.material-icons-outlined:hover {
-			transform: scale(1.2);
+			&:hover {
+				transform: scale(1.2);
+			}
 		}
 		button {
 			align-self: center;
 		}
 
-		.d-flex {
-			.zipcode,
-			.section-2 {
-				width: 350px;
-			}
+		.form-wrapper {
+			padding: 0 40px;
 			margin: 0 0 40px 0;
 			display: flex;
-			justify-content: space-evenly;
-			label {
-				font-weight: normal;
-				font-size: 16px;
-				line-height: 27px;
-				letter-spacing: -0.02em;
-				margin-top: 40px;
-				padding: 0;
-				margin-bottom: 0;
+			justify-content: space-between;
+
+			.left-side__section,
+			.right-side__section {
+				width: 317px;
 			}
-			input {
-				font-weight: normal;
-				font-size: 16px;
-				line-height: 27px;
-				letter-spacing: -0.02em;
-			}
+
 			.zipCity {
 				display: flex;
 				justify-content: space-between;
@@ -207,26 +188,32 @@
 					width: 65%;
 				}
 			}
-			.section-2 {
-				width: 40%;
-			}
-		}
+			.form-article {
+				input,
+				label {
+					display: block;
+					font-weight: normal;
+					font-size: 16px;
+					line-height: 27px;
+					letter-spacing: -0.02em;
+				}
+				label {
+					margin-top: 30px;
+					padding: 0;
+					margin-bottom: 0;
+				}
+				input {
+					box-sizing: border-box;
+					width: 100%;
+					padding: 1rem;
+					border: 1px solid #ccc;
+					border-radius: 4px;
 
-		.form-control {
-			input,
-			label {
-				display: block;
-			}
-			input {
-				box-sizing: border-box;
-				width: 100%;
-				padding: 1rem;
-				border: 1px solid #ccc;
-				border-radius: 4px;
-			}
-			input:focus {
-				outline-color: transparent;
-				outline-style: none;
+					&:focus {
+						outline-color: transparent;
+						outline-style: none;
+					}
+				}
 			}
 		}
 	}
