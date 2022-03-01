@@ -21,7 +21,6 @@
 							{{ order.id }}
 							<button @click="openOverlay(order, index)">Read more</button>
 						</div>
-						<!-- {{ order }} -->
 						<div class="popup-content">
 							<ul class="order__ul" v-if="order.open">
 								<li><span> Id :</span> {{ order.id }}</li>
@@ -32,7 +31,7 @@
 								</li>
 								<li><span>Shipping Zip :</span> {{ order.shippingZip }}</li>
 								<ul
-									class="items__ul"
+									class="order-items__ul"
 									v-for="item of order.items"
 									:key="item.id"
 								>
@@ -86,10 +85,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.popup-content {
-		background: white;
-		font-weight: 700;
-	}
 	.profile-wrapper {
 		h1 {
 			text-align: center;
@@ -121,10 +116,11 @@
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+
 				.user-grid {
-					width: 300px;
+					width: 600px;
 					padding: 1rem 0;
-					// display: grid;
+					display: grid;
 					grid-template-columns: repeat(2, 1fr);
 					grid-template-rows: repeat(3, 1fr);
 					grid-template-areas:
@@ -138,16 +134,12 @@
 				}
 			}
 			.order-history {
-				// background: rgba(194, 194, 194, 0.479);
 				box-shadow: 0px 4px 15px 4px rgba(0, 0, 0, 0.25);
 				padding: 2rem;
 				h3 {
 					padding: 0 0 2rem 0;
 				}
 				.order-history__ul {
-					justify-content: space-between;
-					display: flex;
-					flex-direction: column;
 					div {
 						display: flex;
 						justify-content: space-evenly;
@@ -156,6 +148,10 @@
 					span {
 						font-size: 20px;
 						font-weight: bolder;
+					}
+					.popup-content {
+						background: white;
+						font-weight: 700;
 					}
 				}
 			}
