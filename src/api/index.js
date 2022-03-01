@@ -14,10 +14,6 @@ export async function fetchApparel() {
 }
 export async function fetchSkate() {
 	return await axios.get("/items/?exclude=totebag,tshirt,socks,hoodie,cap");
-	// return await  Promise.all([
-	//     axios.get('/items/?category=wheel'),
-	//     axios.get('/items/?category=skateboard'),
-	// ])
 }
 export async function registerUser(user) {
 	return await axios.post("/register/", user);

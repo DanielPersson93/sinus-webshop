@@ -244,7 +244,7 @@
 	}
 
 	.search-field {
-		margin-left: 20rem;
+		margin-left: 20%;
 		width: 23rem;
 		display: flex;
 		justify-content: space-between;
