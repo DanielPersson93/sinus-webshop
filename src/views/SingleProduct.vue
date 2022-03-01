@@ -5,10 +5,17 @@
     </section>
     <section>
       <div class="productview-top">
-        <p>Home / Apparel / Hoodie</p>
-        <div class="product-nav">
+        <router-link :to="{ name: 'Home' }"> Home / 
+        </router-link>
+        <router-link :to="{ name: 'Home' }"> GRILLKORV / 
+        </router-link>
+        <router-link :to="{ name: 'Home' }"> BANANPAJ / 
+        </router-link>
+        <p>{{currentPath}}</p>
+        <!-- <p>Home / Apparel</p> -->
+        <!-- <div class="product-nav">
           <p>Product</p>
-        </div>
+        </div> -->
       </div>
       <div class="divider"></div>
       <div class="product-container">
@@ -70,6 +77,9 @@ export default {
         (allProducts) => allProducts.id == this.$route.params.id
       );
     },
+    currentPath(){
+      return this.$route.params.id
+    },
   },
 
   //     import * as API from "@/api/mock";
@@ -111,8 +121,8 @@ export default {
 <style lang="scss" scoped>
 .productview-top {
   display: flex;
-  justify-content: space-between;
-  margin: 5rem 0rem 1rem 0rem;
+  justify-content: flex-start;
+  margin: 0rem 0rem 1rem 0rem;
 }
 
 .product-container {
@@ -121,7 +131,7 @@ export default {
 }
 .single-product {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .divider {
   border-bottom: solid black 2px;
@@ -159,9 +169,9 @@ export default {
 button {
   margin-left: 3rem;
 }
-.category-list{
-  margin-top: 4rem;
-}
+// .category-list{
+//   margin-top: 4rem;
+// }
 
 /* .card {
   display: flex;

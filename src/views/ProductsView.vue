@@ -5,7 +5,11 @@
       </section>
       <section class="productsview__card">
         <div class="productview-top">
-        <p>Home / Apparel / Hoodie</p>
+          <router-link :to="{ name: 'Home' }">
+            <p>Home / </p>
+          </router-link>
+          <p>Apparel / Hoodie</p>
+
         <div class="filter">
           <img src="@/assets/filter icon.png" alt="filter-icon">
           <p>Filters</p>
@@ -121,9 +125,9 @@ export default {
     margin: 1rem 3rem 1rem 3rem;
   }
 }
-section{
-  margin-top: 4rem;
-}
+// section{
+//   margin-top: 4rem;
+// }
 .divider {
   border-bottom: solid black 2px;
   width: 100%;
