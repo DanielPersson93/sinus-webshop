@@ -9,21 +9,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		query: "",
-		products: ["kalle", "kalas", "karl", "3", "4", "5"],
-
+		// query: "",
 		allProducts: [],
 		productList: {},
 		user: {},
 		token: "",
 		order: null,
-		// cart: {items:[]},
 		cart: [],
 	},
 	mutations: {
-		setQuery(state, input) {
-			state.query = input;
-		},
+		// setQuery(state, input) {
+		// 	state.query = input;
+		// },
 		saveProducts(state, allProducts) {
 			for (let product of allProducts) {
 				state.allProducts.push(product);
@@ -32,9 +29,6 @@ export default new Vuex.Store({
 		},
 		saveUser(state, user) {
 			state.user = user;
-			// reaktiv för att rendera
-			// Vue.set(state.posts, blogPost.id, blogPost)
-			// state.posts[blogPost.id] = blogPost
 		},
 		saveToken(state, token) {
 			state.token = token;
@@ -49,42 +43,46 @@ export default new Vuex.Store({
 			} else state.cart.push({ id: product.id, amount: 1 });
 		},
 		removeFromCart(state, product) {
-		const inCart = state.cart.find( (cartItem) => cartItem.id == product.id,);
-		if (inCart){
-			state.cart.splice(state.cart.indexOf(inCart), 1)
-		}
+			const inCart = state.cart.find((cartItem) => cartItem.id == product.id);
+			if (inCart) {
+				state.cart.splice(state.cart.indexOf(inCart), 1);
+			}
 		},
 	},
 	actions: {
 		async getProductCategory(context, category) {
-			if (!context.state.allProducts.find((product) => product.category == category)){
+			if (
+				!context.state.allProducts.find(
+					(product) => product.category == category
+				)
+			) {
 				const response = await API.getProductCategory(category);
 				context.commit("saveProducts", response.data);
 			} else {
-				return
+				return;
 			}
 		},
-		async fetchApparel(context) {
-			if (!context.state.allProducts.find((product) => product.category == 'cap')){
-				const response = await API.fetchApparel();
-				context.commit("saveProducts", response.data);
-			} else {
-				return
-			}
-		},
-		async fetchSkate(context) {
-			if (!context.state.allProducts.find((product) => product.category == 'skateboard')){
-				const response = await API.fetchSkate();
-				context.commit("saveProducts", response.data);
-			} else {
-				return
-			}
-			// const response = await API.fetchSkate();
-			// console.log(response)
-			// console.log(response.data)
-			// context.commit("saveProducts", response.map((response) => response.data));
+		// async fetchApparel(context) {
+		// 	if (!context.state.allProducts.find((product) => product.category == 'cap')){
+		// 		const response = await API.fetchApparel();
+		// 		context.commit("saveProducts", response.data);
+		// 	} else {
+		// 		return
+		// 	}
+		// },
+		// async fetchSkate(context) {
+		// 	if (!context.state.allProducts.find((product) => product.category == 'skateboard')){
+		// 		const response = await API.fetchSkate();
+		// 		context.commit("saveProducts", response.data);
+		// 	} else {
+		// 		return
+		// 	}
+		// 	// const response = await API.fetchSkate();
+		// 	// console.log(response)
+		// 	// console.log(response.data)
+		// 	// context.commit("saveProducts", response.map((response) => response.data));
 
-		},
+		// },
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
 			await API.registerUser(user);
@@ -107,7 +105,6 @@ export default new Vuex.Store({
 				} else order.items.push(cartItem.id);
 			}
 			const response = await API.placeOrder(order);
-			// const response = await API.placeOrder(this.state.cart)
 			context.commit("saveOrder", response.data);
 		},
 		async getOrder(context) {
@@ -118,57 +115,38 @@ export default new Vuex.Store({
 		addItemToCart(context, product) {
 			context.commit("saveInCart", product);
 		},
-    removeFromCart(context, product){
-      context.commit("removeFromCart", product);
-      // this.cardlistdata.splice(this.cardlistdata.indexOf(card), 1)
-    }
-  },
+		removeFromCart(context, product) {
+			context.commit("removeFromCart", product);
+		},
+	},
 
-  getters:{
-    shoppingCart(state){
-      return state.cart.map( cartItem => ({
-        ...state.productList[cartItem.id],
-        amount: cartItem.amount
-      }))
-    },
-    getSelectedCategory: state => category => state.allProducts.filter(product => product.category == category),
-    resultsLimited(state, ){
-      let searchLoot=[];
-      if(state.query.length>0){
-      for(const product of state.products){
-        let produkt=product.toLowerCase()
-        if(produkt.includes(state.query.toLowerCase())){
-          let capitalProduct="";
-          for(let i=0; i<produkt.length; i++){
-            if(i==0){
-              capitalProduct+=produkt[i].toUpperCase()
-            }
-            else capitalProduct+=produkt[i]
-            }      
-            searchLoot.push(capitalProduct)
-          }     
-        }
-        }
-        return searchLoot
-      },
-  },
-  })
+	getters: {
+		shoppingCart(state) {
+			return state.cart.map((cartItem) => ({
+				...state.productList[cartItem.id],
+				amount: cartItem.amount,
+			}));
+		},
+		getSelectedCategory: (state) => (category) =>
+			state.allProducts.filter((product) => product.category == category),
 
-// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-
-// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() FEL
-// return state.products.filter(product => product[0] == state.query[0]) FEL
-
-// for(const product of state.products){kanske funkar nån gång
-//   for(let i=0; i<product.length; i++){
-//     if(product[i].toUpperCase() == state.query.toUpperCase())
-//     return product
-//   }
-// }   
-    // produkt[0].toUpperCase()
-    // searchLoot.push(produkt)
-// return state.products.filter(product => product.toUpperCase() == state.query.toUpperCase())
-// arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-// return state.products.filter(product => product[0] == state.query[0])  
-//   }
-// }, 
+		// resultsLimited(state) {
+		// 	let searchLoot = [];
+		// 	if (state.query.length > 0) {
+		// 		for (const product of state.products) {
+		// 			let produkt = product.toLowerCase();
+		// 			if (produkt.includes(state.query.toLowerCase())) {
+		// 				let capitalProduct = "";
+		// 				for (let i = 0; i < produkt.length; i++) {
+		// 					if (i == 0) {
+		// 						capitalProduct += produkt[i].toUpperCase();
+		// 					} else capitalProduct += produkt[i];
+		// 				}
+		// 				searchLoot.push(capitalProduct);
+		// 			}
+		// 		}
+		// 	}
+		// 	return searchLoot;
+		// },
+	},
+});

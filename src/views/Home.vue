@@ -1,23 +1,6 @@
 <template>
 	<div class="home">
-		<div class="linksandshit">
-			<router-link to="/checkout">CHECK OUT DANIELS COOL CHECKOUT</router-link
-			><br />
-			<button @click="getSkate">Skate</button>
-			<button @click="getApparel">Apparel</button><br />
-			<button @click="getProductCategory('cap')">Caps</button>
-			<button @click="getProductCategory('hoodie')">Hoodies</button>
-			<button @click="getProductCategory('tshirt')">T-shirts</button>
-			<button @click="getProductCategory('socks')">Socks</button>
-			<button @click="getProductCategory('totebag')">Bags</button>
-			<button @click="getProductCategory('skateboard')">Skateboards</button>
-			<button @click="getProductCategory('wheel')">Wheels</button><br />
-			<router-link to="/profile/"> <button>PROFILE</button></router-link>
-			<button @click="registerUser">Register User</button>
-			<button @click="loginUser">Login</button>
-			<button @click="placeOrder">Make an Order/checkout</button>
-			<button @click="getOrder">Get Order</button><br />
-		</div>
+		<router-link to="/profile/"> <button>PROFILE</button></router-link>
 		<article class="grid-wrap">
 			<article class="grid-full-width">
 				<img src="@/assets/hero.jpg" alt="" />
@@ -26,7 +9,7 @@
 					<h2>now in plastic</h2>
 				</section>
 				<section class="hero-right">
-					<h2>SHOP NOW</h2>
+					<h3>SHOP NOW</h3>
 				</section>
 			</article>
 
@@ -42,7 +25,7 @@
 				<img src="@/assets/apparelbox.jpg" alt="" />
 
 				<section class="picture-child">
-					<h3>Apparel</h3>
+					<h3>T-shirts</h3>
 					<button @click="navigate('apparel')">VIEW MORE</button>
 				</section>
 			</article>
@@ -69,47 +52,7 @@
 <script>
 	// import Actions from '@/store/action.types.js'
 	export default {
-		data() {
-			return {
-				cart: [],
-				list: [],
-				user: {
-					email: "daniel@bananpaj.se",
-					name: "Janne",
-					password: "bänkpress",
-					address: { street: "Greve by", zip: "42352", city: "Dervik" },
-				},
-				credentials: {
-					email: "daniel@bananpaj.se",
-					password: "bänkpress",
-				},
-				order: {
-					items: [45, 57, 66],
-				},
-			};
-		},
 		methods: {
-			getSkate() {
-				this.$store.dispatch("fetchSkate");
-			},
-			getApparel() {
-				this.$store.dispatch("fetchApparel");
-			},
-			getProductCategory(category) {
-				this.$store.dispatch("getProductCategory", category);
-			},
-			registerUser() {
-				this.$store.dispatch("registerUser", this.user);
-			},
-			loginUser() {
-				this.$store.dispatch("loginUser", this.credentials);
-			},
-			placeOrder() {
-				this.$store.dispatch("placeOrder");
-			},
-			getOrder() {
-				this.$store.dispatch("getOrder");
-			},
 			navigate(query) {
 				this.$router.push({
 					name: "Products",
@@ -123,8 +66,10 @@
 
 
 <style lang="scss" scoped>
-	.linksandshit {
-		text-align: center;
+	h1,
+	h2,
+	h3 {
+		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
 
 	.home {
@@ -151,17 +96,6 @@
 		grid-column: span 3;
 		color: white;
 		position: relative;
-		h2 {
-			font-family: "Montserrat", sans-serif;
-			// font-size: 64px;
-			font-size: 4rem;
-			margin: 0;
-		}
-		h1 {
-			// font-size: 96px;
-			font-size: 7rem;
-			margin: 0;
-		}
 	}
 
 	.picture-parent {
@@ -171,11 +105,6 @@
 			top: 2%;
 			left: 5%;
 			color: white;
-		}
-		h3 {
-			font-size: 48px;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 600;
 		}
 	}
 	.hero-left {
@@ -193,16 +122,8 @@
 	.grid-span-2 {
 		grid-column: span 2;
 	}
-	.picture-in-picture {
-		.mom {
-			position: relative;
-		}
-		.imgbag {
-			position: absolute;
-			left: 50%;
-		}
+
+	article > *button {
+		margin-top: 2rem;
 	}
-article>*button{
-margin-top: 2rem;
-}	
 </style>

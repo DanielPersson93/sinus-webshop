@@ -10,25 +10,19 @@
 				v-if="loginField"
 				@closed="loginField = false"
 				@openForm="openForm"
-			>
-			</Login>
+			/>
 			<SignUp v-if="openSignUpForm" @closeSignUpForm="toggleOpenCloseForm" />
 		</div>
 		<img src="@/assets/sinuslogo.svg" alt="" class="sinus-logo" />
 		<section class="links">
-			<router-link to="/" class="underlined">Home</router-link>
+			<router-link to="/" class="underlined"><h5>HOME</h5></router-link>
 
 			<div
 				class="category"
 				@mouseover="hoverSkate = true"
 				@mouseleave="hoverSkate = false"
 			>
-				<router-link
-					:to="{ name: 'ProductView', query: { category: 'skate' } }"
-				>
-					<h5 class="par underlined" @click="getSkate">Skate</h5>
-				</router-link>
-
+				<h5 class="par underlined">SKATE</h5>
 				<ul class="theUl" v-if="hoverSkate">
 					<router-link
 						:to="{ name: 'ProductView', query: { category: 'skateboard' } }"
@@ -47,11 +41,7 @@
 				@mouseover="hoverApparel = true"
 				@mouseleave="hoverApparel = false"
 			>
-				<router-link
-					:to="{ name: 'ProductView', query: { category: 'apparel' } }"
-				>
-					<h5 class="par underlined" @click="getApparel">Apparel</h5>
-				</router-link>
+				<h5 class="par underlined">APPAREL</h5>
 
 				<ul class="theUl" v-if="hoverApparel">
 					<router-link
@@ -88,7 +78,7 @@
 		</section>
 
 		<section class="search-field">
-			<img
+			<!-- <img
 				class="icon expand"
 				src="@/assets/search-icon.svg"
 				alt=""
@@ -114,7 +104,7 @@
 						{{ product }}
 					</li>
 				</ul>
-			</section>
+			</section> -->
 			<img
 				class="icon expand"
 				src="@/assets/bag.svg"
@@ -127,8 +117,6 @@
 				alt=""
 				@click="openLogin"
 			/>
-
-			<!-- <p>{{getQuery}}</p> -->
 		</section>
 	</div>
 </template>
@@ -145,10 +133,9 @@
 		},
 		data() {
 			return {
-				searchInput: "",
+				// searchInput: "",
 				hoverApparel: false,
 				hoverSkate: false,
-				clicked: "",
 				openSignUpForm: false,
 				loginField: false,
 				showCart: false,
@@ -165,48 +152,43 @@
 				this.openSignUpForm = !this.openSignUpForm;
 				this.loginField = !this.loginField;
 			},
-			setQuery() {
-				this.$store.commit("setQuery", this.searchInput);
-			},
-			setClicked(e) {
-				this.clicked = e.target.innerText.toLowerCase();
-			},
+			// setQuery() {
+			// 	this.$store.commit("setQuery", this.searchInput);
+			// },
+
 			openLogin() {
 				if (this.$store.state.token) {
 					this.$router.push({ name: "Profile" });
 				} else this.loginField = true;
-				console.log("HEJ");
 			},
-			temp() {
-				console.log("hej");
-			},
-			search() {
-				this.$router.push({
-					name: "Products",
-					query: { "": this.searchInput },
-				});
-			},
+
+			// search() {
+			// 	this.$router.push({
+			// 		name: "Products",
+			// 		query: { "": this.searchInput },
+			// 	});
+			// },
 
 			assignCategory(category) {
 				this.$store.dispatch("getProductCategory", category);
 				console.log(category);
 			},
-			getSkate() {
-				this.$store.dispatch("fetchSkate");
-				this.$router.push("productview");
-			},
-			getApparel() {
-				this.$store.dispatch("fetchApparel");
-				this.$router.push("productview");
-			},
+			// getSkate() {
+			// 	this.$store.dispatch("fetchSkate");
+			// 	this.$router.push("productview");
+			// },
+			// getApparel() {
+			// 	this.$store.dispatch("fetchApparel");
+			// 	this.$router.push("productview");
+			// },
 		},
 		computed: {
 			productsInCart() {
 				return this.$store.getters.shoppingCart;
 			},
-			getQuery() {
-				return this.$store.state.query;
-			},
+			// getQuery() {
+			// 	return this.$store.state.query;
+			// },
 		},
 	};
 </script>
@@ -220,12 +202,10 @@
 
 	.nav-wrap {
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		font-size: 24px;
 		display: flex;
 		padding: 1rem 2.5rem;
 		align-items: center;
 		justify-content: space-between;
-		font-weight: 600;
 		position: relative;
 	}
 
@@ -245,7 +225,7 @@
 
 	.search-field {
 		margin-left: 20%;
-		width: 23rem;
+		width: 5rem;
 		display: flex;
 		justify-content: space-between;
 		position: relative;
@@ -304,10 +284,11 @@
 	}
 	.result-items,
 	.listI {
+		font-family: "Mukta Malar", sans-serif;
+		font-size: 20px;
 		transition: 0.8s;
 		text-align: left;
 		padding: 0.9rem 0.5rem;
-
 		width: calc(100% - 1rem);
 	}
 	.underlined {
