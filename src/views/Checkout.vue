@@ -41,12 +41,8 @@
 				</div>
 				<div>
 					<label for="address">Street</label>
-					<input
-						type="text"
-						id="address"
-						name="address"
-						v-model="userData.address.street"
-					/>
+					<input type="text" id="address" name="address" />
+					<!-- v-model="userData.address.street" -->
 				</div>
 				<div>
 					<label for="mobile">Mobile no.</label>
@@ -59,24 +55,16 @@
 				</div>
 				<div>
 					<label for="city">City</label>
-					<input
-						type="text"
-						id="city"
-						name="city"
-						v-model="userData.address.city"
-					/>
+					<input type="text" id="city" name="city" />
+					<!-- v-model="userData.adress.city" -->
 				</div>
 				<div>
 					<label for="zipcode">Zip Code</label>
-					<input
-						type="text"
-						id="zipcode"
-						name="zipcode"
-						v-model="userData.address.zip"
-					/>
+					<input type="text" id="zipcode" name="zipcode" />
+					<!-- v-model="userData.address.street.zip" -->
 				</div>
 			</form>
-			<div class="cardandbutton">
+			<div class="card-and-button">
 				<form class="card-info">
 					<div>
 						<label for="cardnumber">Card Number</label>
@@ -98,7 +86,7 @@
 </template>
 
 <script>
-	import { currentUser } from "@/api/index.js";
+	// import { currentUser } from "@/api/index.js";
 	export default {
 		data() {
 			return {
@@ -107,23 +95,26 @@
 				inLogged: false,
 			};
 		},
-		async beforeMount() {
-			this.userData = await currentUser().then((res) => res.data);
-			this.inLogged = true;
-		},
+		// async beforeMount() {
+		// 	this.userData = await currentUser().then((res) => res.data);
+		// 	if (this.userData) {
+		// 		this.inLogged = true;
+		// 		console.log(this.userData);
+		// 	}
+		// 	return;
+		// },
 		methods: {
 			placeOrder() {
 				this.$store.dispatch("placeOrder");
 			},
 		},
-		props: ["products"],
 		computed: {
 			productsInCart() {
 				return this.$store.getters.shoppingCart;
 			},
 			totalprice() {
 				let total = 0;
-				for (const product of this.products) {
+				for (const product of this.$store.getters.shoppingCart) {
 					total += product.amount * product.price;
 				}
 				return total;
@@ -149,7 +140,7 @@
 			margin-right: 80px;
 		}
 	}
-	.cardandbutton {
+	.card-and-button {
 		display: flex;
 		margin-top: 40px;
 		button {

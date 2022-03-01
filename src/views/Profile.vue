@@ -54,7 +54,6 @@
 	export default {
 		data() {
 			return {
-				active: true,
 				orderHistory: [],
 				userData: {
 					email: "",
