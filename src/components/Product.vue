@@ -1,58 +1,69 @@
 <template>
-  <div class="card">
-      <img src="@/assets/shoppingcart.png" 
-      class="shopping-cart-icon" 
-      alt="shopping-cart-icon" 
-      @click="addItemToCart">
-    <router-link :to="'singleproduct/' + product.id">
-      <img
-        class="imageFit"
-        :src="'http://localhost:5000/images/' + product.imgFile"
-        :alt="product.title"
-      />
-    </router-link>
-    <p>{{ product.title }} {{ product.category }}</p>
-    <p class="price">$ {{ product.price }}</p>
-  </div>
+	<div class="card">
+		<img
+			src="@/assets/shoppingcart.svg"
+			class="shopping-cart-icon"
+			alt="shopping-cart-icon"
+			@click="addItemToCart"
+		/>
+		<router-link :to="'singleproduct/' + product.id">
+			<img
+				class="imageFit"
+				:src="'http://localhost:5000/images/' + product.imgFile"
+				:alt="product.title"
+			/>
+		</router-link>
+		<p>{{ product.title }} {{ product.category }}</p>
+		<p class="price">$ {{ product.price }}</p>
+	</div>
 </template>
 
 <script>
-// import Actions from '@/store/action.types'
-export default {
-  props: ["product"],
-  methods: {
-    addItemToCart(){
-      // this.$store.dispatch("addItemToCart", this.product.id)
-      this.$store.dispatch("addItemToCart", this.product)
-    }
-  }
-};
-
+	// import Actions from '@/store/action.types'
+	export default {
+		props: ["product"],
+		methods: {
+			addItemToCart() {
+				// this.$store.dispatch("addItemToCart", this.product.id)
+				this.$store.dispatch("addItemToCart", this.product);
+			},
+		},
+	};
 </script>
 
 <style lang="scss">
-.imageFit{
-  width: 269px;
-  height: 292px;
-  object-fit: contain;
-}
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 270px;
-  height: 444px;
-  text-align: center;
+	.imageFit {
+		width: 269px;
+		height: 292px;
+		object-fit: contain;
+	}
+	.card {
+		display: flex;
+		flex-direction: column;
+		width: 270px;
+		height: 444px;
+		text-align: center;
 
-  .shopping-cart-icon{
-    align-self: flex-end;
-    width: 36px;
-    height: 37px;
-  }
-  p{
-    font-size: 16px;
-  }
-  .price{
-    color: #881616;
-  }
-}
+		.shopping-cart-icon {
+			align-self: flex-end;
+			width: 36px;
+			height: 37px;
+
+			&:hover {
+				color: #881616 !important;
+				border: 1px solid #ffffff;
+				box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+			}
+			&:active {
+				color: #881616;
+			}
+		}
+
+		p {
+			font-size: 16px;
+		}
+		.price {
+			color: #881616;
+		}
+	}
 </style>
