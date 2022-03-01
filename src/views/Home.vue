@@ -202,4 +202,7 @@
 			left: 50%;
 		}
 	}
+article>*button{
+margin-top: 2rem;
+}	
 </style>

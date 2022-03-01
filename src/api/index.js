@@ -12,10 +12,6 @@ export async function getProductCategory(category) {
 export async function fetchApparel() {
 	return await axios.get("/items/?exclude=skateboard,wheel");
 }
-<<<<<<< HEAD
-export async function fetchSkate() {
-	return await axios.get("/items/?exclude=totebag,tshirt,socks,hoodie,cap");
-=======
 export async function fetchSkate(){
     return await axios.get("/items/?exclude=totebag,tshirt,socks,hoodie,cap");
     // return await  Promise.all([
@@ -23,7 +19,6 @@ export async function fetchSkate(){
     //     axios.get('/items/?category=skateboard'),
     // ])
     
->>>>>>> dc5cb541d766574f0bc79e2ace53a5118f9fa9e9
 }
 export async function registerUser(user) {
 	return await axios.post("/register/", user);
