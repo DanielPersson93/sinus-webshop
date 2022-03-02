@@ -8,7 +8,7 @@
 		/>
 		<router-link :to="'singleproduct/' + product.id">
 			<img
-				class="imageFit"
+				class="image-fit"
 				:src="'http://localhost:5000/images/' + product.imgFile"
 				:alt="product.title"
 			/>
@@ -30,7 +30,7 @@
 </script>
 
 <style lang="scss">
-	.imageFit {
+	.image-fit {
 		width: 269px;
 		height: 292px;
 		object-fit: contain;

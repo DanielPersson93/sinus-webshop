@@ -1,7 +1,6 @@
 <template>
 	<div class="productsview">
-		<section class="productsview__sidebar"></section>
-		<section class="productsview__card">
+		<section>
 			<div class="productview-top">
 				<p>Home / Apparel / Hoodie</p>
 				<div class="filter">
@@ -32,25 +31,22 @@
 				);
 			},
 		},
+		mounted(){
+			window.scrollTo(0,0)
+		}
 	};
 </script>
 <style lang="scss" scoped>
 	.productsview {
 		display: flex;
 		justify-content: center;
-
-		.productsview__sidebar {
-			width: 213px;
-		}
+		
 		.product-grid {
 			display: grid;
 			gap: 56px 192px;
 			grid-template-columns: repeat(2, 1fr);
-			margin: 1rem 3rem 1rem 3rem;
+			margin: 0rem 3rem 0rem 3rem;
 		}
-	}
-	section {
-		margin-top: 4rem;
 	}
 	.divider {
 		border-bottom: solid black 2px;
@@ -60,7 +56,7 @@
 	.productview-top {
 		display: flex;
 		justify-content: space-between;
-		margin: 1rem 0rem 1rem 0rem;
+		margin: 0rem 0rem 1rem 0rem;
 	}
 	.filter {
 		display: flex;

@@ -128,7 +128,7 @@
 					.catch((err) => {
 						console.log(err);
 					});
-				this.$nextTick(() => {});
+				// this.$nextTick(() => {});
 			},
 		},
 	};

@@ -17,9 +17,11 @@
 				<img src="@/assets/boardsbox.jpg" alt="" />
 				<section class="picture-child">
 					<h3>Boards</h3>
-					<button class="white-border-button" @click="navigate('boards')">
-						VIEW MORE
-					</button>
+					<router-link :to="{ name: 'ProductView', query: { category: 'skateboard' } }">
+						<button class="white-border-button" @click="assignCategory('skateboard')">
+							VIEW MORE
+						</button>
+					</router-link>
 				</section>
 			</article>
 
@@ -28,9 +30,11 @@
 
 				<section class="picture-child">
 					<h3>T-shirts</h3>
-					<button class="white-border-button" @click="navigate('apparel')">
-						VIEW MORE
-					</button>
+					<router-link :to="{ name: 'ProductView', query: { category: 'tshirt' } }">
+						<button class="white-border-button" @click="assignCategory('tshirt')">
+							VIEW MORE
+						</button>
+					</router-link>
 				</section>
 			</article>
 
@@ -38,9 +42,11 @@
 				<img src="@/assets/wheelbox.jpg" alt="" />
 				<section class="picture-child">
 					<h3>Wheels</h3>
-					<button class="white-border-button" @click="navigate('wheels')">
-						VIEW MORE
-					</button>
+					<router-link :to="{ name: 'ProductView', query: { category: 'wheel' } }">
+						<button class="white-border-button" @click="assignCategory('wheel')">
+							VIEW MORE
+						</button>
+					</router-link>
 				</section>
 			</article>
 
@@ -48,9 +54,11 @@
 				<img class="greta-totebag" src="@/assets/totebag.png" alt="" />
 				<section class="bags__section">
 					<h3>Bags</h3>
-					<button class="white-border-button" @click="navigate('bags')">
-						VIEW MORE
-					</button>
+					<router-link :to="{ name: 'ProductView', query: { category: 'totebag' } }">
+						<button class="white-border-button" @click="assignCategory('totebag')">
+							VIEW MORE
+						</button>
+					</router-link>
 				</section>
 			</article>
 		</article>
@@ -63,9 +71,13 @@
 		methods: {
 			navigate(query) {
 				this.$router.push({
-					name: "Products",
-					query: { "": query },
+					name: "ProductView",
+					query: { category: query },
 				});
+			},
+			assignCategory(category) {
+				this.$store.dispatch("getProductCategory", category);
+				console.log(category);
 			},
 		},
 	};
