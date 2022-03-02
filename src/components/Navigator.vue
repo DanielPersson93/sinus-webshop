@@ -176,7 +176,6 @@
 
 			assignCategory(category) {
 				this.$store.dispatch("getProductCategory", category);
-				console.log(category);
 			},
 			// getSkate() {
 			// 	this.$store.dispatch("fetchSkate");

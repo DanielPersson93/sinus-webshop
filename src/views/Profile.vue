@@ -72,7 +72,7 @@
 
 			this.orderHistory = await getOrders().then((res) => res.data);
 			this.orderHistory.forEach((order) => (order.open = false));
-			console.log(this.userData);
+			// console.log(this.userData);
 		},
 		methods: {
 			openOverlay(order, index) {

@@ -21,10 +21,15 @@ export default new Vuex.Store({
 		// setQuery(state, input) {
 		// 	state.query = input;
 		// },
+		saveSingleProduct(state, product){
+			state.allProducts.push(product)
+		},
 		saveProducts(state, allProducts) {
 			for (let product of allProducts) {
-				state.allProducts.push(product);
-				Vue.set(state.productList, product.id, product);
+				if (!state.allProducts.find((productInStore) => productInStore.id == product.id)){
+					state.allProducts.push(product);
+					Vue.set(state.productList, product.id, product);
+				}
 			}
 		},
 		saveUser(state, user) {
@@ -50,12 +55,21 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
+		async getSingleProduct(context, productId){
+			if (!context.state.allProducts.find((product) => product.id == productId)) {
+				const response = await API.getSingleProduct(productId);
+				context.commit("saveSingleProduct", response.data.post);
+			} else {
+				return;
+			}
+		},
 		async getProductCategory(context, category) {
-			if (
-				!context.state.allProducts.find(
-					(product) => product.category == category
-				)
-			) {
+			let categoryLength = context.state.allProducts.filter((allProducts) => allProducts.category == 'skateboard')
+			if(categoryLength.length == 1){
+				const response = await API.getProductCategory('skateboard');
+				context.commit("saveProducts", response.data);
+			}
+			if (!context.state.allProducts.find((product) => product.category == category)) {
 				const response = await API.getProductCategory(category);
 				context.commit("saveProducts", response.data);
 			} else {
@@ -85,7 +99,9 @@ export default new Vuex.Store({
 		// },
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
-			await API.registerUser(user);
+			const response = await API.registerUser(user);
+			context.commit("saveToken", response.data.token);
+			API.saveToken(response.data.token);
 		},
 		async loginUser(context, credentials) {
 			const response = await API.loginUser(
