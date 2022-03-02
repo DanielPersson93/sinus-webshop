@@ -117,6 +117,7 @@
 				this.$store.dispatch("registerUser", this.registerFormData)
 				this.$emit('sendUserData' , this.registerFormData)
 				this.$emit("closeSignUpForm");
+				this.$emit("showLogOut");
 				
 			},
 		},
