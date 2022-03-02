@@ -1,7 +1,9 @@
 <template>
 	<div class="login-wrap flex-col">
-		<span class="material-icons-outlined" @click="closeSidebar"> close </span>
-		<h2>Account</h2>
+		<section class="header">
+			<h2>Account</h2>
+			<span class="material-icons-outlined" @click="$emit('closed')"> close </span>
+		</section>
 		<section class="sign-up flex-col">
 			<p>Don't have an account yet?</p>
 			<p>Sign up here!</p>
@@ -28,73 +30,69 @@
 			};
 		},
 		methods: {
-			closeSidebar() {
-				this.$emit("closed");
-			},
 			async loginUser() {
 				await this.$store.dispatch("loginUser", this.credentials);
 				await this.$store.dispatch("getUser");
-
 			},
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	.flex-col {
-		display: flex;
-		flex-direction: column;
-		padding-top: 4rem;
+.header {
+	display: flex;
+	margin: 40px 0px 36px 0px;
+}
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+.material-icons-outlined {
+	align-self: flex-end;
+	margin: 0px 0px 35px 40px;
+	font-size: 40px;
+	cursor: pointer;
+	&:hover {
+		transform: scale(1.2);
 	}
-
-	.material-icons-outlined {
-		align-self: flex-end;
-		padding: 0rem 2rem 2rem 0rem;
-		font-size: 40px;
+}
+.login-wrap {
+	align-items: center;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border: 2px solid black;
+	border-radius: 7px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 397px;
+	height: 651px;
+	z-index: 11;
+	background-color: white;
+	.sign-up {
+		text-align: center;
+		button{
+			margin-top: 20px;
+		}
+	}
+	.inputs {
+		button{
+			margin-top: 40px;
+		}
+		p {
+			margin-top: 2rem;
+		}
+	}
+	button {
+		align-self: center;
 		cursor: pointer;
-		&:hover {
-			transform: scale(1.2);
-		}
 	}
-
-	.login-wrap {
-		align-items: center;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-left: 2px solid black;
-		position: fixed;
-		top: 0;
-		right: 0;
-		width: 20vw;
-		z-index: 11;
-		background-color: white;
-		height: 100vh;
-
-		.sign-up {
-			padding: 0rem 5rem;
-			display: flex;
-			justify-content: space-between;
-			margin-top: 3rem;
-			margin-bottom: 2rem;
-			text-align: center;
-		}
-		button {
-			align-self: center;
-			margin-top: 2.5rem;
-			cursor: pointer;
-		}
-
-		.inputs {
-			text-align: left;
-			p {
-				margin-top: 2rem;
-			}
-		}
-		input {
-			width: 317px;
-			height: 58px;
-			padding-left: 0.5rem;
-			border-radius: 2.5px;
-			border: 0.3px solid black;
-		}
+	input {
+		background: #F4F4F4;
+		width: 317px;
+		height: 58px;
+		padding-left: 0.5rem;
+		border-radius: 2.5px;
+		border: 1px solid black;
 	}
+}
 </style>

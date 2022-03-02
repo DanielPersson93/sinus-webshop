@@ -89,11 +89,11 @@ export default new Vuex.Store({
 		async getUser(context){
             const response = await API.currentUser();
             context.commit("saveUser", response.data)
-			console.log(response.data)
         },
 
-		async placeOrder(context) {
-			let order = { items: [] };
+		async placeOrder(context, address) {
+			let shippingAddress = address
+			let order = { items: [], shippingAddress };
 			for (const cartItem of this.state.cart) {
 				if (cartItem.amount > 1) {
 					for (let i = 0; i < cartItem.amount; i++) {
@@ -107,7 +107,6 @@ export default new Vuex.Store({
 		async getOrder(context) {
 			const response = await API.getOrder();
 			context.commit("saveOrder", response.data);
-			console.log(response.data);
 		},
 		addItemToCart(context, product) {
 			context.commit("saveInCart", product);
