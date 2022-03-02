@@ -5,7 +5,9 @@ axios.defaults.baseURL = "http://localhost:5000/api";
 export function saveToken(token) {
 	axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
-
+export async function getSingleProduct(idProduct){
+	return await axios.get("/items/" + `${idProduct}`)
+}
 export async function getProductCategory(category) {
 	return await axios.get("/items/?category=" + `${category}`);
 }

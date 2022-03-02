@@ -26,8 +26,19 @@
 	import Product from "../components/Product";
 	export default {
 		components: { Product },
+    beforeMount() {
+      let categoryLength = this.$store.state.allProducts.filter((allProducts) => allProducts.category == this.$route.query.category)
+        if(categoryLength.length == 1){
+          this.$store.dispatch("getProductCategory", this.$route.query.category)
+        }
+        if(this.$store.state.allProducts.find((allProducts) => allProducts.category == this.$route.query.category)){
+          return
+        }else {
+          this.$store.dispatch("getProductCategory", this.$route.query.category)
+        }
+		},
 		computed: {
-			currentProducts() {
+    currentProducts() {
 				return this.$store.getters.getSelectedCategory(
 					this.$route.query.category
 				);

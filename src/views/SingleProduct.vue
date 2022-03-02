@@ -1,6 +1,6 @@
 <template>
 	<div class="single-product">
-		<section>
+		<section v-if="product">
 			<div class="productview-top">
 				<div class="category">
 					<p>Sinus Skateboards / {{currentCategory}} / {{currentTitle}}</p>
@@ -38,9 +38,6 @@
 			},
 		},
 		computed: {
-			products() {
-				return this.$store.state.allProducts;
-			},
 			product() {
 				return this.$store.state.allProducts.find(
 					(allProducts) => allProducts.id == this.$route.params.id
@@ -55,6 +52,11 @@
 		},
 		mounted(){
 			window.scrollTo(0,0)
+			if(this.product){
+				return
+			}else {
+				this.$store.dispatch("getSingleProduct", this.$route.params.id)
+			}
 		}
 	};
 </script>
