@@ -85,7 +85,10 @@ export default new Vuex.Store({
 		// },
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
-			await API.registerUser(user);
+			const response = await API.registerUser(user);
+			context.commit("saveToken", response.data.token);
+			API.saveToken(response.data.token);
+			
 		},
 		async loginUser(context, credentials) {
 			const response = await API.loginUser(
@@ -95,6 +98,12 @@ export default new Vuex.Store({
 			context.commit("saveToken", response.data.token);
 			API.saveToken(response.data.token);
 		},
+		async getUser(context){
+            const response = await API.currentUser();
+            context.commit("saveUser", response.data)
+			console.log(response.data)
+        },
+
 		async placeOrder(context) {
 			let order = { items: [] };
 			for (const cartItem of this.state.cart) {
