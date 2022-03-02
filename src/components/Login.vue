@@ -34,7 +34,11 @@
 			async loginUser() {
 				await this.$store.dispatch("loginUser", this.credentials);
 				await this.$store.dispatch("getUser");
+				
+				if(this.credentials.email === this.$store.state.email ){
+					this.$emit("closed");
 
+				}return alert("Invalid input data");
 			},
 		},
 	};
