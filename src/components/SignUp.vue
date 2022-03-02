@@ -111,6 +111,7 @@
 					!this.registerFormData.address.zip
 				) {
 					// Show an error here?
+
 					return alert("Invalid input data");
 				}
 
@@ -127,6 +128,7 @@
 					.catch((err) => {
 						console.log(err);
 					});
+				this.$nextTick(() => {});
 			},
 		},
 	};

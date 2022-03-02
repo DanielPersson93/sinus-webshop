@@ -134,6 +134,7 @@
 		data() {
 			return {
 				// searchInput: "",
+				token: "",
 				hoverApparel: false,
 				hoverSkate: false,
 				openSignUpForm: false,
@@ -141,6 +142,7 @@
 				showCart: false,
 			};
 		},
+
 		methods: {
 			toggleCart() {
 				this.showCart = !this.showCart;
@@ -157,8 +159,11 @@
 			// },
 
 			openLogin() {
-				if (this.$store.state.token) {
-					this.$router.push({ name: "Profile" });
+				this.token = localStorage.getItem("authToken");
+				if (this.$store.state.token || this.token) {
+					this.$router.push("/profile");
+
+					// this.$route.push({ name: "Profile" });
 				} else this.loginField = true;
 			},
 
@@ -224,8 +229,8 @@
 	}
 
 	.search-field {
-		margin-left: 20%;
-		width: 5rem;
+		margin-left: 21%;
+		width: 8rem;
 		display: flex;
 		justify-content: space-between;
 		position: relative;

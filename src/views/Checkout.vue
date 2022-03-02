@@ -41,8 +41,12 @@
 				</div>
 				<div>
 					<label for="address">Street</label>
-					<input type="text" id="address" name="address" />
-					<!-- v-model="userData.address.street" -->
+					<input
+						type="text"
+						id="address"
+						name="address"
+						v-model="userData.address.street"
+					/>
 				</div>
 				<div>
 					<label for="mobile">Mobile no.</label>
@@ -55,13 +59,23 @@
 				</div>
 				<div>
 					<label for="city">City</label>
-					<input type="text" id="city" name="city" />
-					<!-- v-model="userData.adress.city" -->
+					<input
+						type="text"
+						id="city"
+						name="city"
+						v-model="userData.address.city"
+						false-value="0"
+						true-value="1"
+					/>
 				</div>
 				<div>
 					<label for="zipcode">Zip Code</label>
-					<input type="text" id="zipcode" name="zipcode" />
-					<!-- v-model="userData.address.street.zip" -->
+					<input
+						type="text"
+						id="zipcode"
+						name="zipcode"
+						v-model="userData.address.zip"
+					/>
 				</div>
 			</form>
 			<div class="card-and-button">
@@ -86,23 +100,28 @@
 </template>
 
 <script>
-	// import { currentUser } from "@/api/index.js";
+	import { currentUser } from "@/api/index.js";
 	export default {
 		data() {
 			return {
 				order: [],
-				userData: [],
+				userData: {
+					email: "",
+					name: "",
+					address: {
+						city: "",
+						street: "",
+						zip: "",
+					},
+				},
 				inLogged: false,
 			};
 		},
-		// async beforeMount() {
-		// 	this.userData = await currentUser().then((res) => res.data);
-		// 	if (this.userData) {
-		// 		this.inLogged = true;
-		// 		console.log(this.userData);
-		// 	}
-		// 	return;
-		// },
+		async beforeMount() {
+			this.userData = await currentUser().then((res) => res.data);
+			this.inLogged = true;
+			console.log(this.userData);
+		},
 		methods: {
 			placeOrder() {
 				this.$store.dispatch("placeOrder");
