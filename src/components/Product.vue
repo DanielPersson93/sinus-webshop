@@ -63,5 +63,8 @@
 		.price {
 			color: #881616;
 		}
+		p {
+			text-transform: capitalize;
+		}
 	}
 </style>
