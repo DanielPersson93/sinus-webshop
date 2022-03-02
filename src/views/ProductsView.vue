@@ -2,7 +2,9 @@
 	<div class="productsview">
 		<section>
 			<div class="productview-top">
-				<p>Home / Apparel / Hoodie</p>
+				<div class="category">
+				<p>Sinus Skateboards / {{currentCategory}}</p>
+				</div>
 				<div class="filter">
 					<img src="@/assets/filter icon.png" alt="filter-icon" />
 					<p>Filters</p>
@@ -41,10 +43,13 @@
 					this.$route.query.category
 				);
 			},
+			currentCategory(){
+				return this.$route.query.category
+			}
 		},
-		mounted(){
-			window.scrollTo(0,0)
-		}
+			mounted(){
+			return window.scrollTo(0,0)
+			}
 	};
 </script>
 <style lang="scss" scoped>
@@ -74,5 +79,11 @@
 		img {
 			padding-right: 1rem;
 		}
+	}
+	.category{
+		display: flex;
+	}
+	p{
+		text-transform: capitalize;
 	}
 </style>

@@ -21,7 +21,6 @@
 	export default {
 		data() {
 			return {
-				closeLogin: true,
 				credentials: {
 					email: "",
 					password: "",
@@ -32,8 +31,10 @@
 			closeSidebar() {
 				this.$emit("closed");
 			},
-			loginUser() {
-				this.$store.dispatch("loginUser", this.credentials);
+			async loginUser() {
+				await this.$store.dispatch("loginUser", this.credentials);
+				await this.$store.dispatch("getUser");
+
 			},
 		},
 	};

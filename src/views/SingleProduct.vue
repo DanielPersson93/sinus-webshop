@@ -2,7 +2,9 @@
 	<div class="single-product">
 		<section v-if="product">
 			<div class="productview-top">
-				<p>Home / Apparel / Hoodie</p>
+				<div class="category">
+					<p>Sinus Skateboards / {{currentCategory}} / {{currentTitle}}</p>
+				</div>
 			</div>
 			<div class="divider"></div>
 			<div class="product-container">
@@ -41,6 +43,12 @@
 					(allProducts) => allProducts.id == this.$route.params.id
 				);
 			},
+			currentCategory(){
+				return this.product.category
+			},
+			currentTitle(){
+				return this.product.title
+			}
 		},
 		mounted(){
 			window.scrollTo(0,0)
@@ -102,5 +110,11 @@
 	}
 	button {
 		margin-left: 3rem;
+	}
+	.category{
+		display: flex;
+	}
+	h4, p{
+		text-transform: capitalize;
 	}
 </style>
