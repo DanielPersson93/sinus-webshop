@@ -3,9 +3,6 @@
 		<section>
 			<div class="productview-top">
 				<p>Home / Apparel / Hoodie</p>
-				<div class="product-nav">
-					<p>Product</p>
-				</div>
 			</div>
 			<div class="divider"></div>
 			<div class="product-container">
@@ -48,6 +45,9 @@
 				);
 			},
 		},
+		mounted(){
+			window.scrollTo(0,0)
+		}
 	};
 </script>
 
@@ -55,29 +55,33 @@
 	.productview-top {
 		display: flex;
 		justify-content: space-between;
-		margin: 5rem 0rem 1rem 0rem;
+		margin: 0rem 0rem 1rem 0rem;
+		height: 37px;
 	}
 
 	.product-container {
 		display: flex;
-		margin-bottom: 10rem;
+		// margin-bottom: 10rem;
 	}
 	.single-product {
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: center;
+	}
+	section{
+		width: 828px;
+		
 	}
 	.divider {
 		border-bottom: solid black 2px;
 		width: 100%;
+		margin-bottom: 3rem;
 	}
 	.img-wrapper {
-		margin-top: 4rem;
 		img {
 			object-fit: contain;
 		}
 	}
 	.information-wrapper {
-		margin-top: 6rem;
 		margin-left: 5rem;
 		h4,
 		h5 {
@@ -96,8 +100,5 @@
 	}
 	button {
 		margin-left: 3rem;
-	}
-	.category-list {
-		margin-top: 4rem;
 	}
 </style>

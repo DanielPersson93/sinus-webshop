@@ -51,7 +51,7 @@
 		background-position-x: 60%;
 		display: flex;
 		justify-content: space-between;
-		height: 100%;
+		height: calc(100% - 10rem);
 		// align-items: center;
 	}
 	.links-wrapper {
