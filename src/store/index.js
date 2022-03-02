@@ -19,6 +19,7 @@ export default new Vuex.Store({
 	mutations: {
 		saveSingleProduct(state, product){
 			state.allProducts.push(product)
+			Vue.set(state.productList, product.id, product);
 		},
 		saveProducts(state, allProducts) {
 			for (let product of allProducts) {
