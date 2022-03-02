@@ -117,6 +117,7 @@
 				alt=""
 				@click="openLogin"
 			/>
+			<p>{{this.userData.name}}</p>
 		</section>
 	</div>
 </template>
@@ -134,6 +135,16 @@
 		data() {
 			return {
 				// searchInput: "",
+				userData: {
+					email: "",
+					password: "",
+					name: "",
+					address: {
+						city: "",
+						street: "",
+						zip: "",
+					},
+				},
 				token: "",
 				hoverApparel: false,
 				hoverSkate: false,
@@ -159,8 +170,8 @@
 			// },
 
 			openLogin() {
-				this.token = localStorage.getItem("authToken");
-				if (this.$store.state.token || this.token) {
+				this.userData = this.$store.state.user
+				if (this.$store.state.token) {
 					this.$router.push("/profile");
 
 					// this.$route.push({ name: "Profile" });

@@ -85,7 +85,10 @@ export default new Vuex.Store({
 		// },
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
-			await API.registerUser(user);
+			const response = await API.registerUser(user);
+			context.commit("saveToken", response.data.token);
+			API.saveToken(response.data.token);
+			
 		},
 		async loginUser(context, credentials) {
 			const response = await API.loginUser(
