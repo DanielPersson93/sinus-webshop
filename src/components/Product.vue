@@ -48,8 +48,8 @@
 			height: 37px;
 
 			&:hover {
+				cursor: pointer;
 				color: #881616 !important;
-				border: 1px solid #ffffff;
 				box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
 			}
 			&:active {
