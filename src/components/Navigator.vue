@@ -134,6 +134,7 @@
 				src="@/assets/profile.svg"
 				alt=""
 				@click="openLogin"
+				
 			/>
 			<p>{{userData.name}}</p>
 		</section>
@@ -183,47 +184,23 @@
       this.openSignUpForm = !this.openSignUpForm;
       this.loginField = !this.loginField;
     },
-    // setQuery() {
-    // 	this.$store.commit("setQuery", this.searchInput);
-    // },
 	openLogin() {
 		if (this.$store.state.token) {
 			this.$router.push("/profile");
       } else this.loginField = true;
     },
-
-    // search() {
-    // 	this.$router.push({
-		// 		name: "Products",
-    // 		query: { "": this.searchInput },
-    // 	});
-    // },
-
     assignCategory(category) {
 		this.$store.dispatch("getProductCategory", category);
-      console.log(category);
     },
-    // getSkate() {
-		// 	this.$store.dispatch("fetchSkate");
-    // 	this.$router.push("productview");
-    // },
-    // getApparel() {
-		// 	this.$store.dispatch("fetchApparel");
-    // 	this.$router.push("productview");
-    // },
-  },
-  computed: {
+},
+	computed: {
 	productsInCart() {
 		return this.$store.getters.shoppingCart;
     },
 	userData(){
 		return this.$store.state.user;
-
 	}
-    // getQuery() {
-    // 	return this.$store.state.query;
-    // },
-  },
+},
 };
 </script>
 

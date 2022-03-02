@@ -70,7 +70,6 @@
 </template>
 
 <script>
-	// import { registerUser } from "../api/index.js";
 	export default {
 		data() {
 			return {
@@ -119,19 +118,6 @@
 				this.$emit('sendUserData' , this.registerFormData)
 				this.$emit("closeSignUpForm");
 				
-			// 	registerUser(this.registerFormData)
-			// 		.then((registerRes) => {
-			// 			// Store token in local storage
-			// 			const token = registerRes.data.token;
-			// 			localStorage.setItem("authToken", token);
-
-			// 			// Store user details in local storage (?)
-			// 			const createdUser = registerRes.data.user;
-			// 			localStorage.setItem("user", JSON.stringify(createdUser));
-			// 		})
-			// 		.catch((err) => {
-			// 			console.log(err);
-			// 		});
 			},
 		},
 	};
@@ -208,6 +194,7 @@
 					margin-bottom: 0;
 				}
 				input {
+					background: #F4F4F4;
 					box-sizing: border-box;
 					width: 100%;
 					padding: 1rem;
