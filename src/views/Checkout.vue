@@ -118,8 +118,13 @@
 			};
 		},
 		async beforeMount() {
-			this.userData = await currentUser().then((res) => res.data);
-			this.inLogged = true;
+			try{
+				this.userData = await currentUser().then((res) => res.data);
+				this.inLogged = true;
+
+			}catch(err){
+				this.userData
+			}
 			
 		},
 		methods: {
