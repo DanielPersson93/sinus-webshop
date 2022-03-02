@@ -139,7 +139,6 @@
 				
 			/>
 			<p>{{userData.name}}</p>
-			<!-- <p>Logout</p> -->
 		</section>
 			<div class="profile-iconAndSignOut">
 				<form action="/" v-if="ifLoggedInShow">
