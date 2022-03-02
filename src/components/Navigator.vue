@@ -135,7 +135,7 @@
 				alt=""
 				@click="openLogin"
 			/>
-			<p>{{this.userData.name}}</p>
+			<p>{{userData.name}}</p>
 		</section>
 	</div>
 </template>
@@ -153,16 +153,16 @@
 		data() {
 			return {
 				// searchInput: "",
-				userData: {
-					email: "",
-					password: "",
-					name: "",
-					address: {
-						city: "",
-						street: "",
-						zip: "",
-					},
-				},
+				// userData: {
+				// 	email: "",
+				// 	password: "",
+				// 	name: "",
+				// 	address: {
+				// 		city: "",
+				// 		street: "",
+				// 		zip: "",
+				// 	},
+				// },
 				token: "",
 				hoverApparel: false,
 				hoverSkate: false,
@@ -186,40 +186,40 @@
     // setQuery() {
     // 	this.$store.commit("setQuery", this.searchInput);
     // },
-
-			openLogin() {
-				this.userData = this.$store.state.user
-				if (this.$store.state.token) {
-					this.$router.push("/profile");
-
-        // this.$route.push({ name: "Profile" });
+	openLogin() {
+		if (this.$store.state.token) {
+			this.$router.push("/profile");
       } else this.loginField = true;
     },
 
     // search() {
     // 	this.$router.push({
-    // 		name: "Products",
+		// 		name: "Products",
     // 		query: { "": this.searchInput },
     // 	});
     // },
 
     assignCategory(category) {
-      this.$store.dispatch("getProductCategory", category);
+		this.$store.dispatch("getProductCategory", category);
       console.log(category);
     },
     // getSkate() {
-    // 	this.$store.dispatch("fetchSkate");
+		// 	this.$store.dispatch("fetchSkate");
     // 	this.$router.push("productview");
     // },
     // getApparel() {
-    // 	this.$store.dispatch("fetchApparel");
+		// 	this.$store.dispatch("fetchApparel");
     // 	this.$router.push("productview");
     // },
   },
   computed: {
-    productsInCart() {
-      return this.$store.getters.shoppingCart;
+	productsInCart() {
+		return this.$store.getters.shoppingCart;
     },
+	userData(){
+		return this.$store.state.user;
+
+	}
     // getQuery() {
     // 	return this.$store.state.query;
     // },

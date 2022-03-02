@@ -98,6 +98,12 @@ export default new Vuex.Store({
 			context.commit("saveToken", response.data.token);
 			API.saveToken(response.data.token);
 		},
+		async getUser(context){
+            const response = await API.currentUser();
+            context.commit("saveUser", response.data)
+			console.log(response.data)
+        },
+
 		async placeOrder(context) {
 			let order = { items: [] };
 			for (const cartItem of this.state.cart) {
