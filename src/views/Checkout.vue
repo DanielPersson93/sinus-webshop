@@ -120,7 +120,7 @@
 		async beforeMount() {
 			this.userData = await currentUser().then((res) => res.data);
 			this.inLogged = true;
-			console.log(this.userData);
+			// console.log(this.userData);
 		},
 		methods: {
 			placeOrder() {

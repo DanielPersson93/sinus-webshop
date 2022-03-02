@@ -2,7 +2,9 @@
 	<div class="productsview">
 		<section>
 			<div class="productview-top">
-				<p>Home / Apparel / Hoodie</p>
+				<div class="category">
+				<p>Sinus Skateboards / {{currentCategory}}</p>
+				</div>
 				<div class="filter">
 					<img src="@/assets/filter icon.png" alt="filter-icon" />
 					<p>Filters</p>
@@ -24,16 +26,30 @@
 	import Product from "../components/Product";
 	export default {
 		components: { Product },
+    beforeMount() {
+      let categoryLength = this.$store.state.allProducts.filter((allProducts) => allProducts.category == this.$route.query.category)
+        if(categoryLength.length == 1){
+          this.$store.dispatch("getProductCategory", this.$route.query.category)
+        }
+        if(this.$store.state.allProducts.find((allProducts) => allProducts.category == this.$route.query.category)){
+          return
+        }else {
+          this.$store.dispatch("getProductCategory", this.$route.query.category)
+        }
+		},
 		computed: {
-			currentProducts() {
+    currentProducts() {
 				return this.$store.getters.getSelectedCategory(
 					this.$route.query.category
 				);
 			},
+			currentCategory(){
+				return this.$route.query.category
+			}
 		},
-		mounted(){
-			window.scrollTo(0,0)
-		}
+			mounted(){
+			return window.scrollTo(0,0)
+			}
 	};
 </script>
 <style lang="scss" scoped>
@@ -63,5 +79,11 @@
 		img {
 			padding-right: 1rem;
 		}
+	}
+	.category{
+		display: flex;
+	}
+	p{
+		text-transform: capitalize;
 	}
 </style>

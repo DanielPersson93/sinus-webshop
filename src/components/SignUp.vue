@@ -70,7 +70,7 @@
 </template>
 
 <script>
-	import { registerUser } from "../api/index.js";
+	// import { registerUser } from "../api/index.js";
 	export default {
 		data() {
 			return {
@@ -114,21 +114,23 @@
 
 					return alert("Invalid input data");
 				}
+				
+				this.$store.dispatch("registerUser", this.registerFormData)
+				this.$emit('sendUserData' , this.registerFormData)
+				
+			// 	registerUser(this.registerFormData)
+			// 		.then((registerRes) => {
+			// 			// Store token in local storage
+			// 			const token = registerRes.data.token;
+			// 			localStorage.setItem("authToken", token);
 
-				registerUser(this.registerFormData)
-					.then((registerRes) => {
-						// Store token in local storage
-						const token = registerRes.data.token;
-						localStorage.setItem("authToken", token);
-
-						// Store user details in local storage (?)
-						const createdUser = registerRes.data.user;
-						localStorage.setItem("user", JSON.stringify(createdUser));
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-				// this.$nextTick(() => {});
+			// 			// Store user details in local storage (?)
+			// 			const createdUser = registerRes.data.user;
+			// 			localStorage.setItem("user", JSON.stringify(createdUser));
+			// 		})
+			// 		.catch((err) => {
+			// 			console.log(err);
+			// 		});
 			},
 		},
 	};
