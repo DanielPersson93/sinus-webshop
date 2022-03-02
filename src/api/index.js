@@ -11,15 +11,6 @@ export async function getSingleProduct(idProduct){
 export async function getProductCategory(category) {
 	return await axios.get("/items/?category=" + `${category}`);
 }
-
-//* returnerar all inclusive in skate and all inclusive in apparel*
-
-// export async function fetchApparel() {
-// 	return await axios.get("/items/?exclude=skateboard,wheel");
-// }
-// export async function fetchSkate() {
-// 	return await axios.get("/items/?exclude=totebag,tshirt,socks,hoodie,cap");
-// }
 export async function registerUser(user) {
 	return await axios.post("/register/", user);
 }

@@ -76,11 +76,11 @@
 			},
 			assignCategory(category) {
 				this.$store.dispatch("getProductCategory", category);
-				console.log(category);
 			},
 			getSingleProduct(productId){
 				this.$router.push({
-					path: "/singleproduct/" + productId,
+					name: 'SingleProduct', params: { id: productId }
+					// path: "/singleproduct/" + productId,
 				});
 			}
 		},

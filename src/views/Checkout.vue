@@ -120,11 +120,16 @@
 		async beforeMount() {
 			this.userData = await currentUser().then((res) => res.data);
 			this.inLogged = true;
-			// console.log(this.userData);
+			
 		},
 		methods: {
 			placeOrder() {
-				this.$store.dispatch("placeOrder");
+				if (!this.userData.address.city ||
+					!this.userData.address.street ||
+					!this.userData.address.zip){
+						return alert("Invalid input data");
+					}
+				this.$store.dispatch("placeOrder", this.userData.address);
 			},
 		},
 		computed: {
