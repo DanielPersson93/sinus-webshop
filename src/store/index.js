@@ -9,7 +9,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		// query: "",
 		allProducts: [],
 		productList: {},
 		user: {},
@@ -18,9 +17,6 @@ export default new Vuex.Store({
 		cart: [],
 	},
 	mutations: {
-		// setQuery(state, input) {
-		// 	state.query = input;
-		// },
 		saveSingleProduct(state, product){
 			state.allProducts.push(product)
 		},
@@ -76,27 +72,6 @@ export default new Vuex.Store({
 				return;
 			}
 		},
-		// async fetchApparel(context) {
-		// 	if (!context.state.allProducts.find((product) => product.category == 'cap')){
-		// 		const response = await API.fetchApparel();
-		// 		context.commit("saveProducts", response.data);
-		// 	} else {
-		// 		return
-		// 	}
-		// },
-		// async fetchSkate(context) {
-		// 	if (!context.state.allProducts.find((product) => product.category == 'skateboard')){
-		// 		const response = await API.fetchSkate();
-		// 		context.commit("saveProducts", response.data);
-		// 	} else {
-		// 		return
-		// 	}
-		// 	// const response = await API.fetchSkate();
-		// 	// console.log(response)
-		// 	// console.log(response.data)
-		// 	// context.commit("saveProducts", response.map((response) => response.data));
-
-		// },
 		async registerUser(context, user) {
 			context.commit("saveUser", user);
 			const response = await API.registerUser(user);
@@ -145,24 +120,5 @@ export default new Vuex.Store({
 		},
 		getSelectedCategory: (state) => (category) =>
 			state.allProducts.filter((product) => product.category == category),
-
-		// resultsLimited(state) {
-		// 	let searchLoot = [];
-		// 	if (state.query.length > 0) {
-		// 		for (const product of state.products) {
-		// 			let produkt = product.toLowerCase();
-		// 			if (produkt.includes(state.query.toLowerCase())) {
-		// 				let capitalProduct = "";
-		// 				for (let i = 0; i < produkt.length; i++) {
-		// 					if (i == 0) {
-		// 						capitalProduct += produkt[i].toUpperCase();
-		// 					} else capitalProduct += produkt[i];
-		// 				}
-		// 				searchLoot.push(capitalProduct);
-		// 			}
-		// 		}
-		// 	}
-		// 	return searchLoot;
-		// },
 	},
 });

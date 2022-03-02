@@ -21,13 +21,6 @@
 <script>
 	export default {
 		props: ["product"],
-		// beforeMount() {
-		// 	if(this.product){
-		// 		return
-		// 	}else {
-		// 		this.$store.dispatch("getProductCategory", this.$route.query.category)
-		// 	}
-		// },
 		methods: {
 			addItemToCart() {
 				this.$store.dispatch("addItemToCart", this.product);
