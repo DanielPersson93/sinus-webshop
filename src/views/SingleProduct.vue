@@ -1,8 +1,10 @@
 <template>
 	<div class="single-product">
-		<section>
+		<section v-if="product">
 			<div class="productview-top">
-				<p>Home / Apparel / Hoodie</p>
+				<div class="category">
+					<p>Sinus Skateboards / {{currentCategory}} / {{currentTitle}}</p>
+				</div>
 			</div>
 			<div class="divider"></div>
 			<div class="product-container">
@@ -36,17 +38,25 @@
 			},
 		},
 		computed: {
-			products() {
-				return this.$store.state.allProducts;
-			},
 			product() {
 				return this.$store.state.allProducts.find(
 					(allProducts) => allProducts.id == this.$route.params.id
 				);
 			},
+			currentCategory(){
+				return this.product.category
+			},
+			currentTitle(){
+				return this.product.title
+			}
 		},
 		mounted(){
 			window.scrollTo(0,0)
+			if(this.product){
+				return
+			}else {
+				this.$store.dispatch("getSingleProduct", this.$route.params.id)
+			}
 		}
 	};
 </script>
@@ -100,5 +110,11 @@
 	}
 	button {
 		margin-left: 3rem;
+	}
+	.category{
+		display: flex;
+	}
+	h4, p{
+		text-transform: capitalize;
 	}
 </style>

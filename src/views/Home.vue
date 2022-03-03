@@ -1,17 +1,16 @@
 <template>
 	<div class="home">
-		<!-- <router-link to="/profile/"> <button>PROFILE</button></router-link> -->
 		<article class="grid-wrap">
-			<article class="grid-full-width">
-				<img src="@/assets/hero.jpg" alt="" />
-				<section class="hero-left">
-					<h1>Plastic 1</h1>
-					<h2>now in plastic</h2>
-				</section>
-				<section class="hero-right">
-					<h3>SHOP NOW</h3>
-				</section>
-			</article>
+				<article class="grid-full-width" @click="getSingleProduct(16)">
+					<img src="@/assets/hero.jpg" alt="" />
+					<section class="hero-left">
+						<h1>Plastic 1</h1>
+						<h2>now in plastic</h2>
+					</section>
+					<section class="hero-right">
+						<h3>SHOP NOW</h3>
+					</section>
+				</article>
 
 			<article class="picture-parent">
 				<img src="@/assets/boardsbox.jpg" alt="" />
@@ -77,8 +76,13 @@
 			},
 			assignCategory(category) {
 				this.$store.dispatch("getProductCategory", category);
-				console.log(category);
 			},
+			getSingleProduct(productId){
+				this.$router.push({
+					name: 'SingleProduct', params: { id: productId }
+					// path: "/singleproduct/" + productId,
+				});
+			}
 		},
 	};
 </script>
