@@ -11,8 +11,9 @@
         v-if="loginField"
         @closed="loginField = false"
         @openForm="openForm"
+		@showLogOut="showLogOut"
       />
-      <SignUp v-if="openSignUpForm" @closeSignUpForm="toggleOpenCloseForm" />
+      <SignUp v-if="openSignUpForm" @closeSignUpForm="toggleOpenCloseForm" @showLogOut="showLogOut"/>
     </div>
  
     <section class="nav-links">
@@ -130,13 +131,21 @@
 				alt=""
 			/>
 			<img
-				class="icon expand"
+				class="icon expand profile-icon"
+				:class="{redClass}"
 				src="@/assets/profile.svg"
 				alt=""
 				@click="openLogin"
+				
 			/>
 			<p>{{userData.name}}</p>
 		</section>
+			<div class="profile-iconAndSignOut">
+				<form action="/" v-if="ifLoggedInShow">
+				<input type=hidden > 
+				<input type=submit value="Sign Out">
+				</form> 
+			</div>
 	</div>
 </template>
 
@@ -163,16 +172,22 @@
 				// 		zip: "",
 				// 	},
 				// },
+				redClass:false,
 				token: "",
 				hoverApparel: false,
 				hoverSkate: false,
 				openSignUpForm: false,
 				loginField: false,
 				showCart: false,
+				ifLoggedInShow:false,
 			};
 		},
 
   methods: {
+	showLogOut(){
+	this.ifLoggedInShow = true;
+	this.redClass = true;
+	},
     toggleCart() {
       this.showCart = !this.showCart;
     },
@@ -183,47 +198,23 @@
       this.openSignUpForm = !this.openSignUpForm;
       this.loginField = !this.loginField;
     },
-    // setQuery() {
-    // 	this.$store.commit("setQuery", this.searchInput);
-    // },
 	openLogin() {
 		if (this.$store.state.token) {
 			this.$router.push("/profile");
       } else this.loginField = true;
     },
-
-    // search() {
-    // 	this.$router.push({
-		// 		name: "Products",
-    // 		query: { "": this.searchInput },
-    // 	});
-    // },
-
     assignCategory(category) {
 		this.$store.dispatch("getProductCategory", category);
-      console.log(category);
     },
-    // getSkate() {
-		// 	this.$store.dispatch("fetchSkate");
-    // 	this.$router.push("productview");
-    // },
-    // getApparel() {
-		// 	this.$store.dispatch("fetchApparel");
-    // 	this.$router.push("productview");
-    // },
-  },
-  computed: {
+},
+	computed: {
 	productsInCart() {
 		return this.$store.getters.shoppingCart;
     },
 	userData(){
 		return this.$store.state.user;
-
 	}
-    // getQuery() {
-    // 	return this.$store.state.query;
-    // },
-  },
+},
 };
 </script>
 
@@ -234,6 +225,35 @@
   cursor: pointer;
 }
 
+input{
+	border: none;
+	outline-color: transparent;
+	outline-style: none;
+	text-decoration: underline;
+	background: #000000;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	&:hover{
+		background: #881616;
+		transform: scale(1.2);
+	}
+	
+}
+.redClass{
+	filter: invert(15%) sepia(23%) saturate(7397%) hue-rotate(346deg) brightness(95%) contrast(97%);
+
+}
+.profile-icon{
+	color: #881616 !important;
+	display: inline-block;
+	
+}
+.profile-iconAndSignOut{
+	align-self: center;
+	padding: 0 0 0 1rem;
+	
+}
 .nav-wrap {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -278,9 +298,11 @@
   }
 }
 .profile-cart-field {
-  width: 13%;
+  width: 160px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
 }
 a {

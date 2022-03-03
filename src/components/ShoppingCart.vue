@@ -27,7 +27,7 @@
 			<div>
 				<h5>Checkout Total: ${{ totalprice }}</h5>
 				<router-link to="/checkout">
-					<button>RIDE TO CHECKOUT</button>
+					<button @click="$emit('closeCart')">RIDE TO CHECKOUT</button>
 				</router-link>
 			</div>
 		</div>
