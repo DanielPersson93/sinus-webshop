@@ -114,14 +114,11 @@
 						zip: "",
 					},
 				},
-				inLogged: false,
 			};
 		},
 		async beforeMount() {
 			try{
 				this.userData = await currentUser().then((res) => res.data);
-				this.inLogged = true;
-
 			}catch(err){
 				this.userData
 			}

@@ -212,7 +212,6 @@
 		return this.$store.getters.shoppingCart;
     },
 	userData(){
-		console.log(this.hideOrShowSignOut)
 		return this.$store.state.user;
 	}
 },
