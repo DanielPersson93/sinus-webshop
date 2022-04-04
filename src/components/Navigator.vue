@@ -18,7 +18,8 @@
  
     <section class="nav-links">
       <router-link to="/" class="underlined"><h5>HOME</h5></router-link>
-
+<!-- #region FEEDBACK -->
+<!-- $FEEDBACK: This can be shortened with v-for, maybe in a separate component? -->
       <div
         class="category"
         @mouseover="hoverSkate = true"
@@ -94,6 +95,7 @@
           </router-link>
         </ul>
       </div>
+      <!-- #endregion  -->
     </section>
 
     <section class="profile-cart-field">

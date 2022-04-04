@@ -38,6 +38,8 @@
 			},
 		},
 		computed: {
+      // $FEEDBACK: Replace with a store-getter
+      // or, this.$store.state.productList[this.$route.params.id]
 			product() {
 				return this.$store.state.allProducts.find(
 					(allProducts) => allProducts.id == this.$route.params.id

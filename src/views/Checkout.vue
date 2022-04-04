@@ -3,6 +3,7 @@
 		<div class="your-products">
 			<h4>YOUR PRODUCTS</h4>
 			<div class="product" v-for="product in productsInCart" :key="product.id">
+        <!-- $TIPS: Move "http://localhost:5000" to an environment variable -->
 				<img
 					:src="'http://localhost:5000/images/' + product.imgFile"
 					:alt="product.title"
@@ -118,6 +119,7 @@
 		},
 		async beforeMount() {
 			try{
+        // $FEEDBACK: Don't mix async/await with .then/.catch
 				this.userData = await currentUser().then((res) => res.data);
 			}catch(err){
 				this.userData
@@ -129,6 +131,7 @@
 				if (!this.userData.address.city ||
 					!this.userData.address.street ||
 					!this.userData.address.zip){
+            // $BAD PRACTICE: Don't use alerts
 						return alert("Invalid input data");
 					}
 				this.$store.dispatch("placeOrder", this.userData.address);
@@ -138,6 +141,7 @@
 			productsInCart() {
 				return this.$store.getters.shoppingCart;
 			},
+      // $FEEDBACK: Replace with vuex getter
 			totalprice() {
 				let total = 0;
 				for (const product of this.$store.getters.shoppingCart) {
