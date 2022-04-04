@@ -27,10 +27,12 @@
 	export default {
 		components: { Product },
     beforeMount() {
+      // $FEEDBACK: Replace with a getter getProductsByCategory()
       let categoryLength = this.$store.state.allProducts.filter((allProducts) => allProducts.category == this.$route.query.category)
         if(categoryLength.length == 1){
           this.$store.dispatch("getProductCategory", this.$route.query.category)
         }
+        // $FEEDBACK: This is duplicated logic, this condition is categoryLength.length > 0
         if(this.$store.state.allProducts.find((allProducts) => allProducts.category == this.$route.query.category)){
           return
         }else {

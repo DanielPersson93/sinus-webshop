@@ -19,10 +19,11 @@
 					<li v-for="(order, index) in orderHistory" :key="order.id">
 						<div>
 							{{ order.id }}
+              <!-- $1 Replace with openOverlay(order.id) -->
 							<button @click="openOverlay(order, index)">Read more</button>
 						</div>
 						<div class="popup-content">
-							<ul class="order__ul" v-if="order.open">
+							<ul class="order__ul" v-if="order.open"> <!-- $1 Replace with activeOrderID == order.id -->
 								<li><span> Id :</span> {{ order.id }}</li>
 								<li><span>Status :</span> {{ order.status }}</li>
 								<li><span>Shipping City :</span> {{ order.shippingCity }}</li>
@@ -68,12 +69,15 @@
 			};
 		},
 		async beforeMount() {
+      // $FEEDBACK: Don't mix async/await with .then/.catch
 			this.userData = await currentUser().then((res) => res.data);
 
+      // $QUESTION: Why is order history not in vuex?
 			this.orderHistory = await getOrders().then((res) => res.data);
 			this.orderHistory.forEach((order) => (order.open = false));
 		},
 		methods: {
+      // $FEEDBACK: Replace with activeOrderID-data, see $1
 			openOverlay(order, index) {
 				order.open = !order.open;
 				/** Updates object when item in array is changed */
